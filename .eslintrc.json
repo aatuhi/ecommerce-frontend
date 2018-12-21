@@ -1,0 +1,22 @@
+{
+  "extends": ["airbnb"],
+  "plugins": ["react", "jsx-a11y"],
+  "parser": "babel-eslint",
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", "jsx"]
+      }
+    ],
+    "max-len": ["error", 80],
+    "semi": [1, "never"],
+    "react/prefer-stateless-function": "off",
+    "react/prop-types": 0,
+    "react/destructuring-assignment": 0
+  },
+  "env": {
+    "browser": true,
+    "es6": true
+  }
+}
