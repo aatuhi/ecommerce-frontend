@@ -8,8 +8,8 @@ Päämäränä on toteuttaa ainakin jollakin tasolla toimiva verkkokauppa-alusta
 
 ## Tavoitteena seuraavat toiminnallisuudet
 
-- Tuotteiden listaus kategorioittain
-- Tuotteiden lisääminen ostoskoriin
+- Näkymä tuotteille kategorioittain
+- Ostoskori
 - Tilauksen tekeminen (toivottavasti rahaliikenteellä)
 - Käyttäjän luominen
 - Admin-paneeli sisältäen tuotteiden, tilausten ja käyttäjien hallintamahdollisuuden

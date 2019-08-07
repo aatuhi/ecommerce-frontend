@@ -13,7 +13,9 @@
     "semi": [1, "never"],
     "react/prefer-stateless-function": "off",
     "react/prop-types": 0,
-    "react/destructuring-assignment": 0
+    "react/destructuring-assignment": 0,
+    "no-console": "off",
+    "no-underscore-dangle": "off"
   },
   "env": {
     "browser": true,

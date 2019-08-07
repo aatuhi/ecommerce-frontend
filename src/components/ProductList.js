@@ -1,8 +1,17 @@
-import React from "react";
-import productService from "../services/products";
+import React from 'react'
 
-const ProductList = () => {
-  return <div>ProductList</div>;
-};
+const ProductList = ({ products }) => {
+  console.log(products)
+  return (
+    <div>
+      <h2>Product List</h2>
+      <ul>
+        {products.map(product => (
+          <div key={product._id}>{product.details.title}</div>
+        ))}
+      </ul>
+    </div>
+  )
+}
 
-export default ProductList;
+export default ProductList
