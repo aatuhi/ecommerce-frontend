@@ -18,8 +18,15 @@ const ProductFrom = props => (
       }}
       onSubmit={async (values, { setSubmitting }) => {
         setTimeout(() => {
-          alert(JSON.stringify(values, null, 2))
-          props.productCreation(values)
+          const result = window.confirm('Do you want to add product with following values: ', JSON.stringify(values))
+          if (result) {
+            try {
+              props.productCreation(values)
+            } catch (error) {
+              window.alert(error)
+            }
+          }
+          window.alert('Product added')
           setSubmitting(false)
         }, 500)
       }}

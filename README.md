@@ -4,7 +4,7 @@ Backend löytyy [täältä](https://github.com/aatuhi/ecommerce-backend)
 
 ## Tietoa
 
-Päämäränä on toteuttaa ainakin jollakin tasolla toimiva verkkokauppa-alusta. Projekti toimii ensisijaisesti harjoitustyönä/hiekkalaatikkona omaksi ilokseni.
+Frontend verkkokauppalustalle. Omaksi ilokseni.
 
 ## Tavoitteena seuraavat toiminnallisuudet
 
