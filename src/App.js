@@ -4,8 +4,7 @@ import { connect } from 'react-redux'
 import { productInitialization } from './reducers/productReducer'
 import NavBar from './components/NavBar'
 import ProductList from './components/ProductList'
-import ProductForm from './components/ProductForm'
-import FormikComponent from './components/FormikComponent'
+import ProductFrom from './components/ProductForm'
 
 const App = (props) => {
   useEffect(() => {
@@ -17,7 +16,7 @@ const App = (props) => {
     <Container>
       <NavBar />
       <h1>Ecommerce application</h1>
-      <FormikComponent />
+      <ProductFrom />
       <ProductList products={props.products} />
     </Container>
   )
