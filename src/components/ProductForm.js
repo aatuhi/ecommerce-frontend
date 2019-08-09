@@ -18,7 +18,7 @@ const ProductFrom = props => (
       }}
       onSubmit={async (values, { setSubmitting }) => {
         setTimeout(() => {
-          const result = window.confirm('Do you want to add product with following values: ', JSON.stringify(values))
+          const result = window.confirm(JSON.stringify(values))
           if (result) {
             try {
               props.productCreation(values)

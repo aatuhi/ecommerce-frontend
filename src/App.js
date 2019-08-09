@@ -5,6 +5,7 @@ import { productInitialization } from './reducers/productReducer'
 import NavBar from './components/NavBar'
 import ProductList from './components/ProductList'
 import ProductFrom from './components/ProductForm'
+import ShoppingCart from './components/ShoppingCart'
 
 const App = (props) => {
   useEffect(() => {
@@ -17,16 +18,13 @@ const App = (props) => {
       <NavBar />
       <h1>Ecommerce application</h1>
       <ProductFrom />
-      <ProductList products={props.products} />
+      <ProductList />
+      <ShoppingCart />
     </Container>
   )
 }
 
-const mapStateToProps = state => ({
-  products: state.products,
-})
-
 export default connect(
-  mapStateToProps,
+  null,
   { productInitialization },
 )(App)
