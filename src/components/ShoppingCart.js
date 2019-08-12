@@ -5,9 +5,12 @@ import Product from './Product'
 import { emptyShoppingCart } from '../reducers/shoppingCartReducer'
 
 const ShoppingCart = (props) => {
-  if (!props) {
+  const totalPrice = cart => cart.reduce((prev, curr) => prev + curr.details.price, 0)
+
+  if (!props.cart) {
     return <h2>Shopping cart</h2>
   }
+  console.log('cart', props.cart)
   return (
     <div>
       <h2>Shopping Cart</h2>
@@ -18,6 +21,12 @@ const ShoppingCart = (props) => {
           </div>
         ))}
       </ul>
+      <p>
+Total price:
+        {totalPrice(props.cart)}
+        {' '}
+€
+      </p>
       <button type="button" onClick={() => props.emptyShoppingCart()}>
         clear cart
       </button>
