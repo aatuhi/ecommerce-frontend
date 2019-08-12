@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import Product from './Product'
 import { emptyShoppingCart } from '../reducers/shoppingCartReducer'
 
@@ -20,6 +21,7 @@ const ShoppingCart = (props) => {
       <button type="button" onClick={() => props.emptyShoppingCart()}>
         clear cart
       </button>
+      <button type="button">next</button>
     </div>
   )
 }
@@ -28,7 +30,9 @@ const mapStateToProps = state => ({
   cart: state.shoppingCart,
 })
 
-export default connect(
-  mapStateToProps,
-  { emptyShoppingCart },
-)(ShoppingCart)
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { emptyShoppingCart },
+  )(ShoppingCart),
+)

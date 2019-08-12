@@ -1,13 +1,25 @@
 import React from 'react'
 import { Menu } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 const NavBar = () => (
   <React.Fragment>
     <Menu inverted stackable>
-      <Menu.Item>Store</Menu.Item>
-      <Menu.Item>Admin panel</Menu.Item>
-      <Menu.Item>Log In</Menu.Item>
-      <Menu.Item>Shopping Basket</Menu.Item>
+      <Menu.Item>
+        <Link to="/">Home</Link>
+      </Menu.Item>
+      <Menu.Item>
+        <Link to="/products">Products</Link>
+      </Menu.Item>
+      <Menu.Item>
+        <Link to="/admin">Admin panel</Link>
+      </Menu.Item>
+      <Menu.Item>
+        <Link to="/cart">Shopping Cart</Link>
+      </Menu.Item>
+      <Menu.Item>
+        <Link to="/login">Log In</Link>
+      </Menu.Item>
     </Menu>
   </React.Fragment>
 )

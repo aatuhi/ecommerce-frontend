@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
 import { Container } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { productInitialization } from './reducers/productReducer'
 import NavBar from './components/NavBar'
 import ProductList from './components/ProductList'
 import ProductFrom from './components/ProductForm'
 import ShoppingCart from './components/ShoppingCart'
+import LandingPage from './components/LandingPage'
 
 const App = (props) => {
   useEffect(() => {
@@ -14,13 +16,15 @@ const App = (props) => {
   }, [])
 
   return (
-    <Container>
-      <NavBar />
-      <h1>Ecommerce application</h1>
-      <ProductFrom />
-      <ProductList />
-      <ShoppingCart />
-    </Container>
+    <Router>
+      <Container>
+        <NavBar />
+        <Route path="/" exact component={LandingPage} />
+        <Route path="/admin/" component={ProductFrom} />
+        <Route path="/products/" component={ProductList} />
+        <Route path="/cart/" component={ShoppingCart} />
+      </Container>
+    </Router>
   )
 }
 
