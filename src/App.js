@@ -8,6 +8,7 @@ import ProductList from './components/ProductList'
 import ProductFrom from './components/ProductForm'
 import ShoppingCart from './components/ShoppingCart'
 import LandingPage from './components/LandingPage'
+import Login from './components/Login'
 
 const App = (props) => {
   useEffect(() => {
@@ -23,6 +24,7 @@ const App = (props) => {
         <Route path="/admin/" component={ProductFrom} />
         <Route path="/products/" component={ProductList} />
         <Route path="/cart/" component={ShoppingCart} />
+        <Route path="/login/" component={Login} />
       </Container>
     </Router>
   )

@@ -22,7 +22,7 @@ const ShoppingCart = (props) => {
         ))}
       </ul>
       <p>
-Total price:
+        Total price:
         {totalPrice(props.cart)}
         {' '}
 €
