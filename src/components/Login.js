@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { Form, Button, Message } from 'semantic-ui-react'
+import { Form, Button } from 'semantic-ui-react'
 import { userLoggingIn, userLoggingOut } from '../reducers/loginReducer'
 
 const Login = (props) => {
@@ -11,6 +11,15 @@ const Login = (props) => {
     return (
       <div>
         <h2>You have logged in succesfully</h2>
+        <h3>Account details</h3>
+        <p>
+          Username:
+          {props.user.username}
+        </p>
+        <p>
+          Name:
+          {props.user.name}
+        </p>
         <Button onClick={() => props.userLoggingOut()}>Logout</Button>
       </div>
     )

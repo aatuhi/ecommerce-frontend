@@ -9,7 +9,7 @@ const Product = ({ product }) => {
   return (
     <div>
       {' '}
-      <h3>{product.details.title}</h3>
+      <h2>{product.details.title}</h2>
       {product.details.price}
 €
       {product.details.description}

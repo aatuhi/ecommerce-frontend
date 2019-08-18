@@ -5,10 +5,11 @@ import Product from './Product'
 import { emptyShoppingCart } from '../reducers/shoppingCartReducer'
 
 const ShoppingCart = (props) => {
-  const totalPrice = cart => cart.reduce((prev, curr) => prev + curr.details.price, 0)
+  const totalPrice = cart => Math.floor(cart.reduce((prev, curr) => prev + curr.details.price, 0))
+  // should round to one cent
 
   if (!props.cart) {
-    return <h2>Shopping cart</h2>
+    return <h2>Shopping cart is empty</h2>
   }
   console.log('cart', props.cart)
   return (
@@ -16,21 +17,25 @@ const ShoppingCart = (props) => {
       <h2>Shopping Cart</h2>
       <ul>
         {props.cart.map(product => (
-          <div key={product._id}>
+          <div key={Math.random() * 10}>
             <Product product={product} />
           </div>
         ))}
       </ul>
-      <p>
-        Total price:
-        {totalPrice(props.cart)}
-        {' '}
+      {props.cart.length > 0 && (
+        <div>
+          <p>
+            Total price:
+            {totalPrice(props.cart)}
+            {' '}
 €
-      </p>
-      <button type="button" onClick={() => props.emptyShoppingCart()}>
-        clear cart
-      </button>
-      <button type="button">next</button>
+          </p>
+          <button type="button" onClick={() => props.emptyShoppingCart()}>
+            clear cart
+          </button>
+          <button type="button">next</button>
+        </div>
+      )}
     </div>
   )
 }
