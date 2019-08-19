@@ -10,6 +10,7 @@ import Product from './components/Product'
 import ShoppingCart from './components/ShoppingCart'
 import LandingPage from './components/LandingPage'
 import Login from './components/Login'
+import OrderForm from './components/OrderForm'
 
 const App = (props) => {
   useEffect(() => {
