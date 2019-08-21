@@ -19,12 +19,20 @@ const createUser = async (user) => {
   return response.data
 }
 
+const getOrdersByUser = async (id) => {
+  const config = {
+    headers: { Authorization: token },
+  }
+  const response = await axios.get(`${baseUrl}/${id}/orders`, config)
+  return response.data
+}
+
 const deleteUser = async (userId) => {
   const config = {
     headers: { Authorization: token },
   }
-  const request = axios.delete(`${baseUrl}/${userId}`, config)
-  return request.then(response => response.status)
+  const response = await axios.delete(`${baseUrl}/${userId}`, config)
+  return response.data
 }
 
 export default {
@@ -32,4 +40,5 @@ export default {
   createUser,
   deleteUser,
   setToken,
+  getOrdersByUser,
 }

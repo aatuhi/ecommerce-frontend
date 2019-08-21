@@ -9,8 +9,8 @@ import ProductFrom from './components/ProductForm'
 import Product from './components/Product'
 import ShoppingCart from './components/ShoppingCart'
 import LandingPage from './components/LandingPage'
-import Login from './components/Login'
-import OrderForm from './components/OrderForm'
+import LoginPage from './components/LoginPage'
+import Order from './components/Order'
 
 const App = (props) => {
   useEffect(() => {
@@ -28,6 +28,16 @@ const App = (props) => {
     return productToRender
   }
 
+  const orderById = (id) => {
+    console.log(id)
+    const orderToRender = props.user.orders.find((order) => {
+      console.log(order._id, id)
+      return order._id === id
+    })
+    console.log(orderToRender)
+    return orderToRender
+  }
+
   return (
     <Router>
       <Container>
@@ -43,7 +53,12 @@ const App = (props) => {
           )}
         />
         <Route path="/cart/" component={ShoppingCart} />
-        <Route path="/login/" component={Login} />
+        <Route path="/account/" exact component={LoginPage} />
+        <Route
+          exact
+          path="/account/orders/:id"
+          render={({ match }) => <Order order={orderById(match.params.id)} />}
+        />
       </Container>
     </Router>
   )
@@ -51,6 +66,7 @@ const App = (props) => {
 
 const mapStateToProps = state => ({
   products: state.products,
+  user: state.user,
 })
 
 export default connect(

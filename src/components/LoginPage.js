@@ -2,25 +2,19 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Form, Button } from 'semantic-ui-react'
 import { userLoggingIn, userLoggingOut } from '../reducers/loginReducer'
+import OrderHistory from './OrderHistory'
+import AccountDetails from './AccountDetails'
 
-const Login = (props) => {
+const LoginPage = (props) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
   if (props.user) {
     return (
       <div>
-        <h2>You have logged in succesfully</h2>
-        <h3>Account details</h3>
-        <p>
-          Username:
-          {props.user.username}
-        </p>
-        <p>
-          Name:
-          {props.user.name}
-        </p>
+        <AccountDetails />
         <Button onClick={() => props.userLoggingOut()}>Logout</Button>
+        <OrderHistory />
       </div>
     )
   }
@@ -60,4 +54,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Login)
+)(LoginPage)

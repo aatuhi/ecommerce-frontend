@@ -7,9 +7,8 @@ import { Form, Button, Message } from 'semantic-ui-react'
 import orderService from '../services/orders'
 
 const OrderForm = (props) => {
-  const totalPrice = shoppingCart => Math.floor(
-    shoppingCart.reduce((prev, curr) => prev + curr.details.price, 0),
-  )
+  const totalPrice = shoppingCart => shoppingCart.reduce((prev, curr) => prev + curr.details.price, 0)
+  // something off
 
   return (
     <div>
@@ -24,7 +23,6 @@ const OrderForm = (props) => {
         }}
         onSubmit={async (values, { setSubmitting }) => {
           setTimeout(() => {
-            // orderService.setToken(props.user.token)
             const result = window.confirm()
             if (result) {
               try {
