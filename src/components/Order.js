@@ -4,13 +4,13 @@ import { withRouter } from 'react-router-dom'
 const Order = ({ order }) => (
   <div>
     <h2>
-        Order
+      Order
       {order._id}
     </h2>
     <div>
       <h3>Products</h3>
       {order.products.map(product => (
-        <div>
+        <div key={product._id}>
           <div>{product.details.title}</div>
           <div>
             {product.price}

@@ -3,6 +3,8 @@ import { Container } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { productInitialization } from './reducers/productReducer'
+import { usersInitialization } from './reducers/usersReducer'
+import userService from './services/users'
 import NavBar from './components/NavBar'
 import ProductList from './components/ProductList'
 import ProductFrom from './components/ProductForm'
@@ -11,11 +13,16 @@ import ShoppingCart from './components/ShoppingCart'
 import LandingPage from './components/LandingPage'
 import LoginPage from './components/LoginPage'
 import Order from './components/Order'
+import UserInfo from './components/UserInfo'
 
 const App = (props) => {
   useEffect(() => {
     console.log('products initialized')
     props.productInitialization()
+    if (props.user && props.user.admin) {
+      userService.setToken(props.user.token)
+      props.usersInitialization()
+    }
   }, [])
 
   const productById = (id) => {
@@ -38,12 +45,22 @@ const App = (props) => {
     return orderToRender
   }
 
+  const userById = (id) => {
+    console.log(id)
+    const userToRender = props.registeredUsers.find((user) => {
+      console.log(user._id, id)
+      return user._id === id
+    })
+    console.log(userToRender)
+    return userToRender
+  }
+
   return (
     <Router>
       <Container>
         <NavBar />
         <Route path="/" exact component={LandingPage} />
-        <Route path="/admin/" component={ProductFrom} />
+        <Route path="/admin/" exact component={ProductFrom} />
         <Route path="/products/" exact component={ProductList} />
         <Route
           exact
@@ -59,6 +76,11 @@ const App = (props) => {
           path="/account/orders/:id"
           render={({ match }) => <Order order={orderById(match.params.id)} />}
         />
+        <Route
+          exact
+          path="/admin/users/:id"
+          render={({ match }) => <UserInfo user={userById(match.params.id)} />}
+        />
       </Container>
     </Router>
   )
@@ -67,9 +89,10 @@ const App = (props) => {
 const mapStateToProps = state => ({
   products: state.products,
   user: state.user,
+  registeredUsers: state.registeredUsers,
 })
 
 export default connect(
   mapStateToProps,
-  { productInitialization },
+  { productInitialization, usersInitialization },
 )(App)

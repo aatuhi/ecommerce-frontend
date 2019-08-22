@@ -6,6 +6,7 @@ import * as Yup from 'yup'
 import { Form, Button, Message } from 'semantic-ui-react'
 import { productCreation } from '../reducers/productReducer'
 import productService from '../services/products'
+import UserList from './UserList';
 
 const ProductFrom = (props) => {
   return (
@@ -148,6 +149,7 @@ const ProductFrom = (props) => {
           )
         }}
       </Formik>
+      <UserList />
     </div>
   )
 }
