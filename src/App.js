@@ -4,7 +4,9 @@ import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { productInitialization } from './reducers/productReducer'
 import { usersInitialization } from './reducers/usersReducer'
+import { ordersInitialization } from './reducers/ordersReducer'
 import userService from './services/users'
+import orderService from './services/orders'
 import NavBar from './components/NavBar'
 import ProductList from './components/ProductList'
 import ProductFrom from './components/ProductForm'
@@ -21,7 +23,9 @@ const App = (props) => {
     props.productInitialization()
     if (props.user && props.user.admin) {
       userService.setToken(props.user.token)
+      orderService.setToken(props.user.token)
       props.usersInitialization()
+      props.ordersInitialization()
     }
   }, [])
 
@@ -37,7 +41,7 @@ const App = (props) => {
 
   const orderById = (id) => {
     console.log(id)
-    const orderToRender = props.user.orders.find((order) => {
+    const orderToRender = props.allOrders.find((order) => {
       console.log(order._id, id)
       return order._id === id
     })
@@ -81,6 +85,11 @@ const App = (props) => {
           path="/admin/users/:id"
           render={({ match }) => <UserInfo user={userById(match.params.id)} />}
         />
+        <Route
+          exact
+          path="/admin/orders/:id"
+          render={({ match }) => <Order order={orderById(match.params.id)} />}
+        />
       </Container>
     </Router>
   )
@@ -90,9 +99,10 @@ const mapStateToProps = state => ({
   products: state.products,
   user: state.user,
   registeredUsers: state.registeredUsers,
+  allOrders: state.allOrders,
 })
 
 export default connect(
   mapStateToProps,
-  { productInitialization, usersInitialization },
+  { productInitialization, usersInitialization, ordersInitialization },
 )(App)

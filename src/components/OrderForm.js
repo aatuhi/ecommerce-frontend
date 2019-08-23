@@ -31,13 +31,12 @@ const OrderForm = (props) => {
                   totalPrice: totalPrice(props.shoppingCart),
                   deliveryAddress: values,
                 }
-                orderService.setToken(props.user.token)
                 orderService.createOrder(order)
               } catch (error) {
                 window.alert(error)
               }
+              window.alert('Order placed')
             }
-            window.alert('Order placed')
             setSubmitting(false)
           }, 500)
         }}

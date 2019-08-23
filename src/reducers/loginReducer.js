@@ -1,5 +1,5 @@
 import loginService from '../services/login'
-import userService from '../services/users'
+import orderService from '../services/orders'
 
 const initialState = JSON.parse(window.localStorage.getItem('loggedUser'))
 
@@ -18,13 +18,11 @@ const loginReducer = (state = initialState, action) => {
 export const userLoggingIn = credentials => async (dispatch) => {
   console.log('logging in')
   const user = await loginService.login(credentials)
-  userService.setToken(user.token)
-  const userOrders = await userService.getOrdersByUser(user._id)
-  const userWithOrders = { ...user, orders: userOrders }
-  window.localStorage.setItem('loggedUser', JSON.stringify(userWithOrders))
+  window.localStorage.setItem('loggedUser', JSON.stringify(user))
+  orderService.setToken(user.token)
   dispatch({
     type: 'LOG_IN',
-    data: userWithOrders,
+    data: user,
   })
 }
 

@@ -23,13 +23,13 @@ const createUser = async (user) => {
   return response.data
 }
 
-const getOrdersByUser = async (id) => {
-  const config = {
-    headers: { Authorization: token },
-  }
-  const response = await axios.get(`${baseUrl}/${id}/orders`, config)
-  return response.data
-}
+// const getOrdersByUser = async (id) => {
+//   const config = {
+//     headers: { Authorization: token },
+//   }
+//   const response = await axios.get(`${baseUrl}/${id}/orders`, config)
+//   return response.data
+// }
 
 const deleteUser = async (userId) => {
   const config = {
@@ -44,5 +44,5 @@ export default {
   createUser,
   deleteUser,
   setToken,
-  getOrdersByUser,
+  // getOrdersByUser,
 }

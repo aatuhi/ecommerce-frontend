@@ -24,8 +24,11 @@ const Order = ({ order }) => (
       <h3>Delivery address</h3>
       <div>{order.deliveryAddress.name}</div>
       <div>{order.deliveryAddress.street}</div>
-      <div>{order.deliveryAddress.zipCode}</div>
-      <div>{order.deliveryAddress.city}</div>
+      <div>
+        {order.deliveryAddress.zipCode}
+        {' '}
+        {order.deliveryAddress.city}
+      </div>
       <div>{order.deliveryAddress.country}</div>
     </div>
     <div>

@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import Product from './Product'
 import { emptyShoppingCart } from '../reducers/shoppingCartReducer'
+import Product from './Product' // refactor to ShoppingCartProduct
 import OrderForm from './OrderForm'
 
 const ShoppingCart = (props) => {
@@ -20,7 +20,17 @@ const ShoppingCart = (props) => {
       <ul>
         {props.shoppingCart.map(product => (
           <div key={Math.random() * 10}>
-            <Product product={product} />
+            {' '}
+            <h3>{product.details.title}</h3>
+            <p>
+              {' '}
+              {product.details.price}
+€
+            </p>
+            <p>
+              {' '}
+              {product.details.description}
+            </p>
           </div>
         ))}
       </ul>

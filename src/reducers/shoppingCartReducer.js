@@ -17,6 +17,7 @@ export const emptyShoppingCart = () => (dispatch) => {
 }
 
 export const addProductToCart = product => (dispatch) => {
+  window.localStorage.setItem('shoppingCart', product)
   dispatch({
     type: 'ADD_PRODUCT_TO_CART',
     data: product,
