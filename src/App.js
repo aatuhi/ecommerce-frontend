@@ -19,7 +19,6 @@ import UserInfo from './components/UserInfo'
 
 const App = (props) => {
   useEffect(() => {
-    console.log('products initialized')
     props.productInitialization()
     if (props.user && props.user.admin) {
       userService.setToken(props.user.token)
@@ -30,32 +29,17 @@ const App = (props) => {
   }, [])
 
   const productById = (id) => {
-    console.log(id)
-    const productToRender = props.products.find((product) => {
-      console.log(product._id, id)
-      return product._id === id
-    })
-    console.log(productToRender)
+    const productToRender = props.products.find(product => product._id === id)
     return productToRender
   }
 
   const orderById = (id) => {
-    console.log(id)
-    const orderToRender = props.allOrders.find((order) => {
-      console.log(order._id, id)
-      return order._id === id
-    })
-    console.log(orderToRender)
+    const orderToRender = props.allOrders.find(order => order._id === id)
     return orderToRender
   }
 
   const userById = (id) => {
-    console.log(id)
-    const userToRender = props.registeredUsers.find((user) => {
-      console.log(user._id, id)
-      return user._id === id
-    })
-    console.log(userToRender)
+    const userToRender = props.registeredUsers.find(user => user._id === id)
     return userToRender
   }
 

@@ -4,6 +4,7 @@ import { Form, Button } from 'semantic-ui-react'
 import { userLoggingIn, userLoggingOut } from '../reducers/loginReducer'
 import OrderHistory from './OrderHistory'
 import AccountDetails from './AccountDetails'
+import UserCreationForm from './UserCreationForm'
 
 const LoginPage = (props) => {
   const [username, setUsername] = useState('')
@@ -38,6 +39,7 @@ const LoginPage = (props) => {
         </div>
         <Button type="submit">Log in</Button>
       </Form>
+      <UserCreationForm />
     </div>
   )
 }

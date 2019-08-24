@@ -94,9 +94,9 @@ const OrderForm = (props) => {
                 </div>
                 <div>
                   <Form.Input
-                    label="ZIP-code"
+                    label="Postal code"
                     id="zipCode"
-                    placeholder="Enter ZIP-code"
+                    placeholder="Enter postal code"
                     type="text"
                     value={values.zipCode}
                     onChange={handleChange}
