@@ -22,6 +22,7 @@ const LoginPage = (props) => {
 
   return (
     <div>
+      <h3>Sign in</h3>
       <Form onSubmit={() => props.userLoggingIn({ username, password })}>
         <div>
           <Form.Input

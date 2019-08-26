@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom'
 
 const OrderHistory = (props) => {
   if (!props.orders || props.orders.length < 1) {
-    return <h2>Order history is empty</h2>
+    return <h2>You have not made any orders yet</h2>
   }
 
   return (

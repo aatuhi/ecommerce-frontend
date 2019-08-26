@@ -7,12 +7,16 @@ const AccountDetails = props => (
     <h2>Welcome!</h2>
     <h3>Account details</h3>
     <p>
-      Username:
+Username:
       {props.user.username}
     </p>
     <p>
-      Name:
+Name:
       {props.user.name}
+    </p>
+    <p>
+E-mail:
+      {props.user.email}
     </p>
   </div>
 )

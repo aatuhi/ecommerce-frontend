@@ -9,12 +9,9 @@ const ProductList = props => (
     <ul>
       {props.products.map(product => (
         <div key={product._id}>
-          <Link to={`/products/${product._id}`}>{product.details.title}</Link>
-          <button
-            type="button"
-            onClick={() => props.addProductToCart(product)}
-          >
-              add to cart
+          <Link to={`/products/${product._id}`}>{product.title}</Link>
+          <button type="button" onClick={() => props.addProductToCart(product)}>
+            add to cart
           </button>
         </div>
       ))}

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect, withRouter } from 'react-router-dom'
 import { Button } from 'semantic-ui-react'
 import { productRemoval } from '../reducers/productReducer'
+import ProductEditForm from './ProductEditForm'
 import productService from '../services/products'
 
 const Product = (props) => {
@@ -19,20 +20,27 @@ const Product = (props) => {
   return (
     <div>
       {' '}
-      <h2>{props.product.details.title}</h2>
+      <h2>{props.product.title}</h2>
       <p>
         {' '}
-        {props.product.details.price}
+        {props.product.price}
 €
       </p>
       <p>
         {' '}
-        {props.product.details.description}
+        {props.product.type}
+      </p>
+      <p>
+        {' '}
+        {props.product.description}
       </p>
       {props.user.admin && (
-        <Button type="button" onClick={() => handleRemove(props.product)}>
-          Delete
-        </Button>
+        <div>
+          <ProductEditForm product={props.product} />
+          <Button type="button" onClick={() => handleRemove(props.product)}>
+            Delete
+          </Button>
+        </div>
       )}
     </div>
   )

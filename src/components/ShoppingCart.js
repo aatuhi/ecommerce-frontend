@@ -2,13 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { emptyShoppingCart } from '../reducers/shoppingCartReducer'
-import Product from './Product' // refactor to ShoppingCartProduct
+import ShoppingCartProduct from './ShoppingCartProduct'
 import OrderForm from './OrderForm'
 
 const ShoppingCart = (props) => {
-  const totalPrice = shoppingCart => Math.floor(
-    shoppingCart.reduce((prev, curr) => prev + curr.details.price, 0),
-  )
+  const totalPrice = shoppingCart => shoppingCart.reduce((prev, curr) => prev + curr.price * curr.quantity, 0)
   // should round to one cent
 
   if (!props.shoppingCart || props.shoppingCart.length < 1) {
@@ -19,18 +17,8 @@ const ShoppingCart = (props) => {
       <h2>Shopping Cart</h2>
       <ul>
         {props.shoppingCart.map(product => (
-          <div key={Math.random() * 10}>
-            {' '}
-            <h3>{product.details.title}</h3>
-            <p>
-              {' '}
-              {product.details.price}
-€
-            </p>
-            <p>
-              {' '}
-              {product.details.description}
-            </p>
+          <div key={product._id}>
+            <ShoppingCartProduct product={product} />
           </div>
         ))}
       </ul>

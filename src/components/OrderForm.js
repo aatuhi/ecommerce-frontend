@@ -7,7 +7,7 @@ import { Form, Button, Message } from 'semantic-ui-react'
 import orderService from '../services/orders'
 
 const OrderForm = (props) => {
-  const totalPrice = shoppingCart => shoppingCart.reduce((prev, curr) => prev + curr.details.price, 0)
+  const totalPrice = shoppingCart => shoppingCart.reduce((prev, curr) => prev + curr.price * curr.quantity, 0)
   // something off
 
   return (
@@ -27,7 +27,7 @@ const OrderForm = (props) => {
             if (result) {
               try {
                 const order = {
-                  products: props.shoppingCart.map(product => product._id),
+                  products: props.shoppingCart,
                   totalPrice: totalPrice(props.shoppingCart),
                   deliveryAddress: values,
                 }

@@ -1,8 +1,43 @@
 const shoppingCartReducer = (state = [], action) => {
   console.log('shoppingCartReducer action', action)
   switch (action.type) {
-    case 'ADD_PRODUCT_TO_CART':
-      return [...state, action.data]
+    case 'ADD_PRODUCT_TO_CART': {
+      const productToFind = state.find(
+        product => product._id === action.data._id,
+      )
+      if (!productToFind) {
+        return [...state, { ...action.data, quantity: 1 }]
+      }
+      console.log('included')
+      const newState = state.filter(
+        product => product._id !== productToFind._id,
+      )
+      return [
+        ...newState,
+        { ...action.data, quantity: productToFind.quantity + 1 },
+      ]
+    }
+    case 'REMOVE_PRODUCT_FROM_CART': {
+      const productToFind = state.find(product => product._id === action.data)
+      if (productToFind.quantity > 1) {
+        const newState = state.filter(
+          product => product._id !== productToFind._id,
+        )
+        return [
+          ...newState,
+          { ...productToFind, quantity: productToFind.quantity - 1 },
+        ]
+      }
+      const newState = state.filter(
+        product => product._id !== productToFind._id,
+      )
+      return newState
+    }
+    case 'UPDATE_PRODUCT_QUANTITY': {
+      console.log(action.data)
+      const newState = state.filter(product => product._id !== action.data._id)
+      return [...newState, action.data]
+    }
     case 'EMPTY_CART':
       return []
     default:
@@ -10,18 +45,30 @@ const shoppingCartReducer = (state = [], action) => {
   }
 }
 
-export const emptyShoppingCart = () => (dispatch) => {
-  dispatch({
-    type: 'EMPTY_CART',
-  })
-}
-
 export const addProductToCart = product => (dispatch) => {
-  window.localStorage.setItem('shoppingCart', product)
   dispatch({
     type: 'ADD_PRODUCT_TO_CART',
     data: product,
   })
 }
 
+export const removeProductFromCart = product => (dispatch) => {
+  dispatch({
+    type: 'REMOVE_PRODUCT_FROM_CART',
+    data: product,
+  })
+}
+
+export const updateProductQuantity = updatedProduct => (dispatch) => {
+  dispatch({
+    type: 'UPDATE_PRODUCT_QUANTITY',
+    data: updatedProduct,
+  })
+}
+
+export const emptyShoppingCart = () => (dispatch) => {
+  dispatch({
+    type: 'EMPTY_CART',
+  })
+}
 export default shoppingCartReducer

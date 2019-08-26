@@ -22,6 +22,19 @@ const createProduct = async (product) => {
   return response.data
 }
 
+const editProduct = async (updatedProduct) => {
+  const config = {
+    headers: { Authorization: token },
+  }
+
+  const response = await axios.put(
+    `${baseUrl}/${updatedProduct._id}`,
+    updatedProduct,
+    config,
+  )
+  return response.data
+}
+
 const removeProduct = async (id) => {
   const config = {
     headers: { Authorization: token },
@@ -31,8 +44,9 @@ const removeProduct = async (id) => {
 }
 
 export default {
+  setToken,
   getAll,
   createProduct,
-  setToken,
   removeProduct,
+  editProduct,
 }

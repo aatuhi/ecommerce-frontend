@@ -4,21 +4,20 @@ import { withRouter } from 'react-router-dom'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { Form, Button, Message } from 'semantic-ui-react'
-import { productCreation } from '../reducers/productReducer'
 import productService from '../services/products'
-import UserList from './UserList';
-import OrderList from './OrderList';
+import { productEditing } from '../reducers/productReducer'
 
-const ProductFrom = (props) => {
+const ProductEditForm = (props) => {
+  console.log(props.product)
   return (
     <div>
-      <h2>Add a product</h2>
+      <h2>Edit product</h2>
       <Formik
         initialValues={{
-          title: '',
-          description: '',
-          type: '',
-          price: 0,
+          title: props.product.title,
+          description: props.product.description,
+          price: props.product.price,
+          type: props.product.type,
         }}
         onSubmit={async (values, { setSubmitting }) => {
           setTimeout(() => {
@@ -26,7 +25,15 @@ const ProductFrom = (props) => {
             const result = window.confirm(JSON.stringify(values))
             if (result) {
               try {
-                props.productCreation(values)
+                const updatedProduct = {
+                  ...props.product,
+                  title: values.title,
+                  description: values.description,
+                  price: values.price,
+                  type: values.type,
+                }
+                console.log(updatedProduct)
+                props.productEditing(updatedProduct)
               } catch (error) {
                 window.alert(error)
               }
@@ -42,6 +49,9 @@ const ProductFrom = (props) => {
           description: Yup.string()
             .required('Required field')
             .min(2, 'Description required'),
+          type: Yup.string()
+            .required('Required field')
+            .min(2, 'Type required'),
           price: Yup.number().required('Price is required'),
         })}
       >
@@ -91,6 +101,20 @@ const ProductFrom = (props) => {
                 </div>
                 <div>
                   <Form.Input
+                    label="Type"
+                    id="type"
+                    placeholder="Enter the product type"
+                    type="text"
+                    value={values.type}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {errors.type && touched.type && (
+                    <Message color="orange">{errors.type}</Message>
+                  )}
+                </div>
+                <div>
+                  <Form.Input
                     label="Price"
                     id="price"
                     placeholder="Enter the product price"
@@ -102,20 +126,6 @@ const ProductFrom = (props) => {
                   />
                   {errors.price && touched.price && (
                     <Message color="orange">{errors.price}</Message>
-                  )}
-                </div>
-                <div>
-                  <Form.Input
-                    label="Product Category"
-                    id="type"
-                    placeholder="Enter the product category/type"
-                    type="text"
-                    value={values.type}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  {errors.type && touched.type && (
-                    <Message color="orange">{errors.type}</Message>
                   )}
                 </div>
 
@@ -134,11 +144,10 @@ const ProductFrom = (props) => {
           )
         }}
       </Formik>
-      <UserList />
-      <OrderList /> 
     </div>
   )
 }
+
 const mapStateToProps = state => ({
   user: state.user,
 })
@@ -146,6 +155,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { productCreation },
-  )(ProductFrom),
+    { productEditing },
+  )(ProductEditForm),
 )

@@ -7,24 +7,36 @@ const NavBar = props => (
   <div>
     <Menu inverted stackable>
       <Menu.Item>
-        <Link to="/">Home</Link>
+        <Link to="/">
+          <h4>Home</h4>
+        </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link to="/products">Products</Link>
+        <Link to="/products">
+          <h4>Products</h4>
+        </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link to="/cart">Shopping cart</Link>
+        <Link to="/cart">
+          <h4>Cart</h4>
+        </Link>
       </Menu.Item>
       <Menu.Item>
         {props.user ? (
-          <Link to="/account">My account</Link>
+          <Link to="/account">
+            <h4>My account</h4>
+          </Link>
         ) : (
-          <Link to="/account">Log in</Link>
+          <Link to="/account">
+            <h4>Sign in</h4>
+          </Link>
         )}
       </Menu.Item>
       {props.user && props.user.admin && (
         <Menu.Item>
-          <Link to="/admin">Admin panel</Link>
+          <Link to="/admin">
+            <h4>Admin panel</h4>
+          </Link>
         </Menu.Item>
       )}
     </Menu>

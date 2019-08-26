@@ -28,20 +28,16 @@ const App = (props) => {
     }
   }, [])
 
-  const productById = (id) => {
-    const productToRender = props.products.find(product => product._id === id)
-    return productToRender
-  }
+  const productById = id => props.products.find(product => product._id === id)
 
   const orderById = (id) => {
-    const orderToRender = props.allOrders.find(order => order._id === id)
-    return orderToRender
+    if (props.user.admin) {
+      return props.allOrders.find(order => order._id === id)
+    }
+    return props.user.orders.find(order => order._id === id)
   }
 
-  const userById = (id) => {
-    const userToRender = props.registeredUsers.find(user => user._id === id)
-    return userToRender
-  }
+  const userById = id => props.registeredUsers.find(user => user._id === id)
 
   return (
     <Router>
