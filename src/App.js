@@ -9,13 +9,13 @@ import userService from './services/users'
 import orderService from './services/orders'
 import NavBar from './components/NavBar'
 import ProductList from './components/ProductList'
-import ProductFrom from './components/ProductForm'
 import Product from './components/Product'
-import ShoppingCart from './components/ShoppingCart'
+import CheckOut from './components/CheckOut'
 import LandingPage from './components/LandingPage'
 import LoginPage from './components/LoginPage'
 import Order from './components/Order'
 import UserInfo from './components/UserInfo'
+import AdminPage from './components/AdminPage'
 
 const App = (props) => {
   useEffect(() => {
@@ -44,7 +44,7 @@ const App = (props) => {
       <Container>
         <NavBar />
         <Route path="/" exact component={LandingPage} />
-        <Route path="/admin/" exact component={ProductFrom} />
+        <Route path="/admin/" exact component={AdminPage} />
         <Route path="/products/" exact component={ProductList} />
         <Route
           exact
@@ -53,7 +53,7 @@ const App = (props) => {
             <Product product={productById(match.params.id)} />
           )}
         />
-        <Route path="/cart/" component={ShoppingCart} />
+        <Route path="/cart/" component={CheckOut} />
         <Route path="/account/" exact component={LoginPage} />
         <Route
           exact

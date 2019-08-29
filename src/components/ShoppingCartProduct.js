@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
+  Button, Form, Segment, Icon, Grid, Image,
+} from 'semantic-ui-react'
+import {
   removeProductFromCart,
   updateProductQuantity,
 } from '../reducers/shoppingCartReducer'
@@ -18,41 +21,51 @@ const ShoppingCartProduct = (props) => {
     }
     props.updateProductQuantity(updatedProduct)
   }
-  console.log('state', typeof Number(quantity))
 
   return (
-    <div>
-      <h3>{props.product.title}</h3>
-      <p>
-        {' '}
-        {props.product.price}
-€
-      </p>
-      <p>
-        {' '}
-        {props.product.description}
-      </p>
-      <div>
-        quantity:
-        {' '}
-        <p>{quantity}</p>
-        <form onSubmit={updateQuantity}>
-          <input
-            type="number"
-            step="1"
-            defaultValue={quantity}
-            id="updatedValue"
+    <Segment>
+      <Grid columns={3}>
+        <Grid.Column>
+          <Image
+            src="https://react.semantic-ui.com/images/wireframe/image.png"
+            size="tiny"
           />
-          <button type="submit">update quantity</button>
-        </form>
-      </div>
-      <button
-        type="button"
-        onClick={() => props.removeProductFromCart(props.product._id)}
-      >
-        x
-      </button>
-    </div>
+        </Grid.Column>
+        <Grid.Column>
+          <h3>{props.product.title}</h3>
+          <div>
+            {' '}
+            {props.product.description}
+          </div>
+          <div>
+            {props.product.price}
+            {' '}
+€ / each
+          </div>
+        </Grid.Column>
+        <Grid.Column>
+          <div>
+            <Form onSubmit={updateQuantity}>
+              <Form.Input
+                type="number"
+                step="1"
+                defaultValue={quantity}
+                id="updatedValue"
+              />
+              <Button
+                type="button"
+                onClick={() => props.removeProductFromCart(props.product._id)}
+              >
+                <Icon name="trash" />
+              </Button>
+              <Button primary type="submit">
+                <Icon name="refresh" />
+              </Button>
+            </Form>
+          </div>
+        </Grid.Column>
+      </Grid>
+    </Segment>
   )
 }
 

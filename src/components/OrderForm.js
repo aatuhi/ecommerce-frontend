@@ -1,21 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { Form, Button, Message } from 'semantic-ui-react'
 import orderService from '../services/orders'
 
 const OrderForm = (props) => {
-  const totalPrice = shoppingCart => shoppingCart.reduce((prev, curr) => prev + curr.price * curr.quantity, 0)
-  // something off
+  const totalPrice = shoppingCart => shoppingCart.reduce(
+    (prev, curr) => Math.round((prev + curr.price * curr.quantity) * 100) / 100,
+    0,
+  )
 
   return (
     <div>
       <h2>Place an order</h2>
       <Formik
         initialValues={{
-          name: props.user.name,
+          name: '',
           street: '',
           zipCode: '',
           city: '',
@@ -160,4 +161,4 @@ const mapStateToProps = state => ({
   user: state.user,
 })
 
-export default withRouter(connect(mapStateToProps)(OrderForm))
+export default connect(mapStateToProps)(OrderForm)

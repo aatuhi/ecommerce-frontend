@@ -1,27 +1,26 @@
 import React from 'react'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import { Segment, Grid } from 'semantic-ui-react'
+import AccountDetails from './AccountDetails'
+import OrderHistory from './OrderHistory'
 
-const UserInfo = (props) => {
-  console.log('props userinfo', props.user)
-  if (!props.user) {
+const UserInfo = ({ user }) => {
+  console.log('props userinfo', user)
+  if (!user) {
     return null
   }
   return (
     <div>
-      <h3>{props.user.name}</h3>
-      <p>{props.user._id}</p>
-      <p>{props.user.username}</p>
-      <p>{props.user.email}</p>
-      <h3>Orders</h3>
-      {props.user.orders.length > 0 ? (
-        props.user.orders.map(o => (
-          <div key={o._id}>
-            <Link to={`/admin/orders/${o._id}`}>{o._id}</Link>
-          </div>
-        ))
-      ) : (
-        <p>No orders yet</p>
-      )}
+      <Segment raised padded="very">
+        <Grid columns={2}>
+          <Grid.Column>
+            <AccountDetails user={user} />
+          </Grid.Column>
+          <Grid.Column>
+            <OrderHistory orders={user.orders} />
+          </Grid.Column>
+        </Grid>
+      </Segment>
     </div>
   )
 }

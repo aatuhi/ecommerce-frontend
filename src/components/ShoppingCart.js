@@ -1,19 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+
+import { Segment, Button } from 'semantic-ui-react'
 import { emptyShoppingCart } from '../reducers/shoppingCartReducer'
 import ShoppingCartProduct from './ShoppingCartProduct'
-import OrderForm from './OrderForm'
 
 const ShoppingCart = (props) => {
-  const totalPrice = shoppingCart => shoppingCart.reduce((prev, curr) => prev + curr.price * curr.quantity, 0)
-  // should round to one cent
+  const totalPrice = shoppingCart => shoppingCart.reduce(
+    (prev, curr) => Math.round((prev + curr.price * curr.quantity) * 100) / 100,
+    0,
+  )
 
   if (!props.shoppingCart || props.shoppingCart.length < 1) {
     return <h2>Shopping cart is empty</h2>
   }
+
   return (
-    <div>
+    <Segment basic>
       <h2>Shopping Cart</h2>
       <ul>
         {props.shoppingCart.map(product => (
@@ -24,19 +27,18 @@ const ShoppingCart = (props) => {
       </ul>
       {props.shoppingCart.length > 0 && (
         <div>
-          <p>
-            Total price:
+          Total price:
+          <h3>
             {totalPrice(props.shoppingCart)}
             {' '}
 €
-          </p>
-          <button type="button" onClick={() => props.emptyShoppingCart()}>
+          </h3>
+          <Button type="button" onClick={() => props.emptyShoppingCart()}>
             clear cart
-          </button>
+          </Button>
         </div>
       )}
-      <OrderForm />
-    </div>
+    </Segment>
   )
 }
 
@@ -44,9 +46,7 @@ const mapStateToProps = state => ({
   shoppingCart: state.shoppingCart,
 })
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { emptyShoppingCart },
-  )(ShoppingCart),
-)
+export default connect(
+  mapStateToProps,
+  { emptyShoppingCart },
+)(ShoppingCart)

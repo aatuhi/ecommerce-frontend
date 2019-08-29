@@ -6,7 +6,9 @@ const shoppingCartReducer = (state = [], action) => {
         product => product._id === action.data._id,
       )
       if (!productToFind) {
-        return [...state, { ...action.data, quantity: 1 }]
+        return [...state, { ...action.data, quantity: 1 }].sort(
+          (a, b) => a.price - b.price,
+        )
       }
       console.log('included')
       const newState = state.filter(
@@ -15,7 +17,7 @@ const shoppingCartReducer = (state = [], action) => {
       return [
         ...newState,
         { ...action.data, quantity: productToFind.quantity + 1 },
-      ]
+      ].sort((a, b) => a.price - b.price)
     }
     case 'REMOVE_PRODUCT_FROM_CART': {
       const productToFind = state.find(product => product._id === action.data)
@@ -26,17 +28,17 @@ const shoppingCartReducer = (state = [], action) => {
         return [
           ...newState,
           { ...productToFind, quantity: productToFind.quantity - 1 },
-        ]
+        ].sort((a, b) => a.price - b.price)
       }
       const newState = state.filter(
         product => product._id !== productToFind._id,
       )
-      return newState
+      return newState.sort((a, b) => a.price - b.price)
     }
     case 'UPDATE_PRODUCT_QUANTITY': {
       console.log(action.data)
       const newState = state.filter(product => product._id !== action.data._id)
-      return [...newState, action.data]
+      return [...newState, action.data].sort((a, b) => a.price - b.price)
     }
     case 'EMPTY_CART':
       return []

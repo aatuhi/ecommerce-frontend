@@ -6,13 +6,11 @@ import * as Yup from 'yup'
 import { Form, Button, Message } from 'semantic-ui-react'
 import { productCreation } from '../reducers/productReducer'
 import productService from '../services/products'
-import UserList from './UserList';
-import OrderList from './OrderList';
 
-const ProductFrom = (props) => {
+const ProductForm = (props) => {
   return (
     <div>
-      <h2>Add a product</h2>
+      <h3>Add a product</h3>
       <Formik
         initialValues={{
           title: '',
@@ -134,8 +132,6 @@ const ProductFrom = (props) => {
           )
         }}
       </Formik>
-      <UserList />
-      <OrderList /> 
     </div>
   )
 }
@@ -147,5 +143,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     { productCreation },
-  )(ProductFrom),
+  )(ProductForm),
 )

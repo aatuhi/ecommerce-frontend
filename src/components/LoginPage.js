@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { Form, Button } from 'semantic-ui-react'
+import {
+  Form, Button, Segment, Divider, Grid,
+} from 'semantic-ui-react'
 import { userLoggingIn, userLoggingOut } from '../reducers/loginReducer'
-import OrderHistory from './OrderHistory'
-import AccountDetails from './AccountDetails'
 import UserCreationForm from './UserCreationForm'
+import UserInfo from './UserInfo'
 
 const LoginPage = (props) => {
   const [username, setUsername] = useState('')
@@ -13,35 +14,47 @@ const LoginPage = (props) => {
   if (props.user) {
     return (
       <div>
-        <AccountDetails />
+        <UserInfo user={props.user} />
         <Button onClick={() => props.userLoggingOut()}>Logout</Button>
-        <OrderHistory />
       </div>
     )
   }
 
   return (
-    <div>
-      <h3>Sign in</h3>
-      <Form onSubmit={() => props.userLoggingIn({ username, password })}>
-        <div>
-          <Form.Input
-            label="username"
-            value={username}
-            onChange={({ target }) => setUsername(target.value)}
-          />
-        </div>
-        <div>
-          <Form.Input
-            type="password"
-            label="password"
-            onChange={({ target }) => setPassword(target.value)}
-          />
-        </div>
-        <Button type="submit">Log in</Button>
-      </Form>
-      <UserCreationForm />
-    </div>
+    <Segment padded="very" raised>
+      <Grid columns={2}>
+        <Grid.Column>
+          <Segment padded basic>
+            <h3>Sign in</h3>
+            <Form onSubmit={() => props.userLoggingIn({ username, password })}>
+              <div>
+                <Form.Input
+                  label="username"
+                  value={username}
+                  onChange={({ target }) => setUsername(target.value)}
+                />
+              </div>
+              <div>
+                <Form.Input
+                  type="password"
+                  label="password"
+                  onChange={({ target }) => setPassword(target.value)}
+                />
+              </div>
+              <Button primary type="submit">
+                Sign in
+              </Button>
+            </Form>
+          </Segment>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment padded basic>
+            <UserCreationForm />
+          </Segment>
+        </Grid.Column>
+      </Grid>
+      <Divider vertical>Or</Divider>
+    </Segment>
   )
 }
 
