@@ -5,8 +5,8 @@ import { Segment, Grid } from 'semantic-ui-react'
 import ShoppingCart from './ShoppingCart'
 import OrderForm from './OrderForm'
 
-const CheckOut = props => (
-  <Segment raised padded>
+const CheckOutPage = props => (
+  <Segment raised>
     <Grid columns={2}>
       <Grid.Column>
         <ShoppingCart />
@@ -32,4 +32,4 @@ const mapStateToProps = state => ({
   user: state.user,
 })
 
-export default withRouter(connect(mapStateToProps)(CheckOut))
+export default withRouter(connect(mapStateToProps)(CheckOutPage))

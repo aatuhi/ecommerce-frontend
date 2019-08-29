@@ -2,7 +2,7 @@ import React from 'react'
 import { Table, Segment, Grid } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 
-const Order = ({ order }) => {
+const OrderDetails = ({ order }) => {
   const calculateTotalQuantity = o => o.products.reduce((prev, curr) => prev + curr.quantity, 0)
 
   if (!order) {
@@ -10,7 +10,7 @@ const Order = ({ order }) => {
   }
 
   return (
-    <Segment padded basic>
+    <Segment padded="very" raised>
       <h2>Order Details</h2>
       <Grid columns={2}>
         <Grid.Column>
@@ -65,4 +65,4 @@ const Order = ({ order }) => {
   )
 }
 
-export default withRouter(Order)
+export default withRouter(OrderDetails)

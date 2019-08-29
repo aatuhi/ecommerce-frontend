@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { Form, Button, Message } from 'semantic-ui-react'
@@ -152,9 +151,7 @@ const mapStateToProps = state => ({
   user: state.user,
 })
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { productEditing },
-  )(ProductEditForm),
-)
+export default connect(
+  mapStateToProps,
+  { productEditing },
+)(ProductEditForm)

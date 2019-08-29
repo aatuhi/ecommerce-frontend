@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Table } from 'semantic-ui-react'
 
-const UserList = (props) => {
+const AdminUserList = (props) => {
   if (!props.registeredUsers || props.registeredUsers.length < 1) {
     return null
   }
@@ -37,4 +37,4 @@ const mapStateToProps = state => ({
   registeredUsers: state.registeredUsers,
 })
 
-export default withRouter(connect(mapStateToProps)(UserList))
+export default connect(mapStateToProps)(AdminUserList)

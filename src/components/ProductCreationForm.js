@@ -1,13 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { Form, Button, Message } from 'semantic-ui-react'
 import { productCreation } from '../reducers/productReducer'
 import productService from '../services/products'
 
-const ProductForm = (props) => {
+const ProductCreationForm = (props) => {
   return (
     <div>
       <h3>Add a product</h3>
@@ -139,9 +138,9 @@ const mapStateToProps = state => ({
   user: state.user,
 })
 
-export default withRouter(
+export default 
   connect(
     mapStateToProps,
     { productCreation },
-  )(ProductForm),
-)
+  )(ProductCreationForm)
+

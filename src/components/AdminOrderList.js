@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { Table } from 'semantic-ui-react'
 
-const OrderList = (props) => {
+const AdminOrderList = (props) => {
   if (!props.allOrders || props.allOrders.length < 1) {
     return null
   }
@@ -39,4 +39,4 @@ const mapStateToProps = state => ({
   allOrders: state.allOrders,
 })
 
-export default withRouter(connect(mapStateToProps)(OrderList))
+export default withRouter(connect(mapStateToProps)(AdminOrderList))

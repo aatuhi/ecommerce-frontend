@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import {
   Form, Button, Segment, Divider, Grid,
 } from 'semantic-ui-react'
-import { userLoggingIn, userLoggingOut } from '../reducers/loginReducer'
+import { userLoggingIn } from '../reducers/loginReducer'
 import UserCreationForm from './UserCreationForm'
 import UserInfo from './UserInfo'
 
@@ -12,12 +13,7 @@ const LoginPage = (props) => {
   const [password, setPassword] = useState('')
 
   if (props.user) {
-    return (
-      <div>
-        <UserInfo user={props.user} />
-        <Button onClick={() => props.userLoggingOut()}>Logout</Button>
-      </div>
-    )
+    return <UserInfo user={props.user} />
   }
 
   return (
@@ -64,10 +60,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   userLoggingIn,
-  userLoggingOut,
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(LoginPage)
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(LoginPage),
+)

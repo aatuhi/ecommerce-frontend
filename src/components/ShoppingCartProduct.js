@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
-  Button, Form, Segment, Icon, Grid, Image,
+  Button, Form, Icon, Item,
 } from 'semantic-ui-react'
 import {
   removeProductFromCart,
@@ -23,55 +22,45 @@ const ShoppingCartProduct = (props) => {
   }
 
   return (
-    <Segment>
-      <Grid columns={3}>
-        <Grid.Column>
-          <Image
-            src="https://react.semantic-ui.com/images/wireframe/image.png"
-            size="tiny"
-          />
-        </Grid.Column>
-        <Grid.Column>
-          <h3>{props.product.title}</h3>
-          <div>
-            {' '}
-            {props.product.description}
-          </div>
-          <div>
-            {props.product.price}
-            {' '}
+    <Item>
+      <Item.Image
+        src="https://react.semantic-ui.com/images/wireframe/image.png"
+        size="tiny"
+      />
+      <Item.Content>
+        <Item.Header>{props.product.title}</Item.Header>
+        <Item.Description>
+          {props.product.price}
+          {' '}
 € / each
-          </div>
-        </Grid.Column>
-        <Grid.Column>
-          <div>
-            <Form onSubmit={updateQuantity}>
-              <Form.Input
-                type="number"
-                step="1"
-                defaultValue={quantity}
-                id="updatedValue"
-              />
-              <Button
-                type="button"
-                onClick={() => props.removeProductFromCart(props.product._id)}
-              >
-                <Icon name="trash" />
-              </Button>
-              <Button primary type="submit">
-                <Icon name="refresh" />
-              </Button>
-            </Form>
-          </div>
-        </Grid.Column>
-      </Grid>
-    </Segment>
+        </Item.Description>
+        <Item.Meta>{props.product.description}</Item.Meta>
+      </Item.Content>
+
+      <div>
+        <Form onSubmit={updateQuantity}>
+          <Form.Input
+            type="number"
+            step="1"
+            defaultValue={quantity}
+            id="updatedValue"
+          />
+          <Button
+            type="button"
+            onClick={() => props.removeProductFromCart(props.product._id)}
+          >
+            <Icon name="trash" />
+          </Button>
+          <Button primary type="submit">
+            <Icon name="refresh" />
+          </Button>
+        </Form>
+      </div>
+    </Item>
   )
 }
 
-export default withRouter(
-  connect(
-    null,
-    { removeProductFromCart, updateProductQuantity },
-  )(ShoppingCartProduct),
-)
+export default connect(
+  null,
+  { removeProductFromCart, updateProductQuantity },
+)(ShoppingCartProduct)

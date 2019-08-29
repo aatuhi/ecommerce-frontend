@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { Icon, Segment } from 'semantic-ui-react'
 
 const LandingPage = () => (
@@ -24,4 +25,4 @@ const LandingPage = () => (
   </Segment>
 )
 
-export default LandingPage
+export default withRouter(LandingPage)

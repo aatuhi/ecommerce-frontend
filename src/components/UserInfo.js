@@ -5,13 +5,12 @@ import AccountDetails from './AccountDetails'
 import OrderHistory from './OrderHistory'
 
 const UserInfo = ({ user }) => {
-  console.log('props userinfo', user)
   if (!user) {
     return null
   }
   return (
-    <div>
-      <Segment raised padded="very">
+    <Segment raised>
+      <Segment basic padded="very">
         <Grid columns={2}>
           <Grid.Column>
             <AccountDetails user={user} />
@@ -21,7 +20,7 @@ const UserInfo = ({ user }) => {
           </Grid.Column>
         </Grid>
       </Segment>
-    </div>
+    </Segment>
   )
 }
 

@@ -12,7 +12,7 @@ const OrderHistory = (props) => {
 
   return (
     <div>
-      <h3>OrderHistory</h3>
+      <h3>Recent orders</h3>
       {props.orders.length > 0 ? (
         <Table>
           <Table.Header>

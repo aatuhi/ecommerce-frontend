@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
-import { Segment, Button } from 'semantic-ui-react'
+import {
+  Segment, Button, ItemGroup, Item,
+} from 'semantic-ui-react'
 import { emptyShoppingCart } from '../reducers/shoppingCartReducer'
 import ShoppingCartProduct from './ShoppingCartProduct'
 
@@ -18,13 +19,13 @@ const ShoppingCart = (props) => {
   return (
     <Segment basic>
       <h2>Shopping Cart</h2>
-      <ul>
+      <div>
         {props.shoppingCart.map(product => (
-          <div key={product._id}>
+          <Item.Group divided key={product._id}>
             <ShoppingCartProduct product={product} />
-          </div>
+          </Item.Group>
         ))}
-      </ul>
+      </div>
       {props.shoppingCart.length > 0 && (
         <div>
           Total price:

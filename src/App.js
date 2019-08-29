@@ -10,10 +10,10 @@ import orderService from './services/orders'
 import NavBar from './components/NavBar'
 import ProductList from './components/ProductList'
 import Product from './components/Product'
-import CheckOut from './components/CheckOut'
+import CheckOutPage from './components/CheckOutPage'
 import LandingPage from './components/LandingPage'
 import LoginPage from './components/LoginPage'
-import Order from './components/Order'
+import OrderDetails from './components/OrderDetails'
 import UserInfo from './components/UserInfo'
 import AdminPage from './components/AdminPage'
 
@@ -53,12 +53,14 @@ const App = (props) => {
             <Product product={productById(match.params.id)} />
           )}
         />
-        <Route path="/cart/" component={CheckOut} />
+        <Route path="/cart/" component={CheckOutPage} />
         <Route path="/account/" exact component={LoginPage} />
         <Route
           exact
           path="/account/orders/:id"
-          render={({ match }) => <Order order={orderById(match.params.id)} />}
+          render={({ match }) => (
+            <OrderDetails order={orderById(match.params.id)} />
+          )}
         />
         <Route
           exact
@@ -68,7 +70,9 @@ const App = (props) => {
         <Route
           exact
           path="/admin/orders/:id"
-          render={({ match }) => <Order order={orderById(match.params.id)} />}
+          render={({ match }) => (
+            <OrderDetails order={orderById(match.params.id)} />
+          )}
         />
       </Container>
     </Router>
