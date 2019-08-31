@@ -10,7 +10,7 @@ const AdminOrderList = (props) => {
 
   return (
     <div>
-      <h3>All OrderList</h3>
+      <h3>All orders</h3>
       <Table>
         <Table.Header>
           <Table.Row>

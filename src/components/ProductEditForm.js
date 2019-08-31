@@ -4,13 +4,21 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { Form, Button, Message } from 'semantic-ui-react'
 import productService from '../services/products'
-import { productEditing } from '../reducers/productReducer'
+import { productEditing, productRemoval } from '../reducers/productReducer'
 
 const ProductEditForm = (props) => {
   console.log(props.product)
+
+  const handleRemove = (product) => {
+    console.log(product._id)
+    productService.setToken(props.user.token)
+    props.productRemoval(product)
+  }
+
   return (
     <div>
-      <h2>Edit product</h2>
+      <h3>Edit product</h3>
+
       <Formik
         initialValues={{
           title: props.product.title,
@@ -133,16 +141,23 @@ const ProductEditForm = (props) => {
                   onClick={handleReset}
                   disabled={!dirty || isSubmitting}
                 >
-                  Reset
+                  Reset to original
                 </Button>
                 <Button type="submit" disabled={isSubmitting}>
-                  Submit
+                  Confirm editing
                 </Button>
               </Form>
             </div>
           )
         }}
       </Formik>
+      <Button
+        negative
+        type="button"
+        onClick={() => handleRemove(props.product)}
+      >
+        Delete product
+      </Button>
     </div>
   )
 }
@@ -153,5 +168,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { productEditing },
+  { productEditing, productRemoval },
 )(ProductEditForm)
