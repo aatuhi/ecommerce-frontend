@@ -1,47 +1,87 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { Menu } from 'semantic-ui-react'
+import {
+  Menu, Icon, Container, Segment,
+} from 'semantic-ui-react'
 import { Link, withRouter } from 'react-router-dom'
 
-const NavBar = props => (
-  <div>
-    <Menu inverted stackable>
-      <Menu.Item>
-        <Link to="/">
-          <h4>Home</h4>
-        </Link>
-      </Menu.Item>
-      <Menu.Item>
-        <Link to="/products">
-          <h4>Products</h4>
-        </Link>
-      </Menu.Item>
-      <Menu.Item>
-        <Link to="/cart">
-          <h4>Cart</h4>
-        </Link>
-      </Menu.Item>
-      <Menu.Item>
-        {props.user ? (
-          <Link to="/account">
-            <h4>My account</h4>
+const NavBar = (props) => {
+  const [activeItem, setActiveItem] = useState('home')
+
+  return (
+    <Segment inverted>
+      <Menu inverted pointing secondary size="large">
+        <Container>
+          <Menu.Item
+            link
+            name="home"
+            active={activeItem === 'home'}
+            onClick={() => setActiveItem('home')}
+          >
+            <Link to="/">
+              <Icon name="home" />
+              Home
+            </Link>
+          </Menu.Item>
+          <Link to="/products">
+            <Menu.Item
+              link
+              active={activeItem === 'products'}
+              name="products"
+              onClick={() => setActiveItem('products')}
+            >
+              <Icon name="shopping bag" />
+              Products
+            </Menu.Item>
           </Link>
-        ) : (
-          <Link to="/account">
-            <h4>Sign in</h4>
+          <Link to="/cart">
+            <Menu.Item
+              link
+              active={activeItem === 'cart'}
+              name="cart"
+              onClick={() => setActiveItem('cart')}
+            >
+              <Icon name="shopping cart" />
+              Cart
+            </Menu.Item>
           </Link>
-        )}
-      </Menu.Item>
-      {props.user && props.user.admin && (
-        <Menu.Item>
-          <Link to="/admin">
-            <h4>Admin panel</h4>
-          </Link>
-        </Menu.Item>
-      )}
-    </Menu>
-  </div>
-)
+          <Menu.Item
+            link
+            active={activeItem === 'account'}
+            name="account"
+            onClick={() => setActiveItem('account')}
+            position="right"
+          >
+            {props.user ? (
+              <Link to="/account">
+                <Icon name="user" />
+                My account
+              </Link>
+            ) : (
+              <Link to="/account">
+                <Icon name="lock" />
+                Log in
+              </Link>
+            )}
+          </Menu.Item>
+          {props.user && props.user.admin && (
+            <Link to="/admin">
+              <Menu.Item
+                link
+                active={activeItem === 'admin'}
+                name="admin"
+                onClick={() => setActiveItem('admin')}
+              >
+                <Icon name="adn" />
+                Admin panel
+              </Menu.Item>
+            </Link>
+          )}
+        </Container>
+      </Menu>
+    </Segment>
+  )
+}
 
 const mapStateToProps = state => ({
   user: state.user,

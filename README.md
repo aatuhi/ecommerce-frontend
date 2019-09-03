@@ -4,7 +4,7 @@ Backend löytyy [täältä](https://github.com/aatuhi/ecommerce-backend)
 
 ## Tietoa
 
-Frontend verkkokauppalustalle. Omaksi ilokseni.
+Yksinkertainen verkkokauppa "mock-up" omaksi ilokseni.
 
 ## Tavoitteena seuraavat toiminnallisuudet
 

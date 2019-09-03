@@ -75,7 +75,7 @@ const OrderForm = (props) => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
-                  {errors.title && touched.name && (
+                  {errors.name && touched.name && (
                     <Message color="orange">{errors.name}</Message>
                   )}
                 </div>
@@ -144,7 +144,12 @@ const OrderForm = (props) => {
                 >
                   Reset
                 </Button>
-                <Button type="submit" disabled={isSubmitting}>
+                <Button
+                  primary
+                  type="submit"
+                  disabled={isSubmitting}
+                  disabled={dirty}
+                >
                   Submit
                 </Button>
               </Form>
