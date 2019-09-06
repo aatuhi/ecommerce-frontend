@@ -4,7 +4,6 @@ import orderService from '../services/orders'
 const initialState = JSON.parse(window.localStorage.getItem('loggedUser'))
 
 const loginReducer = (state = initialState, action) => {
-  console.log('loginreducer action', action)
   switch (action.type) {
     case 'LOG_IN':
       return action.data

@@ -15,25 +15,21 @@ const UserCreationForm = props => (
     }}
     onSubmit={async (values, { setSubmitting }) => {
       setTimeout(() => {
-        const result = window.confirm(JSON.stringify(values))
-        if (result) {
-          const {
-            username, name, password, email,
-          } = values
-          try {
-            userService.createUser({
-              username,
-              name,
-              email,
-              password,
-            })
-          } catch (error) {
-            window.alert(error)
-          }
+        const {
+          username, name, password, email,
+        } = values
+        try {
+          userService.createUser({
+            username,
+            name,
+            email,
+            password,
+          })
+        } catch (error) {
+          console.log(error)
         }
-        window.alert('User created')
         setSubmitting(false)
-      }, 500)
+      }, 3000)
     }}
     validationSchema={Yup.object().shape({
       username: Yup.string()
@@ -41,7 +37,7 @@ const UserCreationForm = props => (
         .min(3, 'Title must be at least 3 characters'),
       password: Yup.string()
         .required('Required field')
-        .min(2, 'Password must be at least 6 characters'),
+        .min(6, 'Password must be at least 6 characters'),
       passwordVerification: Yup.string()
         .oneOf([Yup.ref('password'), 'Must equal to password field'])
         .required('Password confirm is required'),
@@ -67,7 +63,7 @@ const UserCreationForm = props => (
       return (
         <div>
           <h3>Create a user</h3>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit} success={isSubmitting}>
             <div>
               <Form.Input
                 label="Username"
@@ -77,10 +73,8 @@ const UserCreationForm = props => (
                 value={values.username}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                error={errors.username && touched.username}
               />
-              {errors.username && touched.username && (
-                <Message color="orange">{errors.username}</Message>
-              )}
             </div>
             <div>
               <Form.Input
@@ -91,10 +85,8 @@ const UserCreationForm = props => (
                 value={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                error={errors.email && touched.email}
               />
-              {errors.email && touched.email && (
-                <Message color="orange">{errors.email}</Message>
-              )}
             </div>
             <div>
               <Form.Input
@@ -105,10 +97,8 @@ const UserCreationForm = props => (
                 value={values.name}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                error={errors.name && touched.name}
               />
-              {errors.name && touched.name && (
-                <Message color="orange">{errors.name}</Message>
-              )}
             </div>
             <div>
               <Form.Input
@@ -119,10 +109,8 @@ const UserCreationForm = props => (
                 value={values.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                error={errors.password && touched.password}
               />
-              {errors.password && touched.password && (
-                <Message color="orange">{errors.password}</Message>
-              )}
             </div>
             <div>
               <Form.Input
@@ -133,10 +121,10 @@ const UserCreationForm = props => (
                 value={values.passwordVerification}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                error={
+                  errors.passwordVerification && touched.passwordVerification
+                }
               />
-              {errors.passwordVerification && touched.passwordVerification && (
-                <Message color="orange">Passwords not equal</Message>
-              )}
             </div>
             <Button
               type="button"
@@ -148,6 +136,11 @@ const UserCreationForm = props => (
             <Button type="submit" disabled={isSubmitting}>
               Submit
             </Button>
+            <Message
+              success
+              header="Account created succesfully!"
+              content="Dive in to explore our webstore."
+            />
           </Form>
         </div>
       )

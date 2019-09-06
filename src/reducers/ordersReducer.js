@@ -1,7 +1,6 @@
 import orderService from '../services/orders'
 
 const ordersReducer = (state = [], action) => {
-  console.log('orderReducer action', action)
   switch (action.type) {
     case 'INIT_ORDERS':
       return action.data

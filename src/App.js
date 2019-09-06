@@ -28,6 +28,14 @@ const App = (props) => {
     }
   }, [])
 
+  const style = {
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    height: 'auto',
+    overflow: 'auto',
+  }
+
   const productById = id => props.products.find(product => product._id === id)
 
   const orderById = (id) => {
@@ -41,7 +49,8 @@ const App = (props) => {
 
   return (
     <Router>
-      <Container fluid>
+      <div style={style}>
+        {/* <Container fluid> */}
         <NavBar />
         <Container>
           <Route path="/" exact component={LandingPage} />
@@ -78,7 +87,8 @@ const App = (props) => {
             )}
           />
         </Container>
-      </Container>
+        {/* </Container> */}
+      </div>
     </Router>
   )
 }

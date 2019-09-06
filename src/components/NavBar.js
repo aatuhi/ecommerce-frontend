@@ -8,6 +8,8 @@ import { Link, withRouter } from 'react-router-dom'
 const NavBar = (props) => {
   const [activeItem, setActiveItem] = useState('home')
 
+  const cartTotalQuantity = shoppingCart => shoppingCart.reduce((prev, curr) => prev + curr.quantity, 0)
+
   return (
     <Segment inverted>
       <Menu inverted pointing secondary size="large">
@@ -43,6 +45,8 @@ const NavBar = (props) => {
             >
               <Icon name="shopping cart" />
               Cart
+              {props.shoppingCart.length > 0
+                && ` (${cartTotalQuantity(props.shoppingCart)})`}
             </Menu.Item>
           </Link>
           <Menu.Item
@@ -85,6 +89,7 @@ const NavBar = (props) => {
 
 const mapStateToProps = state => ({
   user: state.user,
+  shoppingCart: state.shoppingCart,
 })
 
 export default withRouter(connect(mapStateToProps)(NavBar))

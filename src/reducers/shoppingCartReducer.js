@@ -1,5 +1,4 @@
 const shoppingCartReducer = (state = [], action) => {
-  console.log('shoppingCartReducer action', action)
   switch (action.type) {
     case 'ADD_PRODUCT_TO_CART': {
       const productToFind = state.find(

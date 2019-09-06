@@ -1,27 +1,18 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import { Icon, Segment } from 'semantic-ui-react'
+import { Header, Icon, Segment } from 'semantic-ui-react'
+import ShowcaseItemCollecation from './ShowcaseItemCollection'
 
 const LandingPage = () => (
   <Segment padded basic textAlign="center">
-    <div>
-      <Icon name="thumbs up" size="large" />
-      <Icon name="thumbs up" size="large" />
-      <Icon name="thumbs up" size="large" />
-      <Icon name="thumbs up" size="large" />
-      <Icon name="thumbs up" size="large" />
-      <Icon name="thumbs up" size="large" />
-      <h2>Welcome to Ismon Valinta!</h2>
-    </div>
-    <h3>
-      <i>Web store for every entity</i>
-    </h3>
-    <Icon name="thumbs up" size="large" />
-    <Icon name="thumbs up" size="large" />
-    <Icon name="thumbs up" size="large" />
-    <Icon name="thumbs up" size="large" />
-    <Icon name="thumbs up" size="large" />
-    <Icon name="thumbs up" size="large" />
+    <Header icon as="h1">
+      <Icon name="shopping basket" />
+      Welcome to Ismon valinta!
+      <Header.Subheader>
+        <i>Web store for every entity</i>
+      </Header.Subheader>
+    </Header>
+    <ShowcaseItemCollecation />
   </Segment>
 )
 

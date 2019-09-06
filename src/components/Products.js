@@ -27,8 +27,6 @@ const Products = ({ products }) => {
 
   const disctinctCategories = ['all', ...new Set(products.map(p => p.type))]
 
-  console.log('productstoShow', productsToShow)
-
   return (
     <Segment basic>
       <Grid columns={2}>
