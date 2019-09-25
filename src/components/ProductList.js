@@ -28,7 +28,7 @@ const ProductList = props => (
                 {product.price}
                 {' '}
 €
-              </p>
+              </p>  
               <Button
                 primary
                 type="button"

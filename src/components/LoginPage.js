@@ -1,19 +1,22 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import {
-  Form, Button, Segment, Divider, Grid,
-} from 'semantic-ui-react'
+import { Form, Button, Segment, Divider, Grid } from 'semantic-ui-react'
 import { userLoggingIn } from '../reducers/loginReducer'
 import UserCreationForm from './UserCreationForm'
 import UserInfo from './UserInfo'
 
-const LoginPage = (props) => {
+const LoginPage = props => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
   if (props.user) {
     return <UserInfo user={props.user} />
+  }
+
+  const handleLogin = credentials => {
+    props.userLoggingIn(credentials)
   }
 
   return (
@@ -21,8 +24,8 @@ const LoginPage = (props) => {
       <Grid columns={2}>
         <Grid.Column>
           <Segment padded basic>
-            <h3>Sign in</h3>
-            <Form onSubmit={() => props.userLoggingIn({ username, password })}>
+            <h3>Log in</h3>
+            <Form onSubmit={() => handleLogin({ username, password })}>
               <div>
                 <Form.Input
                   label="username"
@@ -38,8 +41,9 @@ const LoginPage = (props) => {
                 />
               </div>
               <Button primary type="submit">
-                Sign in
+                Log in
               </Button>
+              {errorMessage && <div>{errorMessage}</div>}
             </Form>
           </Segment>
         </Grid.Column>
@@ -65,6 +69,6 @@ const mapDispatchToProps = {
 export default withRouter(
   connect(
     mapStateToProps,
-    mapDispatchToProps,
-  )(LoginPage),
+    mapDispatchToProps
+  )(LoginPage)
 )

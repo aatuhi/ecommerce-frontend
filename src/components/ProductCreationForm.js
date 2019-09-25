@@ -6,7 +6,7 @@ import { Form, Button, Message } from 'semantic-ui-react'
 import { productCreation } from '../reducers/productReducer'
 import productService from '../services/products'
 
-const ProductCreationForm = (props) => {
+const ProductCreationForm = props => {
   return (
     <div>
       <h3>Add a product</h3>
@@ -40,9 +40,12 @@ const ProductCreationForm = (props) => {
             .required('Required field')
             .min(2, 'Description required'),
           price: Yup.number().required('Price is required'),
+          type: Yup.string()
+            .required('Required field')
+            .min(2, 'Description required'),
         })}
       >
-        {(props) => {
+        {props => {
           const {
             values,
             touched,
@@ -67,10 +70,8 @@ const ProductCreationForm = (props) => {
                     value={values.title}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    error={errors.title && touched.title}
                   />
-                  {errors.title && touched.title && (
-                    <Message color="orange">{errors.title}</Message>
-                  )}
                 </div>
                 <div>
                   <Form.Input
@@ -81,10 +82,8 @@ const ProductCreationForm = (props) => {
                     value={values.description}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    error={errors.description && touched.description}
                   />
-                  {errors.description && touched.description && (
-                    <Message color="orange">{errors.description}</Message>
-                  )}
                 </div>
                 <div>
                   <Form.Input
@@ -96,10 +95,8 @@ const ProductCreationForm = (props) => {
                     value={values.price}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    error={errors.price && touched.price}
                   />
-                  {errors.price && touched.price && (
-                    <Message color="orange">{errors.price}</Message>
-                  )}
                 </div>
                 <div>
                   <Form.Input
@@ -110,10 +107,8 @@ const ProductCreationForm = (props) => {
                     value={values.type}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    error={errors.type && touched.type}
                   />
-                  {errors.type && touched.type && (
-                    <Message color="orange">{errors.type}</Message>
-                  )}
                 </div>
 
                 <Button
@@ -138,8 +133,7 @@ const mapStateToProps = state => ({
   user: state.user,
 })
 
-export default 
-  connect(
-    mapStateToProps,
-    { productCreation },
-  )(ProductCreationForm)
+export default connect(
+  mapStateToProps,
+  { productCreation }
+)(ProductCreationForm)

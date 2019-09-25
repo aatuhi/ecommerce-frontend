@@ -16,8 +16,9 @@ import LoginPage from './components/LoginPage'
 import OrderDetails from './components/OrderDetails'
 import UserInfo from './components/UserInfo'
 import AdminPage from './components/AdminPage'
+import Footer from './components/Footer'
 
-const App = (props) => {
+const App = props => {
   useEffect(() => {
     props.productInitialization()
     if (props.user && props.user.admin) {
@@ -28,17 +29,9 @@ const App = (props) => {
     }
   }, [])
 
-  const style = {
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    height: 'auto',
-    overflow: 'auto',
-  }
-
   const productById = id => props.products.find(product => product._id === id)
 
-  const orderById = (id) => {
+  const orderById = id => {
     if (props.user.admin) {
       return props.allOrders.find(order => order._id === id)
     }
@@ -49,46 +42,42 @@ const App = (props) => {
 
   return (
     <Router>
-      <div style={style}>
-        {/* <Container fluid> */}
-        <NavBar />
-        <Container>
-          <Route path="/" exact component={LandingPage} />
-          <Route path="/admin/" exact component={AdminPage} />
-          <Route path="/products/" exact component={Products} />
-          <Route
-            exact
-            path="/products/:id"
-            render={({ match }) => (
-              <Product product={productById(match.params.id)} />
-            )}
-          />
-          <Route path="/cart/" component={CheckOutPage} />
-          <Route path="/account/" exact component={LoginPage} />
-          <Route
-            exact
-            path="/account/orders/:id"
-            render={({ match }) => (
-              <OrderDetails order={orderById(match.params.id)} />
-            )}
-          />
-          <Route
-            exact
-            path="/admin/users/:id"
-            render={({ match }) => (
-              <UserInfo user={userById(match.params.id)} />
-            )}
-          />
-          <Route
-            exact
-            path="/admin/orders/:id"
-            render={({ match }) => (
-              <OrderDetails order={orderById(match.params.id)} />
-            )}
-          />
-        </Container>
-        {/* </Container> */}
-      </div>
+      {/* <Container fluid> */}
+      <NavBar />
+      <Container>
+        <Route path="/" exact component={LandingPage} />
+        <Route path="/admin/" exact component={AdminPage} />
+        <Route path="/products/" exact component={Products} />
+        <Route
+          exact
+          path="/products/:id"
+          render={({ match }) => (
+            <Product product={productById(match.params.id)} />
+          )}
+        />
+        <Route path="/cart/" component={CheckOutPage} />
+        <Route path="/account/" exact component={LoginPage} />
+        <Route
+          exact
+          path="/account/orders/:id"
+          render={({ match }) => (
+            <OrderDetails order={orderById(match.params.id)} />
+          )}
+        />
+        <Route
+          exact
+          path="/admin/users/:id"
+          render={({ match }) => <UserInfo user={userById(match.params.id)} />}
+        />
+        <Route
+          exact
+          path="/admin/orders/:id"
+          render={({ match }) => (
+            <OrderDetails order={orderById(match.params.id)} />
+          )}
+        />
+      </Container>
+      {/* </Container> */}
     </Router>
   )
 }
@@ -102,5 +91,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { productInitialization, usersInitialization, ordersInitialization },
+  { productInitialization, usersInitialization, ordersInitialization }
 )(App)

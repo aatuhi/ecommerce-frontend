@@ -5,12 +5,13 @@ import * as Yup from 'yup'
 import { Form, Button, Message } from 'semantic-ui-react'
 import orderService from '../services/orders'
 
-const OrderForm = (props) => {
-  const totalPrice = shoppingCart => shoppingCart.reduce(
-    (prev, curr) => Math.round((prev + curr.price * curr.quantity) * 100) / 100,
-    0,
-  )
-
+const OrderForm = props => {
+  const totalPrice = shoppingCart =>
+    shoppingCart.reduce(
+      (prev, curr) =>
+        Math.round((prev + curr.price * curr.quantity) * 100) / 100,
+      0
+    )
   return (
     <div>
       <h2>Place an order</h2>
@@ -49,7 +50,7 @@ const OrderForm = (props) => {
           country: Yup.string().required('Required field'),
         })}
       >
-        {(props) => {
+        {props => {
           const {
             values,
             touched,
@@ -74,10 +75,8 @@ const OrderForm = (props) => {
                     value={values.name}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    error={errors.name && touched.name}
                   />
-                  {errors.name && touched.name && (
-                    <Message color="orange">{errors.name}</Message>
-                  )}
                 </div>
                 <div>
                   <Form.Input
@@ -88,10 +87,8 @@ const OrderForm = (props) => {
                     value={values.street}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    error={errors.street && touched.street}
                   />
-                  {errors.street && touched.street && (
-                    <Message color="orange">{errors.street}</Message>
-                  )}
                 </div>
                 <div>
                   <Form.Input
@@ -102,10 +99,8 @@ const OrderForm = (props) => {
                     value={values.zipCode}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    error={errors.zipCode && touched.zipCode}
                   />
-                  {errors.zipCode && touched.zipCode && (
-                    <Message color="orange">{errors.zipCode}</Message>
-                  )}
                 </div>
                 <div>
                   <Form.Input
@@ -116,10 +111,8 @@ const OrderForm = (props) => {
                     value={values.city}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    error={errors.city && touched.city}
                   />
-                  {errors.city && touched.city && (
-                    <Message color="orange">{errors.city}</Message>
-                  )}
                 </div>
 
                 <div>
@@ -131,10 +124,8 @@ const OrderForm = (props) => {
                     value={values.country}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    error={errors.country && touched.country}
                   />
-                  {errors.country && touched.country && (
-                    <Message color="orange">{errors.country}</Message>
-                  )}
                 </div>
 
                 <Button
@@ -144,12 +135,7 @@ const OrderForm = (props) => {
                 >
                   Reset
                 </Button>
-                <Button
-                  primary
-                  type="submit"
-                  disabled={isSubmitting}
-                  disabled={dirty}
-                >
+                <Button primary type="submit" disabled={isSubmitting}>
                   Submit
                 </Button>
               </Form>

@@ -6,10 +6,10 @@ import { Form, Button, Message } from 'semantic-ui-react'
 import productService from '../services/products'
 import { productEditing, productRemoval } from '../reducers/productReducer'
 
-const ProductEditForm = (props) => {
+const ProductEditForm = props => {
   console.log(props.product)
 
-  const handleRemove = (product) => {
+  const handleRemove = product => {
     console.log(product._id)
     productService.setToken(props.user.token)
     props.productRemoval(product)
@@ -29,7 +29,7 @@ const ProductEditForm = (props) => {
         onSubmit={async (values, { setSubmitting }) => {
           setTimeout(() => {
             productService.setToken(props.user.token)
-            const result = window.confirm(JSON.stringify(values))
+            const result = window.confirm('Update product?')
             if (result) {
               try {
                 const updatedProduct = {
@@ -45,7 +45,7 @@ const ProductEditForm = (props) => {
                 window.alert(error)
               }
             }
-            window.alert('Product added')
+            window.alert('Complete')
             setSubmitting(false)
           }, 500)
         }}
@@ -62,7 +62,7 @@ const ProductEditForm = (props) => {
           price: Yup.number().required('Price is required'),
         })}
       >
-        {(props) => {
+        {props => {
           const {
             values,
             touched,
@@ -87,10 +87,8 @@ const ProductEditForm = (props) => {
                     value={values.title}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    error={errors.title && touched.title}
                   />
-                  {errors.title && touched.title && (
-                    <Message color="orange">{errors.title}</Message>
-                  )}
                 </div>
                 <div>
                   <Form.Input
@@ -101,10 +99,8 @@ const ProductEditForm = (props) => {
                     value={values.description}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    error={errors.description && touched.description}
                   />
-                  {errors.description && touched.description && (
-                    <Message color="orange">{errors.description}</Message>
-                  )}
                 </div>
                 <div>
                   <Form.Input
@@ -115,10 +111,8 @@ const ProductEditForm = (props) => {
                     value={values.type}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    error={errors.type && touched.type}
                   />
-                  {errors.type && touched.type && (
-                    <Message color="orange">{errors.type}</Message>
-                  )}
                 </div>
                 <div>
                   <Form.Input
@@ -130,10 +124,8 @@ const ProductEditForm = (props) => {
                     value={values.price}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    error={errors.price && touched.price}
                   />
-                  {errors.price && touched.price && (
-                    <Message color="orange">{errors.price}</Message>
-                  )}
                 </div>
 
                 <Button
@@ -141,7 +133,7 @@ const ProductEditForm = (props) => {
                   onClick={handleReset}
                   disabled={!dirty || isSubmitting}
                 >
-                  Reset to original
+                  Reset changes
                 </Button>
                 <Button type="submit" disabled={isSubmitting}>
                   Confirm editing
@@ -168,5 +160,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { productEditing, productRemoval },
+  { productEditing, productRemoval }
 )(ProductEditForm)
