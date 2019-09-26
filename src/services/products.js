@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-const baseUrl = '/api/products'
+const baseUrl = 'https://shielded-spire-60169.herokuapp.com/api/products'
 
 let token = null
 
-const setToken = (newToken) => {
+const setToken = newToken => {
   token = `bearer ${newToken}`
 }
 
@@ -13,7 +13,7 @@ const getAll = async () => {
   return response.data
 }
 
-const createProduct = async (product) => {
+const createProduct = async product => {
   const config = {
     headers: { Authorization: token },
   }
@@ -22,7 +22,7 @@ const createProduct = async (product) => {
   return response.data
 }
 
-const editProduct = async (updatedProduct) => {
+const editProduct = async updatedProduct => {
   const config = {
     headers: { Authorization: token },
   }
@@ -30,12 +30,12 @@ const editProduct = async (updatedProduct) => {
   const response = await axios.put(
     `${baseUrl}/${updatedProduct._id}`,
     updatedProduct,
-    config,
+    config
   )
   return response.data
 }
 
-const removeProduct = async (id) => {
+const removeProduct = async id => {
   const config = {
     headers: { Authorization: token },
   }

@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-const baseUrl = '/api/orders'
+const baseUrl = 'https://shielded-spire-60169.herokuapp.com/api/orders'
 
 let token = null
 
-const setToken = (newToken) => {
+const setToken = newToken => {
   token = `bearer ${newToken}`
 }
 
@@ -17,7 +17,7 @@ const getAll = async () => {
   return response.data
 }
 
-const createOrder = async (orderDetails) => {
+const createOrder = async orderDetails => {
   const config = {
     headers: { Authorization: token },
   }
