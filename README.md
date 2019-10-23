@@ -4,7 +4,7 @@ Backend löytyy [täältä.](https://github.com/aatuhi/ecommerce-backend)
 
 ## Tietoa
 
-Yksinkertainen verkkokauppa mock-up omaksi ilokseni.
+Yksinkertainen verkkokauppa mock-up omaksi ilokseni.  
 
 ## Sisältää seuraavat toiminnallisuudet
 
@@ -23,5 +23,5 @@ Yksinkertainen verkkokauppa mock-up omaksi ilokseni.
 
 ## Bugeja
 
-- Sivun päivitys muualla kuin etusivulla heittää 404-errorin (Netlify + react-router)
-- Samasta syystä johtuen monet operaatiot eivät aiheuta päivitystä reaaliajassa (tuotetiedot, tilaustiedot)
+- Operaatiot eivät aiheuta päivitystä reaaliajassa (tuotetiedot, tilaustiedot)
+- Navigaatiopalkin aktiivinen
