@@ -1,6 +1,6 @@
 # Frontend verkkokauppa-alustalle
 
-Backend löytyy [täältä.](https://github.com/aatuhi/ecommerce-backend)
+Backend löytyy [täältä.](https://github.com/hirvoin/ecommerce-backend)
 
 ## Tietoa
 
@@ -23,5 +23,9 @@ Yksinkertainen verkkokauppa mock-up omaksi ilokseni.
 
 ## Bugeja
 
+<<<<<<< HEAD
 - Operaatiot eivät aiheuta päivitystä reaaliajassa (tuotetiedot, tilaustiedot)
 - Navigaatiopalkin aktiivinen
+=======
+- Paljon!
+>>>>>>> 7241088657798854ff458518fbbd721a8bde3121
