@@ -1,4 +1,4 @@
-# Frontend verkkokauppa-alustalle
+# Frontend verkkokauppa-alustalle (kustom css-versio)
 
 Backend löytyy [täältä.](https://github.com/hirvoin/ecommerce-backend)
 
