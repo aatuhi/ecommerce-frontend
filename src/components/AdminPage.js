@@ -1,24 +1,23 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import { Segment, Grid } from 'semantic-ui-react'
 import AdminUserList from './AdminUserList'
 import AdminOrderList from './AdminOrderList'
 import ProductCreationForm from './ProductCreationForm'
 
 const AdminPage = () => (
-  <Segment raised>
-    <Segment basic>
+  <div>
+    <div>
       <ProductCreationForm />
-    </Segment>
-    <Grid columns={2}>
-      <Grid.Column>
+    </div>
+    <div>
+      <div>
         <AdminUserList />
-      </Grid.Column>
-      <Grid.Column>
+      </div>
+      <div>
         <AdminOrderList />
-      </Grid.Column>
-    </Grid>
-  </Segment>
+      </div>
+    </div>
+  </div>
 )
 
 export default withRouter(AdminPage)

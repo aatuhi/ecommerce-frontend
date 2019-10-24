@@ -1,10 +1,9 @@
 import React from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-import { Form, Button, Message } from 'semantic-ui-react'
 import userService from '../services/users'
 
-const UserCreationForm = props => (
+const UserCreationForm = (props) => (
   <Formik
     initialValues={{
       username: '',
@@ -15,9 +14,7 @@ const UserCreationForm = props => (
     }}
     onSubmit={async (values, { setSubmitting }) => {
       setTimeout(() => {
-        const {
-          username, name, password, email,
-        } = values
+        const { username, name, password, email } = values
         try {
           userService.createUser({
             username,
@@ -63,9 +60,9 @@ const UserCreationForm = props => (
       return (
         <div>
           <h3>Create a user</h3>
-          <Form onSubmit={handleSubmit} success={isSubmitting}>
+          <form onSubmit={handleSubmit} success={isSubmitting}>
             <div>
-              <Form.Input
+              <input
                 label="Username"
                 id="username"
                 placeholder="Enter preferred username"
@@ -77,7 +74,7 @@ const UserCreationForm = props => (
               />
             </div>
             <div>
-              <Form.Input
+              <input
                 label="E-mail"
                 id="email"
                 placeholder="Enter your e-mail address"
@@ -89,7 +86,7 @@ const UserCreationForm = props => (
               />
             </div>
             <div>
-              <Form.Input
+              <input
                 label="Name"
                 id="name"
                 placeholder="Enter your name"
@@ -101,7 +98,7 @@ const UserCreationForm = props => (
               />
             </div>
             <div>
-              <Form.Input
+              <input
                 label="Password"
                 id="password"
                 placeholder="Enter password"
@@ -113,7 +110,7 @@ const UserCreationForm = props => (
               />
             </div>
             <div>
-              <Form.Input
+              <input
                 label="Confirm password"
                 id="passwordVerification"
                 placeholder="Confirm password"
@@ -126,22 +123,17 @@ const UserCreationForm = props => (
                 }
               />
             </div>
-            <Button
+            <button
               type="button"
               onClick={handleReset}
               disabled={!dirty || isSubmitting}
             >
               Reset
-            </Button>
-            <Button type="submit" disabled={isSubmitting}>
+            </button>
+            <button type="submit" disabled={isSubmitting}>
               Submit
-            </Button>
-            <Message
-              success
-              header="Account created succesfully!"
-              content="Dive in to explore our webstore."
-            />
-          </Form>
+            </button>
+          </form>
         </div>
       )
     }}

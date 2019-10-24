@@ -2,11 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-import { Form, Button, Message } from 'semantic-ui-react'
 import orderService from '../services/orders'
 
-const OrderForm = props => {
-  const totalPrice = shoppingCart =>
+const OrderForm = (props) => {
+  const totalPrice = (shoppingCart) =>
     shoppingCart.reduce(
       (prev, curr) =>
         Math.round((prev + curr.price * curr.quantity) * 100) / 100,
@@ -50,7 +49,7 @@ const OrderForm = props => {
           country: Yup.string().required('Required field'),
         })}
       >
-        {props => {
+        {(props) => {
           const {
             values,
             touched,
@@ -65,9 +64,9 @@ const OrderForm = props => {
 
           return (
             <div>
-              <Form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}>
                 <div>
-                  <Form.Input
+                  <input
                     label="Name"
                     id="name"
                     placeholder="Enter name"
@@ -79,7 +78,7 @@ const OrderForm = props => {
                   />
                 </div>
                 <div>
-                  <Form.Input
+                  <input
                     label="Street"
                     id="street"
                     placeholder="Enter street"
@@ -91,7 +90,7 @@ const OrderForm = props => {
                   />
                 </div>
                 <div>
-                  <Form.Input
+                  <input
                     label="Postal code"
                     id="zipCode"
                     placeholder="Enter postal code"
@@ -103,7 +102,7 @@ const OrderForm = props => {
                   />
                 </div>
                 <div>
-                  <Form.Input
+                  <input
                     label="City"
                     id="city"
                     placeholder="Enter city"
@@ -116,7 +115,7 @@ const OrderForm = props => {
                 </div>
 
                 <div>
-                  <Form.Input
+                  <input
                     label="Country"
                     id="country"
                     placeholder="Enter country"
@@ -128,17 +127,17 @@ const OrderForm = props => {
                   />
                 </div>
 
-                <Button
+                <button
                   type="button"
                   onClick={handleReset}
                   disabled={!dirty || isSubmitting}
                 >
                   Reset
-                </Button>
-                <Button primary type="submit" disabled={isSubmitting}>
+                </button>
+                <button primary type="submit" disabled={isSubmitting}>
                   Submit
-                </Button>
-              </Form>
+                </button>
+              </form>
             </div>
           )
         }}
@@ -147,7 +146,7 @@ const OrderForm = props => {
   )
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   shoppingCart: state.shoppingCart,
   user: state.user,
 })

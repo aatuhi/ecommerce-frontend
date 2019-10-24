@@ -1,6 +1,5 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import { Segment, Grid } from 'semantic-ui-react'
 import AccountDetails from './AccountDetails'
 import OrderHistory from './OrderHistory'
 
@@ -9,18 +8,18 @@ const UserInfo = ({ user }) => {
     return null
   }
   return (
-    <Segment raised>
-      <Segment basic padded="very">
-        <Grid columns={2}>
-          <Grid.Column>
+    <div>
+      <div>
+        <div>
+          <div>
             <AccountDetails user={user} />
-          </Grid.Column>
-          <Grid.Column>
+          </div>
+          <div>
             <OrderHistory orders={user.orders} />
-          </Grid.Column>
-        </Grid>
-      </Segment>
-    </Segment>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 

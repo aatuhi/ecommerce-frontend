@@ -1,30 +1,31 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { List, Button } from 'semantic-ui-react'
 import { userLoggingOut } from '../reducers/loginReducer'
 
-const AccountDetails = props => (
-  <List>
-    <List.Item>
+const AccountDetails = (props) => (
+  <div>
+    <div>
       <h3>{props.user.name}</h3>
-    </List.Item>
-    <List.Item icon="user" content={props.user.username} />
-    <List.Item icon="mail" content={props.user.email} />
+    </div>
+    <div>{props.user.username}</div>
+    <div>{props.user.email}</div>
     {props.loggedUser._id === props.user._id && (
-      <Button onClick={() => props.userLoggingOut()}>Logout</Button>
+      <button type="button" onClick={() => props.userLoggingOut()}>
+        Logout
+      </button>
     )}
-  </List>
+  </div>
 )
 
 const mapDispatchToProps = {
   userLoggingOut,
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   loggedUser: state.user,
 })
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(AccountDetails)

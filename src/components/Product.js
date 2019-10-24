@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect, withRouter } from 'react-router-dom'
-import { Segment, Item, Button } from 'semantic-ui-react'
 import ProductEditForm from './ProductEditForm'
 import { addProductToCart } from '../reducers/shoppingCartReducer'
 
@@ -11,47 +10,42 @@ const Product = (props) => {
   }
 
   return (
-    <Segment raised>
-      <Item.Group>
-        <Item>
-          <Item.Image
+    <div>
+      <div>
+        <div>
+          <img
+            alt="product_image"
             src="https://react.semantic-ui.com/images/wireframe/image.png"
-            size="medium"
           />
-          <Item.Content>
-            <Item.Header size="tiny">{props.product.title}</Item.Header>
-            <Item.Meta>{props.product.description}</Item.Meta>
-            <Item.Description>
-              {props.product.price}
-              {' '}
-€
-            </Item.Description>
-            <Item.Extra>
-              <Button
-                primary
+          <div>
+            <div size="tiny">{props.product.title}</div>
+            <div>{props.product.description}</div>
+            <div>{props.product.price} €</div>
+            <div>
+              <button
                 type="button"
                 onClick={() => props.addProductToCart(props.product)}
               >
                 Add to cart
-              </Button>
-            </Item.Extra>
-          </Item.Content>
-        </Item>
-      </Item.Group>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       {props.user && props.user.admin && (
         <ProductEditForm floated="right" product={props.product} />
       )}
-    </Segment>
+    </div>
   )
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
 })
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { addProductToCart },
-  )(Product),
+    { addProductToCart }
+  )(Product)
 )

@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-const baseUrl = 'https://shielded-spire-60169.herokuapp.com/api/users'
+const baseUrl = 'https://localhost:3001/api/users'
 
 let token = null
 
-const setToken = newToken => {
+const setToken = (newToken) => {
   token = `bearer ${newToken}`
   console.log('token set to ', token)
 }
@@ -18,7 +18,7 @@ const getAll = async () => {
   return response.data
 }
 
-const createUser = async user => {
+const createUser = async (user) => {
   const response = await axios.post(baseUrl, user)
   return response.data
 }
@@ -31,7 +31,7 @@ const createUser = async user => {
 //   return response.data
 // }
 
-const deleteUser = async userId => {
+const deleteUser = async (userId) => {
   const config = {
     headers: { Authorization: token },
   }

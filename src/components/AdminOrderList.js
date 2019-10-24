@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
-import { Table } from 'semantic-ui-react'
 
 const AdminOrderList = (props) => {
   if (!props.allOrders || props.allOrders.length < 1) {
@@ -11,31 +10,31 @@ const AdminOrderList = (props) => {
   return (
     <div>
       <h3>All orders</h3>
-      <Table>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>ID</Table.HeaderCell>
-            <Table.HeaderCell>Date</Table.HeaderCell>
-            <Table.HeaderCell>User</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {props.allOrders.map(order => (
-            <Table.Row key={order._id}>
-              <Table.Cell>
+      <div>
+        <div>
+          <div>
+            <div>ID</div>
+            <div>Date</div>
+            <div>User</div>
+          </div>
+        </div>
+        <div>
+          {props.allOrders.map((order) => (
+            <div key={order._id}>
+              <div>
                 <Link to={`/admin/orders/${order._id}`}>{order._id}</Link>
-              </Table.Cell>
-              <Table.Cell>{order.date}</Table.Cell>
-              <Table.Cell>{order.user.username}</Table.Cell>
-            </Table.Row>
+              </div>
+              <div>{order.date}</div>
+              <div>{order.user.username}</div>
+            </div>
           ))}
-        </Table.Body>
-      </Table>
+        </div>
+      </div>
     </div>
   )
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   allOrders: state.allOrders,
 })
 

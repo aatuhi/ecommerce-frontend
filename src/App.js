@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { Container } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { productInitialization } from './reducers/productReducer'
@@ -18,7 +17,7 @@ import UserInfo from './components/UserInfo'
 import AdminPage from './components/AdminPage'
 import Footer from './components/Footer'
 
-const App = props => {
+const App = (props) => {
   useEffect(() => {
     props.productInitialization()
     if (props.user && props.user.admin) {
@@ -29,22 +28,22 @@ const App = props => {
     }
   }, [])
 
-  const productById = id => props.products.find(product => product._id === id)
+  const productById = (id) =>
+    props.products.find((product) => product._id === id)
 
-  const orderById = id => {
+  const orderById = (id) => {
     if (props.user.admin) {
-      return props.allOrders.find(order => order._id === id)
+      return props.allOrders.find((order) => order._id === id)
     }
-    return props.user.orders.find(order => order._id === id)
+    return props.user.orders.find((order) => order._id === id)
   }
 
-  const userById = id => props.registeredUsers.find(user => user._id === id)
+  const userById = (id) => props.registeredUsers.find((user) => user._id === id)
 
   return (
     <Router>
-      {/* <Container fluid> */}
       <NavBar />
-      <Container>
+      <div>
         <Route path="/" exact component={LandingPage} />
         <Route path="/admin/" exact component={AdminPage} />
         <Route path="/products/" exact component={Products} />
@@ -76,13 +75,12 @@ const App = props => {
             <OrderDetails order={orderById(match.params.id)} />
           )}
         />
-      </Container>
-      {/* </Container> */}
+      </div>
     </Router>
   )
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   products: state.products,
   user: state.user,
   registeredUsers: state.registeredUsers,

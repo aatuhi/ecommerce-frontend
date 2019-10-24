@@ -1,82 +1,76 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import {
-  Segment, Sidebar, Menu, Button, Grid,
-} from 'semantic-ui-react'
 import ProductList from './ProductList'
 
 const Products = ({ products }) => {
   const [visible, setVisibility] = useState(false)
   const [productsToShow, setProductsToShow] = useState([products])
 
-  useEffect(
-    () => {
-      setProductsToShow(products)
-    },
-    [products],
-  )
+  useEffect(() => {
+    setProductsToShow(products)
+  }, [products])
 
   const handleFilterClick = (category) => {
     if (category === 'all') {
       return setProductsToShow(products)
     }
-    const prods = products.filter(p => p.type === category)
+    const prods = products.filter((p) => p.type === category)
     return setProductsToShow(prods)
   }
 
-  const disctinctCategories = ['all', ...new Set(products.map(p => p.type))]
+  const disctinctCategories = ['all', ...new Set(products.map((p) => p.type))]
 
   return (
-    <Segment basic>
-      <Grid columns={2}>
-        <Grid.Row>
-          <Grid.Column>
+    <div>
+      <div>
+        <div>
+          <div>
             <h2>Enjoy our selection of quality goods!</h2>
-          </Grid.Column>
-          <Grid.Column>
+          </div>
+          {/* filter visibility */}
+          <div>
             {visible ? (
-              <Button disabled={!visible} onClick={() => setVisibility(false)}>
+              <button
+                type="button"
+                disabled={!visible}
+                onClick={() => setVisibility(false)}
+              >
                 Hide categories
-              </Button>
+              </button>
             ) : (
-              <Button disabled={visible} onClick={() => setVisibility(true)}>
+              <button
+                type="button"
+                disabled={visible}
+                onClick={() => setVisibility(true)}
+              >
                 Filter by category
-              </Button>
+              </button>
             )}
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+          </div>
+        </div>
+      </div>
 
-      <Sidebar.Pushable>
-        <Sidebar
-          as={Menu}
-          animation="push"
-          inverted
-          direction="top"
-          visible={visible}
-        >
-          {disctinctCategories.map(category => (
-            <Menu.Item
-              key={category}
-              as="a"
-              onClick={() => handleFilterClick(category)}
-            >
+      {/* category pusher */}
+      <div>
+        <div>
+          {disctinctCategories.map((category) => (
+            <div key={category} onClick={() => handleFilterClick(category)}>
               {category}
-            </Menu.Item>
+            </div>
           ))}
-        </Sidebar>
-        <Sidebar.Pusher>
-          <Segment basic>
+        </div>
+        <div>
+          <div>
             <ProductList products={productsToShow} />
-          </Segment>
-        </Sidebar.Pusher>
-      </Sidebar.Pushable>
-    </Segment>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   products: state.products,
 })
 

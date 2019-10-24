@@ -2,14 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-import { Form, Button, Message } from 'semantic-ui-react'
 import productService from '../services/products'
 import { productEditing, productRemoval } from '../reducers/productReducer'
 
-const ProductEditForm = props => {
+const ProductEditForm = (props) => {
   console.log(props.product)
 
-  const handleRemove = product => {
+  const handleRemove = (product) => {
     console.log(product._id)
     productService.setToken(props.user.token)
     props.productRemoval(product)
@@ -62,7 +61,7 @@ const ProductEditForm = props => {
           price: Yup.number().required('Price is required'),
         })}
       >
-        {props => {
+        {(props) => {
           const {
             values,
             touched,
@@ -77,9 +76,9 @@ const ProductEditForm = props => {
 
           return (
             <div>
-              <Form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}>
                 <div>
-                  <Form.Input
+                  <input
                     label="Title"
                     id="title"
                     placeholder="Enter the product title"
@@ -91,7 +90,7 @@ const ProductEditForm = props => {
                   />
                 </div>
                 <div>
-                  <Form.Input
+                  <input
                     label="Description"
                     id="description"
                     placeholder="Enter the product description"
@@ -103,7 +102,7 @@ const ProductEditForm = props => {
                   />
                 </div>
                 <div>
-                  <Form.Input
+                  <input
                     label="Type"
                     id="type"
                     placeholder="Enter the product type"
@@ -115,7 +114,7 @@ const ProductEditForm = props => {
                   />
                 </div>
                 <div>
-                  <Form.Input
+                  <input
                     label="Price"
                     id="price"
                     placeholder="Enter the product price"
@@ -128,33 +127,29 @@ const ProductEditForm = props => {
                   />
                 </div>
 
-                <Button
+                <button
                   type="button"
                   onClick={handleReset}
                   disabled={!dirty || isSubmitting}
                 >
                   Reset changes
-                </Button>
-                <Button type="submit" disabled={isSubmitting}>
+                </button>
+                <button type="submit" disabled={isSubmitting}>
                   Confirm editing
-                </Button>
-              </Form>
+                </button>
+              </form>
             </div>
           )
         }}
       </Formik>
-      <Button
-        negative
-        type="button"
-        onClick={() => handleRemove(props.product)}
-      >
+      <button type="button" onClick={() => handleRemove(props.product)}>
         Delete product
-      </Button>
+      </button>
     </div>
   )
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
 })
 

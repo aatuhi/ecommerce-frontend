@@ -1,97 +1,44 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import { Menu, Icon, Container, Segment } from 'semantic-ui-react'
 import { Link, withRouter } from 'react-router-dom'
 
-const NavBar = props => {
-  const [activeItem, setActiveItem] = useState('home')
-
-  const cartTotalQuantity = shoppingCart =>
+const NavBar = (props) => {
+  const cartTotalQuantity = (shoppingCart) =>
     shoppingCart.reduce((prev, curr) => prev + curr.quantity, 0)
 
   return (
-    <Segment inverted>
-      <Menu inverted pointing secondary size="large">
-        <Container>
+    <div>
+      <div>
+        <div>
           <Link to="/">
-            <Menu.Item
-              link
-              name="home"
-              active={activeItem === 'home'}
-              onClick={() => setActiveItem('home')}
-            >
-              <Icon name="home" />
-              Home
-            </Menu.Item>
+            <div>Home</div>
           </Link>
           <Link to="/products">
-            <Menu.Item
-              link
-              active={activeItem === 'products'}
-              name="products"
-              onClick={() => setActiveItem('products')}
-            >
-              <Icon name="shopping bag" />
-              Products
-            </Menu.Item>
+            <div>Products</div>
           </Link>
           <Link to="/cart">
-            <Menu.Item
-              link
-              active={activeItem === 'cart'}
-              name="cart"
-              onClick={() => setActiveItem('cart')}
-            >
-              <Icon name="shopping cart" />
+            <div>
               Cart
               {props.shoppingCart.length > 0 &&
                 ` (${cartTotalQuantity(props.shoppingCart)})`}
-            </Menu.Item>
+            </div>
           </Link>
 
-          <Menu.Item position="right" />
-
           <Link to="/account">
-            <Menu.Item
-              link
-              active={activeItem === 'account'}
-              name="account"
-              onClick={() => setActiveItem('account')}
-              position="right"
-            >
-              {props.user ? (
-                <div>
-                  <Icon name="user" />
-                  My account
-                </div>
-              ) : (
-                <div>
-                  <Icon name="lock" />
-                  Log in
-                </div>
-              )}
-            </Menu.Item>
+            <div>{props.user ? <div>My account</div> : <div>Log in</div>}</div>
           </Link>
           {props.user && props.user.admin && (
             <Link to="/admin">
-              <Menu.Item
-                link
-                active={activeItem === 'admin'}
-                name="admin"
-                onClick={() => setActiveItem('admin')}
-              >
-                <Icon name="adn" />
-                Admin panel
-              </Menu.Item>
+              <div>Admin panel</div>
             </Link>
           )}
-        </Container>
-      </Menu>
-    </Segment>
+        </div>
+      </div>
+    </div>
   )
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
   shoppingCart: state.shoppingCart,
 })

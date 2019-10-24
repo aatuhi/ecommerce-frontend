@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import {
-  Button, Form, Icon, Item,
-} from 'semantic-ui-react'
-import {
   removeProductFromCart,
   updateProductQuantity,
 } from '../reducers/shoppingCartReducer'
@@ -22,45 +19,39 @@ const ShoppingCartProduct = (props) => {
   }
 
   return (
-    <Item>
-      <Item.Image
+    <div>
+      <img
+        alt="shoppingcart_image"
         src="https://react.semantic-ui.com/images/wireframe/image.png"
-        size="tiny"
       />
-      <Item.Content>
-        <Item.Header>{props.product.title}</Item.Header>
-        <Item.Description>
-          {props.product.price}
-          {' '}
-€ / each
-        </Item.Description>
-        <Item.Meta>{props.product.description}</Item.Meta>
-      </Item.Content>
+      <div>
+        <div>{props.product.title}</div>
+        <div>{props.product.price} € / each</div>
+        <div>{props.product.description}</div>
+      </div>
 
       <div>
-        <Form onSubmit={updateQuantity}>
-          <Form.Input
+        <form onSubmit={updateQuantity}>
+          <input
             type="number"
             step="1"
             defaultValue={quantity}
             id="updatedValue"
           />
-          <Button
+          <button
             type="button"
             onClick={() => props.removeProductFromCart(props.product._id)}
           >
-            <Icon name="trash" />
-          </Button>
-          <Button primary type="submit">
-            <Icon name="refresh" />
-          </Button>
-        </Form>
+            remove
+          </button>
+          <button type="submit">update</button>
+        </form>
       </div>
-    </Item>
+    </div>
   )
 }
 
 export default connect(
   null,
-  { removeProductFromCart, updateProductQuantity },
+  { removeProductFromCart, updateProductQuantity }
 )(ShoppingCartProduct)

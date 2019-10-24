@@ -2,11 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-import { Form, Button, Message } from 'semantic-ui-react'
 import { productCreation } from '../reducers/productReducer'
 import productService from '../services/products'
 
-const ProductCreationForm = props => {
+const ProductCreationForm = (props) => {
   return (
     <div>
       <h3>Add a product</h3>
@@ -45,7 +44,7 @@ const ProductCreationForm = props => {
             .min(2, 'Description required'),
         })}
       >
-        {props => {
+        {(props) => {
           const {
             values,
             touched,
@@ -60,9 +59,9 @@ const ProductCreationForm = props => {
 
           return (
             <div>
-              <Form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}>
                 <div>
-                  <Form.Input
+                  <input
                     label="Title"
                     id="title"
                     placeholder="Enter the product title"
@@ -74,7 +73,7 @@ const ProductCreationForm = props => {
                   />
                 </div>
                 <div>
-                  <Form.Input
+                  <input
                     label="Description"
                     id="description"
                     placeholder="Enter the product description"
@@ -86,7 +85,7 @@ const ProductCreationForm = props => {
                   />
                 </div>
                 <div>
-                  <Form.Input
+                  <input
                     label="Price"
                     id="price"
                     placeholder="Enter the product price"
@@ -99,7 +98,7 @@ const ProductCreationForm = props => {
                   />
                 </div>
                 <div>
-                  <Form.Input
+                  <input
                     label="Product Category"
                     id="type"
                     placeholder="Enter the product category/type"
@@ -111,17 +110,17 @@ const ProductCreationForm = props => {
                   />
                 </div>
 
-                <Button
+                <button
                   type="button"
                   onClick={handleReset}
                   disabled={!dirty || isSubmitting}
                 >
                   Reset
-                </Button>
-                <Button type="submit" disabled={isSubmitting}>
+                </button>
+                <button type="submit" disabled={isSubmitting}>
                   Submit
-                </Button>
-              </Form>
+                </button>
+              </form>
             </div>
           )
         }}
@@ -129,7 +128,7 @@ const ProductCreationForm = props => {
     </div>
   )
 }
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
 })
 

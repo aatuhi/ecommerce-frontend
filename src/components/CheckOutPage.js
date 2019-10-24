@@ -1,20 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
-import { Segment, Grid } from 'semantic-ui-react'
 import ShoppingCart from './ShoppingCart'
 import OrderForm from './OrderForm'
 
-const CheckOutPage = props => (
-  <Segment raised>
+const CheckOutPage = (props) => (
+  <div>
     {props.cart.length < 1 ? (
       <h2>Please add some products to shopping cart first</h2>
     ) : (
-      <Grid columns={2}>
-        <Grid.Column>
+      <div>
+        <div>
           <ShoppingCart />
-        </Grid.Column>
-        <Grid.Column verticalAlign="middle">
+        </div>
+        <div>
           {props.user ? (
             <OrderForm />
           ) : (
@@ -22,13 +21,13 @@ const CheckOutPage = props => (
               Please <Link to="/account">log in</Link> first to make an order
             </h3>
           )}
-        </Grid.Column>
-      </Grid>
+        </div>
+      </div>
     )}
-  </Segment>
+  </div>
 )
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
   cart: state.shoppingCart,
 })

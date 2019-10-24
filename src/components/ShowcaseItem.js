@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Image } from 'semantic-ui-react'
 
 const ShowcaseItem = ({ product }) => {
   console.log(product)
@@ -10,24 +9,19 @@ const ShowcaseItem = ({ product }) => {
   }
   return (
     <Link to={`/products/${product._id}`}>
-      <Card raised link>
-        <Image
+      <div>
+        <img
+          alt="showcase_img"
           src="https://react.semantic-ui.com/images/wireframe/image.png"
-          wrapped
-          ui={false}
         />
-        <Card.Content>
-          <Card.Header>{product.title}</Card.Header>
-          <Card.Meta>{product.description}</Card.Meta>
-          <Card.Description>
-            <b>
-              {product.price}
-              {' '}
-€
-            </b>
-          </Card.Description>
-        </Card.Content>
-      </Card>
+        <div>
+          <div>{product.title}</div>
+          <div>{product.description}</div>
+          <div>
+            <p>{product.price} €</p>
+          </div>
+        </div>
+      </div>
     </Link>
   )
 }
