@@ -4,7 +4,7 @@ Backend löytyy [täältä.](https://github.com/hirvoin/ecommerce-backend)
 
 ## Tietoa
 
-Yksinkertainen verkkokauppa mock-up omaksi ilokseni.  
+Yksinkertainen verkkokauppa mock-up omaksi ilokseni.
 
 ## Sisältää seuraavat toiminnallisuudet
 
@@ -23,9 +23,4 @@ Yksinkertainen verkkokauppa mock-up omaksi ilokseni.
 
 ## Bugeja
 
-<<<<<<< HEAD
-- Operaatiot eivät aiheuta päivitystä reaaliajassa (tuotetiedot, tilaustiedot)
-- Navigaatiopalkin aktiivinen
-=======
 - Paljon!
->>>>>>> 7241088657798854ff458518fbbd721a8bde3121
