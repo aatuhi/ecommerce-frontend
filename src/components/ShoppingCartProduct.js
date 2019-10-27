@@ -1,9 +1,21 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 import {
   removeProductFromCart,
   updateProductQuantity,
 } from '../reducers/shoppingCartReducer'
+
+const StyledImage = styled.img`
+  width: 100px;
+  height: 100px;
+  margin: 0 20px;
+`
+
+const StyledProductRow = styled.div`
+  display: flex;
+  margin: 20px 5px;
+`
 
 const ShoppingCartProduct = (props) => {
   const [quantity, setQuantity] = useState(props.product.quantity)
@@ -19,8 +31,8 @@ const ShoppingCartProduct = (props) => {
   }
 
   return (
-    <div>
-      <img
+    <StyledProductRow>
+      <StyledImage
         alt="shoppingcart_image"
         src="https://react.semantic-ui.com/images/wireframe/image.png"
       />
@@ -36,6 +48,7 @@ const ShoppingCartProduct = (props) => {
             type="number"
             step="1"
             defaultValue={quantity}
+            b
             id="updatedValue"
           />
           <button
@@ -47,7 +60,7 @@ const ShoppingCartProduct = (props) => {
           <button type="submit">update</button>
         </form>
       </div>
-    </div>
+    </StyledProductRow>
   )
 }
 

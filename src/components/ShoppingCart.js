@@ -19,7 +19,7 @@ const ShoppingCart = (props) => {
     <div>
       <h2>Shopping Cart</h2>
       {props.shoppingCart.map((product) => (
-        <div divided key={product._id}>
+        <div key={product._id}>
           <ShoppingCartProduct product={product} />
         </div>
       ))}

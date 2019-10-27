@@ -23,12 +23,14 @@ const Products = ({ products }) => {
 
   return (
     <div>
-      <div>
-        <div>
-          <div>
-            <h2>Enjoy our selection of quality goods!</h2>
-          </div>
-          {/* filter visibility */}
+      <div style={{ display: 'flex' }}>
+        <h2 style={{ margin: 'auto' }}>
+          Enjoy our selection of quality goods!
+        </h2>
+      </div>
+      {/* filter visibility */}
+      <div style={{ display: 'flex', margin: '20px' }}>
+        <div style={{ display: 'flex', margin: 'auto' }}>
           <div>
             {visible ? (
               <button
@@ -48,24 +50,18 @@ const Products = ({ products }) => {
               </button>
             )}
           </div>
-        </div>
-      </div>
-
-      {/* category pusher */}
-      <div>
-        <div>
           {disctinctCategories.map((category) => (
-            <div key={category} onClick={() => handleFilterClick(category)}>
+            <div
+              style={{ margin: '10px' }}
+              key={category}
+              onClick={() => handleFilterClick(category)}
+            >
               {category}
             </div>
           ))}
         </div>
-        <div>
-          <div>
-            <ProductList products={productsToShow} />
-          </div>
-        </div>
       </div>
+      <ProductList products={productsToShow} />
     </div>
   )
 }

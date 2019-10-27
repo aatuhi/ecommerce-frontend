@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import styled from 'styled-components'
 import { productInitialization } from './reducers/productReducer'
 import { usersInitialization } from './reducers/usersReducer'
 import { ordersInitialization } from './reducers/ordersReducer'
@@ -15,7 +16,14 @@ import LoginPage from './components/LoginPage'
 import OrderDetails from './components/OrderDetails'
 import UserInfo from './components/UserInfo'
 import AdminPage from './components/AdminPage'
-import Footer from './components/Footer'
+
+const StyledContainer = styled.div`
+  max-width: 1200px;
+  margin: auto;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+`
 
 const App = (props) => {
   useEffect(() => {
@@ -43,7 +51,10 @@ const App = (props) => {
   return (
     <Router>
       <NavBar />
-      <div>
+      <div style={{ display: 'flex', margin: '50px' }}>
+        <h1>E-commerce site</h1>
+      </div>
+      <StyledContainer>
         <Route path="/" exact component={LandingPage} />
         <Route path="/admin/" exact component={AdminPage} />
         <Route path="/products/" exact component={Products} />
@@ -75,7 +86,7 @@ const App = (props) => {
             <OrderDetails order={orderById(match.params.id)} />
           )}
         />
-      </div>
+      </StyledContainer>
     </Router>
   )
 }

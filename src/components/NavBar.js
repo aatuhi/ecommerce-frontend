@@ -1,40 +1,56 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
+import styled, { css } from 'styled-components'
+
+const StyledNavBar = styled.ul`
+  display: flex;
+  margin: 0px;
+  background: rgba(255, 64, 64, 1) 70%;
+  box-shadow: 0px 2px 3px slategray;
+`
+
+const StyledNavBarItem = styled.li`
+  display: block;
+  margin: 30px 40px;
+  font-size: 1.7em;
+  color: #f0f0f0;
+  text-shadow: 0px 2px 3px slategray;
+`
 
 const NavBar = (props) => {
   const cartTotalQuantity = (shoppingCart) =>
     shoppingCart.reduce((prev, curr) => prev + curr.quantity, 0)
 
   return (
-    <div>
-      <div>
-        <div>
-          <Link to="/">
-            <div>Home</div>
-          </Link>
-          <Link to="/products">
-            <div>Products</div>
-          </Link>
-          <Link to="/cart">
-            <div>
-              Cart
-              {props.shoppingCart.length > 0 &&
-                ` (${cartTotalQuantity(props.shoppingCart)})`}
-            </div>
-          </Link>
+    <StyledNavBar>
+      <Link to="/">
+        <StyledNavBarItem>Home</StyledNavBarItem>
+      </Link>
+      <Link to="/products">
+        <StyledNavBarItem>Products</StyledNavBarItem>
+      </Link>
+      <Link to="/cart">
+        <StyledNavBarItem>
+          Cart
+          {props.shoppingCart.length > 0 &&
+            ` (${cartTotalQuantity(props.shoppingCart)})`}
+        </StyledNavBarItem>
+      </Link>
 
-          <Link to="/account">
-            <div>{props.user ? <div>My account</div> : <div>Log in</div>}</div>
-          </Link>
-          {props.user && props.user.admin && (
-            <Link to="/admin">
-              <div>Admin panel</div>
-            </Link>
-          )}
-        </div>
-      </div>
-    </div>
+      <Link to="/account" style={{ marginLeft: 'auto', marginRight: '40px' }}>
+        {props.user ? (
+          <StyledNavBarItem>My account</StyledNavBarItem>
+        ) : (
+          <StyledNavBarItem>Log in</StyledNavBarItem>
+        )}
+      </Link>
+      {props.user && props.user.admin && (
+        <Link to="/admin" style={{ marginLeft: 'auto' }}>
+          <StyledNavBarItem>Admin panel</StyledNavBarItem>
+        </Link>
+      )}
+    </StyledNavBar>
   )
 }
 

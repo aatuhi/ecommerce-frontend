@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'https://localhost:3001/api/users'
+const baseUrl = '/api/users'
 
 let token = null
 
@@ -23,14 +23,6 @@ const createUser = async (user) => {
   return response.data
 }
 
-// const getOrdersByUser = async (id) => {
-//   const config = {
-//     headers: { Authorization: token },
-//   }
-//   const response = await axios.get(`${baseUrl}/${id}/orders`, config)
-//   return response.data
-// }
-
 const deleteUser = async (userId) => {
   const config = {
     headers: { Authorization: token },
@@ -44,5 +36,4 @@ export default {
   createUser,
   deleteUser,
   setToken,
-  // getOrdersByUser,
 }

@@ -19,38 +19,31 @@ const LoginPage = (props) => {
   }
 
   return (
-    <div>
-      <div>
-        <div>
+    <div style={{ display: 'flex' }}>
+      <div style={{ margin: 'auto' }}>
+        <h3>Log in</h3>
+        <form onSubmit={() => handleLogin({ username, password })}>
           <div>
-            <h3>Log in</h3>
-            <form onSubmit={() => handleLogin({ username, password })}>
-              <div>
-                <input
-                  label="username"
-                  value={username}
-                  onChange={({ target }) => setUsername(target.value)}
-                />
-              </div>
-              <div>
-                <input
-                  type="password"
-                  label="password"
-                  onChange={({ target }) => setPassword(target.value)}
-                />
-              </div>
-              <button type="submit">Log in</button>
-              {errorMessage && <div>{errorMessage}</div>}
-            </form>
+            <input
+              label="username"
+              value={username}
+              onChange={({ target }) => setUsername(target.value)}
+            />
           </div>
-        </div>
-        <div>
-          <div padded basic>
-            <UserCreationForm />
+          <div>
+            <input
+              type="password"
+              label="password"
+              onChange={({ target }) => setPassword(target.value)}
+            />
           </div>
-        </div>
+          <button type="submit">Log in</button>
+          {errorMessage && <div>{errorMessage}</div>}
+        </form>
       </div>
-      <div>Or</div>
+      <div style={{ margin: 'auto' }}>
+        <UserCreationForm />
+      </div>
     </div>
   )
 }

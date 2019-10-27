@@ -2,9 +2,16 @@ html,
 body {
   margin: 20;
   padding: 20;
-  background-color: #ffffff;
+  background-color: #fff1f0;
+  background-image: url('https://www.transparenttextures.com/patterns/p2.png');
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
   display: flex;
   height: 100%;
   min-height: 100%;
   flex-direction: column;
+}
+
+h1 {
+  font-size: 6em;
+  margin: auto;
 }
