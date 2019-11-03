@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { useSpring, animated } from 'react-spring'
 
 const StyledImage = styled.img`
   width: 250px;
@@ -8,37 +9,39 @@ const StyledImage = styled.img`
   border-radius: 5px 5px 0px 0px;
 `
 
-const StyledItem = styled.div`
+const StyledItem = styled(animated.div)`
   max-width: 250px;
-  background-color: lightblue;
+  background-color: rgba(210, 115, 150, 0.5);
   box-shadow: 3px 3px 4px slategray;
   border-radius: 5px;
 `
 const StyledTextBox = styled.div`
   text-align: center;
-  color: #1f1f1f;
-  margin: 0 20px;
+  text-shadow: 1px 1px 2px slategray;
+  color: rgba(240, 240, 240);
+  /* margin: 0 20px; */
+  padding: 5px 10px;
 `
 
 const ShowcaseItem = ({ product }) => {
   console.log(product)
+
+  const props = useSpring({ opacity: 1, from: { opacity: 0 } })
 
   if (!product) {
     return null
   }
   return (
     <Link to={`/products/${product._id}`}>
-      <StyledItem>
+      <StyledItem style={props}>
         <StyledImage
           alt="showcase_img"
           src="https://react.semantic-ui.com/images/wireframe/image.png"
         />
         <StyledTextBox>
-          <div>{product.title}</div>
-          <div>{product.description}</div>
-          <div>
-            <p>{product.price} €</p>
-          </div>
+          <h3 style={{ margin: '5px' }}>{product.title}</h3>
+          <h4 style={{ margin: '5px' }}>{product.price} €</h4>
+          <p style={{ margin: '5px' }}>{product.description}</p>
         </StyledTextBox>
       </StyledItem>
     </Link>

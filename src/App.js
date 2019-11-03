@@ -20,8 +20,8 @@ import AdminPage from './components/AdminPage'
 const StyledContainer = styled.div`
   max-width: 1200px;
   margin: auto;
-  background-color: #f0f0f0;
-  padding: 20px;
+  background-color: rgba(240, 240, 240, 0.4);
+  padding: 20px 50px 50px;
   border-radius: 5px;
 `
 

@@ -22,7 +22,7 @@ const UserCreationForm = (props) => (
             email,
             password,
           })
-        } catch (error) {
+        } catch (error) { 
           console.log(error)
         }
         setSubmitting(false)

@@ -3,7 +3,7 @@ body {
   margin: 20;
   padding: 20;
   background-color: #fff1f0;
-  background-image: url('https://www.transparenttextures.com/patterns/p2.png');
+  background-image: url('https://www.transparenttextures.com/patterns/60-lines.png');
   /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
   display: flex;
   height: 100%;
@@ -14,4 +14,8 @@ body {
 h1 {
   font-size: 6em;
   margin: auto;
+}
+
+p {
+  margin: 0;
 }

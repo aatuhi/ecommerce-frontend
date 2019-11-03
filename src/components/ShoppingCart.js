@@ -1,7 +1,37 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import styled, { css } from 'styled-components'
 import { emptyShoppingCart } from '../reducers/shoppingCartReducer'
 import ShoppingCartProduct from './ShoppingCartProduct'
+
+const StyledContainer = styled.div`
+  max-width: 600px;
+`
+const StyledButton = styled.button`
+  padding: 5px;
+  margin: 5px
+  max-height: 40px;
+  background-color: rgba(210, 115, 150, 0.8);
+  border-radius: 4px;
+  border-color: rgba(210, 115, 150, 0.4);
+  color: #f0f0f0;
+  box-shadow: 1px 1px 2px slategray;
+  font-size: 1.2em;
+
+  ${(props) =>
+    props.red &&
+    css`
+      background: rgba(190, 66, 81, 0.8);
+      border-color: rgba(190, 66, 81, 0.4);
+    `}
+
+  ${(props) =>
+    props.blue &&
+    css`
+      background-color: rgba(66, 136, 168, 0.8);
+      border-color: rgba(66, 136, 168, 0.4);
+    `}
+`
 
 const ShoppingCart = (props) => {
   const totalPrice = (shoppingCart) =>
@@ -16,7 +46,7 @@ const ShoppingCart = (props) => {
   }
 
   return (
-    <div>
+    <StyledContainer>
       <h2>Shopping Cart</h2>
       {props.shoppingCart.map((product) => (
         <div key={product._id}>
@@ -27,12 +57,16 @@ const ShoppingCart = (props) => {
         <div>
           Total price:
           <h3>{totalPrice(props.shoppingCart)} €</h3>
-          <button type="button" onClick={() => props.emptyShoppingCart()}>
+          <StyledButton
+            red
+            type="button"
+            onClick={() => props.emptyShoppingCart()}
+          >
             clear cart
-          </button>
+          </StyledButton>
         </div>
       )}
-    </div>
+    </StyledContainer>
   )
 }
 

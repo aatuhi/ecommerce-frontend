@@ -7,19 +7,21 @@ import OrderForm from './OrderForm'
 const CheckOutPage = (props) => (
   <div>
     {props.cart.length < 1 ? (
-      <h2>Please add some products to shopping cart first</h2>
+      <h2 style={{ textAlign: 'center' }}>
+        Please add some products to shopping cart first
+      </h2>
     ) : (
-      <div>
+      <div style={{ display: 'flex' }}>
         <div>
           <ShoppingCart />
         </div>
-        <div>
+        <div style={{ margin: 'auto' }}>
           {props.user ? (
             <OrderForm />
           ) : (
-            <h3>
+            <h2>
               Please <Link to="/account">log in</Link> first to make an order
-            </h3>
+            </h2>
           )}
         </div>
       </div>

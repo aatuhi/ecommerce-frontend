@@ -6,8 +6,8 @@ import styled, { css } from 'styled-components'
 const StyledNavBar = styled.ul`
   display: flex;
   margin: 0px;
-  background: rgba(255, 64, 64, 1) 70%;
-  box-shadow: 0px 2px 3px slategray;
+  background: rgba(210, 115, 150, 0.8);
+  box-shadow: 0px 1px 2px slategray;
 `
 
 const StyledNavBarItem = styled.li`
@@ -15,7 +15,7 @@ const StyledNavBarItem = styled.li`
   margin: 30px 40px;
   font-size: 1.7em;
   color: #f0f0f0;
-  text-shadow: 0px 2px 3px slategray;
+  text-shadow: 0px 1px 2px slategray;
 `
 
 const NavBar = (props) => {
