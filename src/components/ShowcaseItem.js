@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { useSpring, animated } from 'react-spring'
+import { useSpring, animated, config } from 'react-spring'
 
 const StyledImage = styled.img`
   width: 250px;
@@ -24,16 +24,23 @@ const StyledTextBox = styled.div`
 `
 
 const ShowcaseItem = ({ product }) => {
-  console.log(product)
+  const [hovered, setHovered] = useState(false)
 
-  const props = useSpring({ opacity: 1, from: { opacity: 0 } })
-
+  const itemSpring = useSpring({ 
+    opacity: 1,   
+    from: { opacity: 0 },
+    transform: `scale(${hovered ? 1.05 : 1})`,
+  })
+  
+  
   if (!product) {
     return null
   }
   return (
     <Link to={`/products/${product._id}`}>
-      <StyledItem style={props}>
+      <StyledItem style={itemSpring}
+        onMouseOver={() => setHovered(true)} 
+        onMouseOut={() => setHovered(false)}>
         <StyledImage
           alt="showcase_img"
           src="https://react.semantic-ui.com/images/wireframe/image.png"
