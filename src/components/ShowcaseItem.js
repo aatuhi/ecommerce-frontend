@@ -11,15 +11,14 @@ const StyledImage = styled.img`
 
 const StyledItem = styled(animated.div)`
   max-width: 250px;
-  background-color: rgba(210, 115, 150, 0.5);
+  background: linear-gradient(45deg, rgba(220,170,200,0.5) 00%, rgba(210,115,150,0.5) 30%);
   box-shadow: 3px 3px 4px slategray;
   border-radius: 5px;
 `
 const StyledTextBox = styled.div`
   text-align: center;
   text-shadow: 1px 1px 2px slategray;
-  color: rgba(240, 240, 240);
-  /* margin: 0 20px; */
+  color: rgba(240, 240, 240, 0.95);
   padding: 5px 10px;
 `
 

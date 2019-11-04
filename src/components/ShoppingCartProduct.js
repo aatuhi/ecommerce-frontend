@@ -35,6 +35,7 @@ const StyledButton = styled.button`
   color: #f0f0f0;
   box-shadow: 1px 1px 2px slategray;
   font-size: 1.2em;
+  text-shadow: 0px 1px 2px slategray;
 
   ${(props) =>
     props.red &&

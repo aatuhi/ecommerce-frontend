@@ -1,47 +1,81 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { Redirect, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
+import { useSpring, animated } from 'react-spring'
 import ProductEditForm from './ProductEditForm'
 import { addProductToCart } from '../reducers/shoppingCartReducer'
 
 const StyledImage = styled.img`
-  width: 300px;
-  height: 300px;
-  margin: 40px;
+  width: 250px;
+  height: 250px;
+  margin: 50px;
 `
 const StyledDetails = styled.div`
-  margin: 40px;
+  margin: 50px;
+`
+
+
+
+
+const StyledButton = styled(animated.button)`
+  margin: 25px 0;
+  padding: 5px 15px;
+  max-height: 40px;
+  background-color: rgba(210, 115, 150, 0.8);
+  border-radius: 4px;
+  border-color: rgba(210, 115, 150, 0.4);
+  color: #f0f0f0;
+  box-shadow: 1px 1px 2px slategray;
+  font-size: 1.2em;
+  text-shadow: 0px 1px 2px slategray;
 `
 
 const Product = (props) => {
+  const [buttonHovered, setButtonHovered] = useState(false)
+  
+
+  const buttonSpring = useSpring({ 
+    transform: `scale(${buttonHovered ? 1.05 : 1})`,
+  })
+
+  const pageSpring = useSpring({ 
+    opacity: 1,   
+    from: { opacity: 0 },
+  })
+
   if (!props.product) {
-    return <Redirect to="/products" />
+    return null
   }
+  
 
   return (
+    <animated.div style={pageSpring}>
     <div style={{ display: 'flex' }}>
       <StyledImage
         alt="product_image"
         src="https://react.semantic-ui.com/images/wireframe/image.png"
-      />
+        />
       <StyledDetails>
-        <div size="tiny">{props.product.title}</div>
-        <div>{props.product.description}</div>
-        <div>{props.product.price} €</div>
+        <h2>{props.product.title}</h2>
+        <p>{props.product.description}</p>
+        <h3>{props.product.price} €</h3>
         <div>
-          <button
+          <StyledButton style={buttonSpring}
             type="button"
             onClick={() => props.addProductToCart(props.product)}
-          >
+            onMouseOver={() => setButtonHovered(true)} 
+            onMouseOut={() => setButtonHovered(false)}
+            >
             Add to cart
-          </button>
+          </StyledButton>
         </div>
       </StyledDetails>
       {props.user && props.user.admin && (
-        <ProductEditForm floated="right" product={props.product} />
-      )}
+        <ProductEditForm product={props.product} />
+        )}
     </div>
+        </animated.div>
   )
 }
 

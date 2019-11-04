@@ -12,7 +12,7 @@ const StyledImage = styled.img`
   border-radius: 3px;
 `
 
-const StyledItem = styled.div`
+const StyledItem = styled(animated.div)`
   display: flex;
   margin: 15px;
   padding: 10px 5px;
@@ -32,6 +32,7 @@ const StyledButton = styled(animated.button)`
   color: #f0f0f0;
   box-shadow: 1px 1px 2px slategray;
   font-size: 1.2em;
+  text-shadow: 0px 1px 2px slategray;
 `
 const StyledTextDiv = styled.div`
   min-width: 250px;
@@ -47,8 +48,10 @@ const ProductListProduct = (props) => {
         transform: `scale(${buttonHovered ? 1.05 : 1})`,
       })
 
+    const spring = useSpring({ opacity: 1, from: { opacity: 0 } })
+
     return (
-   <StyledItem key={product._id}>
+   <StyledItem style={spring} key={product._id}>
         <StyledImage
           alt="small_image"
           src="https://react.semantic-ui.com/images/wireframe/image.png"

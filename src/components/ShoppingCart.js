@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import styled, { css } from 'styled-components'
+import { useSpring, animated } from 'react-spring'
 import { emptyShoppingCart } from '../reducers/shoppingCartReducer'
 import ShoppingCartProduct from './ShoppingCartProduct'
 
@@ -17,6 +18,7 @@ const StyledButton = styled.button`
   color: #f0f0f0;
   box-shadow: 1px 1px 2px slategray;
   font-size: 1.2em;
+  text-shadow: 0px 1px 2px slategray;
 
   ${(props) =>
     props.red &&
@@ -41,6 +43,11 @@ const ShoppingCart = (props) => {
       0
     )
 
+    const spring = useSpring({ 
+      opacity: 1,   
+      from: { opacity: 0 },
+    })
+
   if (!props.shoppingCart || props.shoppingCart.length < 1) {
     return <h2>Shopping cart is empty</h2>
   }
@@ -49,9 +56,9 @@ const ShoppingCart = (props) => {
     <StyledContainer>
       <h2>Shopping Cart</h2>
       {props.shoppingCart.map((product) => (
-        <div key={product._id}>
+        <animated.div style={spring} key={product._id}>
           <ShoppingCartProduct product={product} />
-        </div>
+        </animated.div>
       ))}
       {props.shoppingCart.length > 0 && (
         <div>

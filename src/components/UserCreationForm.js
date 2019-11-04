@@ -1,7 +1,30 @@
 import React from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import styled from 'styled-components'
 import userService from '../services/users'
+
+const StyledInput = styled.input`
+  width: 220px;
+  margin: 5px;
+  padding: 5px;
+  font-size: 1.1em;
+  border-color: rgba(240, 240, 240, 0.5);
+  border-radius: 3px;
+  box-shadow: 2px 2px 3px lightslategray;
+`
+const StyledButton = styled.button`
+  margin: 20px 0 0 130px ;
+  padding: 5px 15px;
+  max-height: 40px;
+  background-color: rgba(210, 115, 150, 0.8);
+  border-radius: 4px;
+  border-color: rgba(210, 115, 150, 0.4);
+  color: #f0f0f0;
+  box-shadow: 1px 1px 2px slategray;
+  font-size: 1.2em;
+  text-shadow: 0px 1px 2px slategray;
+`
 
 const UserCreationForm = (props) => (
   <Formik
@@ -58,11 +81,9 @@ const UserCreationForm = (props) => (
       } = props
 
       return (
-        <div>
-          <h3>Create a user</h3>
           <form onSubmit={handleSubmit} success={isSubmitting}>
             <div>
-              <input
+              <StyledInput
                 label="Username"
                 id="username"
                 placeholder="Enter preferred username"
@@ -74,7 +95,7 @@ const UserCreationForm = (props) => (
               />
             </div>
             <div>
-              <input
+              <StyledInput
                 label="E-mail"
                 id="email"
                 placeholder="Enter your e-mail address"
@@ -86,7 +107,7 @@ const UserCreationForm = (props) => (
               />
             </div>
             <div>
-              <input
+              <StyledInput
                 label="Name"
                 id="name"
                 placeholder="Enter your name"
@@ -98,7 +119,7 @@ const UserCreationForm = (props) => (
               />
             </div>
             <div>
-              <input
+              <StyledInput
                 label="Password"
                 id="password"
                 placeholder="Enter password"
@@ -110,7 +131,7 @@ const UserCreationForm = (props) => (
               />
             </div>
             <div>
-              <input
+              <StyledInput
                 label="Confirm password"
                 id="passwordVerification"
                 placeholder="Confirm password"
@@ -123,18 +144,11 @@ const UserCreationForm = (props) => (
                 }
               />
             </div>
-            <button
-              type="button"
-              onClick={handleReset}
-              disabled={!dirty || isSubmitting}
-            >
-              Reset
-            </button>
-            <button type="submit" disabled={isSubmitting}>
+            <StyledButton type="submit" disabled={isSubmitting}>
               Submit
-            </button>
+            </StyledButton>
+          
           </form>
-        </div>
       )
     }}
   </Formik>

@@ -1,7 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import styled, { css } from 'styled-components'
+import { useSpring, animated } from 'react-spring'
 import ProductList from './ProductList'
+
+const StyledButton = styled(animated.button)`
+  margin: 10px;
+  padding: 5px 15px;
+  max-height: 40px;
+  background-color: rgba(180, 90, 140, 0.8);
+  border-radius: 4px;
+  border-color: rgba(210, 115, 150, 0.3);
+  color: #f0f0f0;
+  box-shadow: 1px 1px 2px slategray;
+  font-size: 1.1em;
+  text-shadow: 0px 1px 2px slategray;
+  `
 
 const Products = ({ products }) => {
   const [visible, setVisibility] = useState(false)
@@ -18,9 +33,10 @@ const Products = ({ products }) => {
     const prods = products.filter((p) => p.type === category)
     return setProductsToShow(prods)
   }
-
+  
   const disctinctCategories = ['all', ...new Set(products.map((p) => p.type))]
-
+  
+  
   return (
     <div>
       <div style={{ display: 'flex' }}>
@@ -33,35 +49,35 @@ const Products = ({ products }) => {
         <div style={{ display: 'flex', margin: 'auto' }}>
           <div>
             {visible ? (
-              <button
+             <StyledButton
                 type="button"
                 disabled={!visible}
                 onClick={() => setVisibility(false)}
               >
                 Hide categories
-              </button>
+              </StyledButton>
             ) : (
-              <button
+              <StyledButton
                 type="button"
                 disabled={visible}
                 onClick={() => setVisibility(true)}
+                
               >
                 Filter by category
-              </button>
+              </StyledButton>
             )}
           </div>
           {disctinctCategories.map((category) => (
-            <div
-              style={{ margin: '10px' }}
+            <StyledButton
               key={category}
               onClick={() => handleFilterClick(category)}
             >
               {category}
-            </div>
+            </StyledButton>
           ))}
         </div>
       </div>
-      <ProductList products={productsToShow} />
+        <ProductList products={productsToShow} />
     </div>
   )
 }
