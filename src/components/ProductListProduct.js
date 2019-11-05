@@ -18,7 +18,7 @@ const StyledItem = styled(animated.div)`
   padding: 10px 5px;
   border: solid;
   border-radius: 6px;
-  background-color: rgba(240, 240, 240, 0.5);
+  background-color: rgba(240, 240, 240, 0.7);
   border-color: rgba(240, 240, 240, 0.1);
   box-shadow: 2px 2px 3px lightslategray;
 `
@@ -42,14 +42,15 @@ const StyledTextDiv = styled.div`
 const ProductListProduct = (props) => {
     const [buttonHovered, setButtonHovered] = useState(false)
 
-    const { product } = props
-
+    
     const buttonSpring = useSpring({ 
         transform: `scale(${buttonHovered ? 1.05 : 1})`,
-      })
-
+    })
+    
     const spring = useSpring({ opacity: 1, from: { opacity: 0 } })
-
+    
+    const { product } = props
+    
     return (
    <StyledItem style={spring} key={product._id}>
         <StyledImage

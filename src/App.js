@@ -16,11 +16,12 @@ import LoginPage from './components/LoginPage'
 import OrderDetails from './components/OrderDetails'
 import UserInfo from './components/UserInfo'
 import AdminPage from './components/AdminPage'
+import TopBar from './components/TopBar'
 
 const StyledContainer = styled.div`
   max-width: 1200px;
-  margin: auto;
-  background-color: rgba(240, 240, 240, 0.4);
+  margin: 75px auto;
+  background-color: rgba(240, 240, 240, 0.5);
   padding: 20px 50px 50px;
   border-radius: 5px;
 `
@@ -50,10 +51,8 @@ const App = (props) => {
 
   return (
     <Router>
+      <TopBar />
       <NavBar />
-      <div style={{ display: 'flex', margin: '50px' }}>
-        <h1>E-commerce site</h1>
-      </div>
       <StyledContainer>
         <Route path="/" exact component={LandingPage} />
         <Route path="/admin/" exact component={AdminPage} />

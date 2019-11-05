@@ -19,7 +19,7 @@ const StyledRow = styled.div`
   padding: 10px 5px;
   border: solid;
   border-radius: 6px;
-  background-color: rgba(240, 240, 240, 0.5);
+  background-color: rgba(240, 240, 240, 0.7);
   border-color: rgba(240, 240, 240, 0.1);
   /* border-color: #fff1f9;
   background-color: #fff1f0; */
