@@ -31,7 +31,6 @@ const StyledHeader = styled.h2`
   text-align: center;
 `
 
-
 const LoginPage = (props) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -69,7 +68,7 @@ const LoginPage = (props) => {
         </form>
       </div>
       <div style={{ margin: 'auto' }}>
-      <StyledHeader>Create a user</StyledHeader>
+        <StyledHeader>Create a user</StyledHeader>
         <UserCreationForm />
       </div>
     </div>

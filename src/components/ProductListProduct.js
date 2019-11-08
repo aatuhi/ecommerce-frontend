@@ -40,50 +40,52 @@ const StyledTextDiv = styled.div`
 `
 
 const ProductListProduct = (props) => {
-    const [buttonHovered, setButtonHovered] = useState(false)
+  const [buttonHovered, setButtonHovered] = useState(false)
 
-    
-    const buttonSpring = useSpring({ 
-        transform: `scale(${buttonHovered ? 1.05 : 1})`,
-    })
-    
-    const spring = useSpring({ opacity: 1, from: { opacity: 0 } })
-    
-    const { product } = props
-    
-    return (
-   <StyledItem style={spring} key={product._id}>
-        <StyledImage
-          alt="small_image"
-          src="https://react.semantic-ui.com/images/wireframe/image.png"
-        />
-        <StyledTextDiv>
-          <Link to={`/products/${product._id}`}>
-            <h3>{product.title}</h3>
-          </Link>
-          <p style={{ marginTop: '5px', maxWidth: '250px' }}>
-            {product.description}
-          </p>
-          <div style={{ marginTop: '15px' }}>
-            <h3 style={{ margin: '0', display: 'inline-block' }}>
-              {product.price} €
-            </h3>
-            <StyledButton style={buttonSpring}
-              type="button"
-              onClick={() => props.addProductToCart(product)}
-              onMouseOver={() => setButtonHovered(true)} 
-              onMouseOut={() => setButtonHovered(false)}
-            >
-              add to cart
-            </StyledButton>
-          </div>
-        </StyledTextDiv>
- </StyledItem>
-    )
+  const buttonSpring = useSpring({
+    // transform: `scale(${buttonHovered ? 1.05 : 1})`,
+    background: `${
+      buttonHovered ? 'rgba(220,170,200,0.8)' : 'rgba(210,115,150,0.8)'
+    }`,
+  })
+
+  const spring = useSpring({ opacity: 1, from: { opacity: 0 } })
+
+  const { product } = props
+
+  return (
+    <StyledItem style={spring} key={product._id}>
+      <StyledImage
+        alt="small_image"
+        src="https://react.semantic-ui.com/images/wireframe/image.png"
+      />
+      <StyledTextDiv>
+        <Link to={`/products/${product._id}`}>
+          <h3>{product.title}</h3>
+        </Link>
+        <p style={{ marginTop: '5px', maxWidth: '250px' }}>
+          {product.description}
+        </p>
+        <div style={{ marginTop: '15px' }}>
+          <h3 style={{ margin: '0', display: 'inline-block' }}>
+            {product.price} €
+          </h3>
+          <StyledButton
+            style={buttonSpring}
+            type="button"
+            onClick={() => props.addProductToCart(product)}
+            onMouseOver={() => setButtonHovered(true)}
+            onMouseOut={() => setButtonHovered(false)}
+          >
+            add to cart
+          </StyledButton>
+        </div>
+      </StyledTextDiv>
+    </StyledItem>
+  )
 }
 
 export default connect(
-    null,
-    { addProductToCart }
-  )(ProductListProduct)
-  
+  null,
+  { addProductToCart }
+)(ProductListProduct)
