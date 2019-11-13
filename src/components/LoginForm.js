@@ -1,6 +1,8 @@
-import React, { useState } from "react"
+import React from "react"
 import { connect } from "react-redux"
 import styled from "styled-components"
+import { Formik } from "formik"
+import * as Yup from "yup"
 import { userLoggingIn } from "../reducers/loginReducer"
 
 const StyledContainer = styled.div`
@@ -35,46 +37,83 @@ const StyledButton = styled.button`
   font-size: 1.2em;
 `
 
-const LoginPage = props => {
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
+const LoginForm = props => (
+  <Formik
+    initialValues={{
+      username: "",
+      password: ""
+    }}
+    onSubmit={async (values, { setSubmitting }) => {
+      setTimeout(() => {
+        const { username, password } = values
+        try {
+          props.userLoggingIn({
+            username,
+            password
+          })
+        } catch (error) {
+          console.log(error)
+        }
+        setSubmitting(false)
+      }, 3000)
+    }}
+    validationSchema={Yup.object().shape({
+      username: Yup.string().required("Required field"),
+      password: Yup.string().required("Required field")
+    })}
+  >
+    {props => {
+      const {
+        values,
+        touched,
+        errors,
+        // dirty,
+        isSubmitting,
+        handleChange,
+        handleBlur,
+        handleSubmit
+        // handleReset,
+      } = props
 
-  const handleLogin = async credentials => {
-    console.log(credentials)
-    try {
-      await props.userLoggingIn(credentials)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  return (
-    <div style={{ margin: "auto" }}>
-      <h2 style={{ textAlign: "center" }}>Log in</h2>
-      <StyledContainer>
-        <form onSubmit={() => handleLogin({ username, password })}>
-          <div>
-            <StyledInput
-              placeholder="Enter your username"
-              label="username"
-              value={username}
-              onChange={({ target }) => setUsername(target.value)}
-            />
-          </div>
-          <div>
-            <StyledInput
-              placeholder="Enter your password"
-              type="password"
-              label="password"
-              onChange={({ target }) => setPassword(target.value)}
-            />
-          </div>
-          <StyledButton type="submit">Log in</StyledButton>
-        </form>
-      </StyledContainer>
-    </div>
-  )
-}
+      return (
+        <div style={{ margin: "auto" }}>
+          <h2 style={{ textAlign: "center " }}>Log in</h2>
+          <StyledContainer>
+            <form onSubmit={handleSubmit}>
+              <div>
+                <StyledInput
+                  label="Username"
+                  id="username"
+                  placeholder="Enter your username"
+                  type="text"
+                  value={values.username}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.username && touched.username}
+                />
+              </div>
+              <div>
+                <StyledInput
+                  label="Password"
+                  id="password"
+                  placeholder="Enter password"
+                  type="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.password && touched.password}
+                />
+              </div>
+              <StyledButton type="submit" disabled={isSubmitting}>
+                Submit
+              </StyledButton>
+            </form>
+          </StyledContainer>
+        </div>
+      )
+    }}
+  </Formik>
+)
 
 const mapDispatchToProps = {
   userLoggingIn
@@ -83,4 +122,4 @@ const mapDispatchToProps = {
 export default connect(
   null,
   mapDispatchToProps
-)(LoginPage)
+)(LoginForm)
