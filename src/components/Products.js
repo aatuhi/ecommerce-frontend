@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { useSpring, animated } from 'react-spring'
 import ProductList from './ProductList'
 
@@ -16,7 +16,7 @@ const StyledButton = styled(animated.button)`
   box-shadow: 1px 1px 2px slategray;
   font-size: 1.1em;
   text-shadow: 0px 1px 2px slategray;
-  `
+`
 
 const Products = ({ products }) => {
   const [visible, setVisibility] = useState(false)
@@ -33,10 +33,14 @@ const Products = ({ products }) => {
     const prods = products.filter((p) => p.type === category)
     return setProductsToShow(prods)
   }
-  
+
   const disctinctCategories = ['all', ...new Set(products.map((p) => p.type))]
-  
-  
+
+  // const buttonSpring = useSpring({
+  //   opacity: 1,
+  //   from: { opacity: 0 },
+  // })
+
   return (
     <div>
       <div style={{ display: 'flex' }}>
@@ -49,7 +53,7 @@ const Products = ({ products }) => {
         <div style={{ display: 'flex', margin: 'auto' }}>
           <div>
             {visible ? (
-             <StyledButton
+              <StyledButton
                 type="button"
                 disabled={!visible}
                 onClick={() => setVisibility(false)}
@@ -61,23 +65,25 @@ const Products = ({ products }) => {
                 type="button"
                 disabled={visible}
                 onClick={() => setVisibility(true)}
-                
               >
                 Filter by category
               </StyledButton>
             )}
           </div>
-          {disctinctCategories.map((category) => (
-            <StyledButton
-              key={category}
-              onClick={() => handleFilterClick(category)}
-            >
-              {category}
-            </StyledButton>
-          ))}
+          {disctinctCategories.map(
+            (category) =>
+              visible && (
+                <StyledButton
+                  key={category}
+                  onClick={() => handleFilterClick(category)}
+                >
+                  {category}
+                </StyledButton>
+              )
+          )}
         </div>
       </div>
-        <ProductList products={productsToShow} />
+      <ProductList products={productsToShow} />
     </div>
   )
 }

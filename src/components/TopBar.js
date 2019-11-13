@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 const StyledNavBar = styled.div`
   display: flex;
@@ -16,13 +16,11 @@ const StyledHeader = styled.h2`
 `
 
 const TopBar = () => {
-    return (
-        <StyledNavBar>
-            <StyledHeader>
-                E-commerce site
-            </StyledHeader>
-        </StyledNavBar>
-    )
+  return (
+    <StyledNavBar>
+      <StyledHeader>E-commerce site</StyledHeader>
+    </StyledNavBar>
+  )
 }
 
 export default TopBar

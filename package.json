@@ -5,16 +5,17 @@
   "dependencies": {
     "axios": "^0.18.1",
     "formik": "^1.5.8",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "http-proxy-middleware": "^0.20.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "react-icons": "^3.8.0",
     "react-redux": "^6.0.1",
-    "react-router-dom": "^5.1.0",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "2.1.1",
     "react-spring": "^8.0.27",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
-    "styled-components": "^4.4.0",
+    "styled-components": "^4.4.1",
     "yup": "^0.26.10"
   },
   "scripts": {
@@ -23,7 +24,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3010",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -35,7 +35,7 @@
   ],
   "devDependencies": {
     "eslint-config-airbnb": "^17.1.1",
-    "eslint-config-prettier": "^6.3.0",
+    "eslint-config-prettier": "^6.5.0",
     "prettier-eslint": "^9.0.0"
   }
 }

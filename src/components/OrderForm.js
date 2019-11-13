@@ -1,26 +1,59 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { Formik } from 'formik'
-import * as Yup from 'yup'
-import orderService from '../services/orders'
+import React from "react"
+import { connect } from "react-redux"
+import { Formik } from "formik"
+import * as Yup from "yup"
+import styled from "styled-components"
+import orderService from "../services/orders"
 
-const OrderForm = (props) => {
-  const totalPrice = (shoppingCart) =>
+const StyledContainer = styled.div`
+  margin: 20px;
+  padding: 30px;
+  background: rgba(75, 75, 75, 0.15);
+  border-style: solid;
+  border-color: rgba(75, 75, 75, 0.15);
+  background-clip: padding-box;
+  border-radius: 4px;
+`
+
+const StyledInput = styled.input`
+  width: 280px;
+  margin: 5px;
+  padding: 5px;
+  font-size: 1.1em;
+  border-color: rgba(240, 240, 240, 0.5);
+  border-radius: 3px;
+  box-shadow: 2px 2px 3px lightslategray;
+`
+const StyledButton = styled.button`
+  margin: 20px 10px;
+  padding: 5px 15px;
+  max-height: 40px;
+  background-color: rgba(210, 115, 150, 0.8);
+  border-radius: 4px;
+  border-color: rgba(210, 115, 150, 0.4);
+  color: #f0f0f0;
+  box-shadow: 1px 1px 2px slategray;
+  font-size: 1.2em;
+  text-shadow: 0px 1px 2px slategray;
+`
+
+const OrderForm = props => {
+  const totalPrice = shoppingCart =>
     shoppingCart.reduce(
       (prev, curr) =>
         Math.round((prev + curr.price * curr.quantity) * 100) / 100,
       0
     )
   return (
-    <div>
+    <StyledContainer>
       <h2>Place an order</h2>
       <Formik
         initialValues={{
-          name: '',
-          street: '',
-          zipCode: '',
-          city: '',
-          country: '',
+          name: "",
+          street: "",
+          zipCode: "",
+          city: "",
+          country: ""
         }}
         onSubmit={async (values, { setSubmitting }) => {
           setTimeout(() => {
@@ -30,26 +63,26 @@ const OrderForm = (props) => {
                 const order = {
                   products: props.shoppingCart,
                   totalPrice: totalPrice(props.shoppingCart),
-                  deliveryAddress: values,
+                  deliveryAddress: values
                 }
                 orderService.createOrder(order)
               } catch (error) {
                 window.alert(error)
               }
-              window.alert('Order placed')
+              window.alert("Order placed")
             }
             setSubmitting(false)
           }, 500)
         }}
         validationSchema={Yup.object().shape({
-          name: Yup.string().required('Required field'),
-          street: Yup.string().required('Required field'),
-          zipCode: Yup.string().required('Required field'),
-          city: Yup.string().required('Required field'),
-          country: Yup.string().required('Required field'),
+          name: Yup.string().required("Required field"),
+          street: Yup.string().required("Required field"),
+          zipCode: Yup.string().required("Required field"),
+          city: Yup.string().required("Required field"),
+          country: Yup.string().required("Required field")
         })}
       >
-        {(props) => {
+        {props => {
           const {
             values,
             touched,
@@ -59,14 +92,14 @@ const OrderForm = (props) => {
             handleChange,
             handleBlur,
             handleSubmit,
-            handleReset,
+            handleReset
           } = props
 
           return (
             <div>
               <form onSubmit={handleSubmit}>
                 <div>
-                  <input
+                  <StyledInput
                     label="Name"
                     id="name"
                     placeholder="Enter name"
@@ -78,7 +111,7 @@ const OrderForm = (props) => {
                   />
                 </div>
                 <div>
-                  <input
+                  <StyledInput
                     label="Street"
                     id="street"
                     placeholder="Enter street"
@@ -90,7 +123,7 @@ const OrderForm = (props) => {
                   />
                 </div>
                 <div>
-                  <input
+                  <StyledInput
                     label="Postal code"
                     id="zipCode"
                     placeholder="Enter postal code"
@@ -102,7 +135,7 @@ const OrderForm = (props) => {
                   />
                 </div>
                 <div>
-                  <input
+                  <StyledInput
                     label="City"
                     id="city"
                     placeholder="Enter city"
@@ -115,7 +148,7 @@ const OrderForm = (props) => {
                 </div>
 
                 <div>
-                  <input
+                  <StyledInput
                     label="Country"
                     id="country"
                     placeholder="Enter country"
@@ -127,28 +160,28 @@ const OrderForm = (props) => {
                   />
                 </div>
 
-                <button
+                <StyledButton
                   type="button"
                   onClick={handleReset}
                   disabled={!dirty || isSubmitting}
                 >
                   Reset
-                </button>
-                <button primary type="submit" disabled={isSubmitting}>
+                </StyledButton>
+                <StyledButton primary type="submit" disabled={isSubmitting}>
                   Submit
-                </button>
+                </StyledButton>
               </form>
             </div>
           )
         }}
       </Formik>
-    </div>
+    </StyledContainer>
   )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   shoppingCart: state.shoppingCart,
-  user: state.user,
+  user: state.user
 })
 
 export default connect(mapStateToProps)(OrderForm)

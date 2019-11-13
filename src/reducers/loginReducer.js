@@ -15,18 +15,15 @@ const loginReducer = (state = initialState, action) => {
 }
 
 export const userLoggingIn = (credentials) => async (dispatch) => {
-  try {
-    const user = await loginService.login(credentials)
-    console.log('user', user)
-    window.localStorage.setItem('loggedUser', JSON.stringify(user))
-    orderService.setToken(user.token)
-    dispatch({
-      type: 'LOG_IN',
-      data: user,
-    })
-  } catch (error) {
-    console.log(error)
-  }
+  console.log(credentials)
+  const user = await loginService.login(credentials)
+  console.log('user', user)
+  window.localStorage.setItem('loggedUser', JSON.stringify(user))
+  orderService.setToken(user.token)
+  dispatch({
+    type: 'LOG_IN',
+    data: user,
+  })
 }
 
 export const userLoggingOut = () => (dispatch) => {

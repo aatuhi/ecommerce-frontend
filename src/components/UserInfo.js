@@ -8,16 +8,12 @@ const UserInfo = ({ user }) => {
     return null
   }
   return (
-    <div>
-      <div>
-        <div>
-          <div>
-            <AccountDetails user={user} />
-          </div>
-          <div>
-            <OrderHistory orders={user.orders} />
-          </div>
-        </div>
+    <div style={{ display: 'flex' }}>
+      <div style={{ margin: 'auto' }}>
+        <AccountDetails user={user} />
+      </div>
+      <div style={{ margin: 'auto' }}>
+        <OrderHistory orders={user.orders} />
       </div>
     </div>
   )

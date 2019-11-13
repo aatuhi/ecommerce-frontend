@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
-import styled from 'styled-components'
-import { useSpring, animated } from 'react-spring'
-import ProductEditForm from './ProductEditForm'
-import { addProductToCart } from '../reducers/shoppingCartReducer'
+import React, { useState } from "react"
+import { connect } from "react-redux"
+import { withRouter } from "react-router-dom"
+import styled from "styled-components"
+import { useSpring, animated } from "react-spring"
+import ProductEditForm from "./ProductEditForm"
+import { addProductToCart } from "../reducers/shoppingCartReducer"
 
 const StyledImage = styled.img`
   width: 250px;
@@ -25,22 +25,20 @@ const StyledButton = styled(animated.button)`
   color: #f0f0f0;
   box-shadow: 1px 1px 2px slategray;
   font-size: 1.2em;
-  text-shadow: 0px 1px 2px slategray;
 `
 
-const Product = (props) => {
+const Product = props => {
   const [buttonHovered, setButtonHovered] = useState(false)
 
   const buttonSpring = useSpring({
-    // transform: `scale(${buttonHovered ? 1.05 : 1})`,
     background: `${
-      buttonHovered ? 'rgba(220,170,200,0.8)' : 'rgba(210,115,150,0.8)'
-    }`,
+      buttonHovered ? "rgba(220,170,200,0.8)" : "rgba(210,115,150,0.8)"
+    }`
   })
 
   const pageSpring = useSpring({
     opacity: 1,
-    from: { opacity: 0 },
+    from: { opacity: 0 }
   })
 
   if (!props.product) {
@@ -49,7 +47,7 @@ const Product = (props) => {
 
   return (
     <animated.div style={pageSpring}>
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: "flex" }}>
         <StyledImage
           alt="product_image"
           src="https://react.semantic-ui.com/images/wireframe/image.png"
@@ -57,7 +55,11 @@ const Product = (props) => {
         <StyledDetails>
           <h2>{props.product.title}</h2>
           <p>{props.product.description}</p>
-          <h3>{props.product.price} €</h3>
+          <h3>
+            {props.product.price}
+            {' '}
+€
+          </h3>
           <div>
             <StyledButton
               style={buttonSpring}
@@ -78,8 +80,8 @@ const Product = (props) => {
   )
 }
 
-const mapStateToProps = (state) => ({
-  user: state.user,
+const mapStateToProps = state => ({
+  user: state.user
 })
 
 export default withRouter(

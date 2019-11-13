@@ -1,8 +1,18 @@
-import React from 'react'
-import { Formik } from 'formik'
-import * as Yup from 'yup'
-import styled from 'styled-components'
-import userService from '../services/users'
+import React from "react"
+import { Formik } from "formik"
+import * as Yup from "yup"
+import styled from "styled-components"
+import userService from "../services/users"
+
+const StyledContainer = styled.div`
+  margin: auto;
+  padding: 30px;
+  background: rgba(75, 75, 75, 0.15);
+  border-style: solid;
+  border-color: rgba(75, 75, 75, 0.15);
+  background-clip: padding-box;
+  border-radius: 4px;
+`
 
 const StyledInput = styled.input`
   width: 220px;
@@ -14,7 +24,7 @@ const StyledInput = styled.input`
   box-shadow: 2px 2px 3px lightslategray;
 `
 const StyledButton = styled.button`
-  margin: 20px 0 0 130px ;
+  margin: 20px 0 0 130px;
   padding: 5px 15px;
   max-height: 40px;
   background-color: rgba(210, 115, 150, 0.8);
@@ -26,14 +36,14 @@ const StyledButton = styled.button`
   text-shadow: 0px 1px 2px slategray;
 `
 
-const UserCreationForm = (props) => (
+const UserCreationForm = props => (
   <Formik
     initialValues={{
-      username: '',
-      name: '',
-      email: '',
-      password: '',
-      passwordVerification: '',
+      username: "",
+      name: "",
+      email: "",
+      password: "",
+      passwordVerification: ""
     }}
     onSubmit={async (values, { setSubmitting }) => {
       setTimeout(() => {
@@ -43,9 +53,9 @@ const UserCreationForm = (props) => (
             username,
             name,
             email,
-            password,
+            password
           })
-        } catch (error) { 
+        } catch (error) {
           console.log(error)
         }
         setSubmitting(false)
@@ -53,102 +63,106 @@ const UserCreationForm = (props) => (
     }}
     validationSchema={Yup.object().shape({
       username: Yup.string()
-        .required('Required field')
-        .min(3, 'Title must be at least 3 characters'),
+        .required("Required field")
+        .min(3, "Title must be at least 3 characters"),
       password: Yup.string()
-        .required('Required field')
-        .min(6, 'Password must be at least 6 characters'),
+        .required("Required field")
+        .min(6, "Password must be at least 6 characters"),
       passwordVerification: Yup.string()
-        .oneOf([Yup.ref('password'), 'Must equal to password field'])
-        .required('Password confirm is required'),
+        .oneOf([Yup.ref("password"), "Must equal to password field"])
+        .required("Password confirm is required"),
       email: Yup.string()
-        .email('Invalid email')
-        .required('Required field'),
-      name: Yup.string().required('Required field'),
+        .email("Invalid email")
+        .required("Required field"),
+      name: Yup.string().required("Required field")
     })}
   >
-    {(props) => {
+    {props => {
       const {
         values,
         touched,
         errors,
-        dirty,
+        // dirty,
         isSubmitting,
         handleChange,
         handleBlur,
-        handleSubmit,
-        handleReset,
+        handleSubmit
+        // handleReset,
       } = props
 
       return (
-          <form onSubmit={handleSubmit} success={isSubmitting}>
-            <div>
-              <StyledInput
-                label="Username"
-                id="username"
-                placeholder="Enter preferred username"
-                type="text"
-                value={values.username}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.username && touched.username}
-              />
-            </div>
-            <div>
-              <StyledInput
-                label="E-mail"
-                id="email"
-                placeholder="Enter your e-mail address"
-                type="text"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.email && touched.email}
-              />
-            </div>
-            <div>
-              <StyledInput
-                label="Name"
-                id="name"
-                placeholder="Enter your name"
-                type="text"
-                value={values.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.name && touched.name}
-              />
-            </div>
-            <div>
-              <StyledInput
-                label="Password"
-                id="password"
-                placeholder="Enter password"
-                type="password"
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.password && touched.password}
-              />
-            </div>
-            <div>
-              <StyledInput
-                label="Confirm password"
-                id="passwordVerification"
-                placeholder="Confirm password"
-                type="password"
-                value={values.passwordVerification}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={
-                  errors.passwordVerification && touched.passwordVerification
-                }
-              />
-            </div>
-            <StyledButton type="submit" disabled={isSubmitting}>
-              Submit
-            </StyledButton>
-          
-          </form>
+        <div style={{ margin: "auto" }}>
+          <h2 style={{ textAlign: "center " }}>Create user</h2>
+          <StyledContainer>
+            <form onSubmit={handleSubmit}>
+              <div>
+                <StyledInput
+                  label="Username"
+                  id="username"
+                  placeholder="Enter preferred username"
+                  type="text"
+                  value={values.username}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.username && touched.username}
+                />
+              </div>
+              <div>
+                <StyledInput
+                  label="E-mail"
+                  id="email"
+                  placeholder="Enter your e-mail address"
+                  type="text"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.email && touched.email}
+                />
+              </div>
+              <div>
+                <StyledInput
+                  label="Name"
+                  id="name"
+                  placeholder="Enter your name"
+                  type="text"
+                  value={values.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.name && touched.name}
+                />
+              </div>
+              <div>
+                <StyledInput
+                  label="Password"
+                  id="password"
+                  placeholder="Enter password"
+                  type="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.password && touched.password}
+                />
+              </div>
+              <div>
+                <StyledInput
+                  label="Confirm password"
+                  id="passwordVerification"
+                  placeholder="Confirm password"
+                  type="password"
+                  value={values.passwordVerification}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={
+                    errors.passwordVerification && touched.passwordVerification
+                  }
+                />
+              </div>
+              <StyledButton type="submit" disabled={isSubmitting}>
+                Submit
+              </StyledButton>
+            </form>
+          </StyledContainer>
+        </div>
       )
     }}
   </Formik>

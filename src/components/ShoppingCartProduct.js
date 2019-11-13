@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import styled, { css } from 'styled-components'
+import React, { useState } from "react"
+import { connect } from "react-redux"
+import styled, { css } from "styled-components"
 import {
   removeProductFromCart,
-  updateProductQuantity,
-} from '../reducers/shoppingCartReducer'
+  updateProductQuantity
+} from "../reducers/shoppingCartReducer"
 
 const StyledImage = styled.img`
   width: 75px;
@@ -15,7 +15,7 @@ const StyledImage = styled.img`
 
 const StyledRow = styled.div`
   display: flex;
-  margin: 20px;
+  margin: 20px 5px;
   padding: 10px 5px;
   border: solid;
   border-radius: 6px;
@@ -37,14 +37,14 @@ const StyledButton = styled.button`
   font-size: 1.2em;
   text-shadow: 0px 1px 2px slategray;
 
-  ${(props) =>
+  ${props =>
     props.red &&
     css`
       background: rgba(190, 66, 81, 0.8);
       border-color: rgba(190, 66, 81, 0.4);
     `}
 
-  ${(props) =>
+  ${props =>
     props.blue &&
     css`
       background-color: rgba(66, 136, 168, 0.8);
@@ -61,15 +61,15 @@ const StyledInput = styled.input`
   margin-right: 10px;
 `
 
-const ShoppingCartProduct = (props) => {
+const ShoppingCartProduct = props => {
   const [quantity, setQuantity] = useState(props.product.quantity)
 
-  const updateQuantity = (event) => {
+  const updateQuantity = event => {
     event.preventDefault()
     setQuantity(event.target.updatedValue.value)
     const updatedProduct = {
       ...props.product,
-      quantity: Number(event.target.updatedValue.value),
+      quantity: Number(event.target.updatedValue.value)
     }
     props.updateProductQuantity(updatedProduct)
   }
@@ -82,11 +82,15 @@ const ShoppingCartProduct = (props) => {
       />
       <StyledTextDiv>
         <h4>{props.product.title}</h4>
-        <div>{props.product.price} € / each</div>
+        <div>
+          {props.product.price}
+          {' '}
+€ / each
+        </div>
       </StyledTextDiv>
 
-      <div style={{ margin: '10px' }}>
-        <form style={{ marginRight: '15px' }} onSubmit={updateQuantity}>
+      <div style={{ margin: "10px" }}>
+        <form style={{ marginRight: "15px" }} onSubmit={updateQuantity}>
           <StyledInput
             type="number"
             step="1"

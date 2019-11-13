@@ -1,20 +1,54 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { Formik } from 'formik'
-import * as Yup from 'yup'
-import { productCreation } from '../reducers/productReducer'
-import productService from '../services/products'
+import React from "react"
+import { connect } from "react-redux"
+import { Formik } from "formik"
+import * as Yup from "yup"
+import styled from "styled-components"
+import { productCreation } from "../reducers/productReducer"
+import productService from "../services/products"
 
-const ProductCreationForm = (props) => {
+const StyledContainer = styled.div`
+  margin: 50px;
+  padding: 30px;
+  background: rgba(75, 75, 75, 0.15);
+  border-style: solid;
+  border-color: rgba(75, 75, 75, 0.15);
+  background-clip: padding-box;
+  border-radius: 4px;
+  display: inline-block;
+`
+
+const StyledInput = styled.input`
+  width: 300px;
+  margin: 5px;
+  padding: 5px;
+  font-size: 1.1em;
+  border-color: rgba(240, 240, 240, 0.5);
+  border-radius: 3px;
+  box-shadow: 2px 2px 3px lightslategray;
+`
+const StyledButton = styled.button`
+  margin: 20px 10px;
+  padding: 5px 15px;
+  max-height: 40px;
+  background-color: rgba(210, 115, 150, 0.8);
+  border-radius: 4px;
+  border-color: rgba(210, 115, 150, 0.4);
+  color: #f0f0f0;
+  box-shadow: 1px 1px 2px slategray;
+  font-size: 1.2em;
+  text-shadow: 0px 1px 2px slategray;
+`
+
+const ProductCreationForm = props => {
   return (
-    <div>
-      <h3>Add a product</h3>
+    <StyledContainer>
+      <h2>Add a product</h2>
       <Formik
         initialValues={{
-          title: '',
-          description: '',
-          type: '',
-          price: 0,
+          title: "",
+          description: "",
+          type: "",
+          price: 0
         }}
         onSubmit={async (values, { setSubmitting }) => {
           setTimeout(() => {
@@ -27,24 +61,24 @@ const ProductCreationForm = (props) => {
                 window.alert(error)
               }
             }
-            window.alert('Product added')
+            window.alert("Product added")
             setSubmitting(false)
           }, 500)
         }}
         validationSchema={Yup.object().shape({
           title: Yup.string()
-            .required('Required field')
-            .min(2, 'Title must be at least 2 characters'),
+            .required("Required field")
+            .min(2, "Title must be at least 2 characters"),
           description: Yup.string()
-            .required('Required field')
-            .min(2, 'Description required'),
-          price: Yup.number().required('Price is required'),
+            .required("Required field")
+            .min(2, "Description required"),
+          price: Yup.number().required("Price is required"),
           type: Yup.string()
-            .required('Required field')
-            .min(2, 'Description required'),
+            .required("Required field")
+            .min(2, "Description required")
         })}
       >
-        {(props) => {
+        {props => {
           const {
             values,
             touched,
@@ -54,14 +88,14 @@ const ProductCreationForm = (props) => {
             handleChange,
             handleBlur,
             handleSubmit,
-            handleReset,
+            handleReset
           } = props
 
           return (
             <div>
               <form onSubmit={handleSubmit}>
                 <div>
-                  <input
+                  <StyledInput
                     label="Title"
                     id="title"
                     placeholder="Enter the product title"
@@ -73,7 +107,7 @@ const ProductCreationForm = (props) => {
                   />
                 </div>
                 <div>
-                  <input
+                  <StyledInput
                     label="Description"
                     id="description"
                     placeholder="Enter the product description"
@@ -85,7 +119,7 @@ const ProductCreationForm = (props) => {
                   />
                 </div>
                 <div>
-                  <input
+                  <StyledInput
                     label="Price"
                     id="price"
                     placeholder="Enter the product price"
@@ -98,7 +132,7 @@ const ProductCreationForm = (props) => {
                   />
                 </div>
                 <div>
-                  <input
+                  <StyledInput
                     label="Product Category"
                     id="type"
                     placeholder="Enter the product category/type"
@@ -110,26 +144,26 @@ const ProductCreationForm = (props) => {
                   />
                 </div>
 
-                <button
+                <StyledButton
                   type="button"
                   onClick={handleReset}
                   disabled={!dirty || isSubmitting}
                 >
                   Reset
-                </button>
-                <button type="submit" disabled={isSubmitting}>
+                </StyledButton>
+                <StyledButton type="submit" disabled={isSubmitting}>
                   Submit
-                </button>
+                </StyledButton>
               </form>
             </div>
           )
         }}
       </Formik>
-    </div>
+    </StyledContainer>
   )
 }
-const mapStateToProps = (state) => ({
-  user: state.user,
+const mapStateToProps = state => ({
+  user: state.user
 })
 
 export default connect(

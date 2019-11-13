@@ -1,32 +1,33 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import styled from 'styled-components'
-import { productInitialization } from './reducers/productReducer'
-import { usersInitialization } from './reducers/usersReducer'
-import { ordersInitialization } from './reducers/ordersReducer'
-import userService from './services/users'
-import orderService from './services/orders'
-import NavBar from './components/NavBar'
-import Products from './components/Products'
-import Product from './components/Product'
-import CheckOutPage from './components/CheckOutPage'
-import LandingPage from './components/LandingPage'
-import LoginPage from './components/LoginPage'
-import OrderDetails from './components/OrderDetails'
-import UserInfo from './components/UserInfo'
-import AdminPage from './components/AdminPage'
-import TopBar from './components/TopBar'
+import React, { useEffect } from "react"
+import { connect } from "react-redux"
+import { BrowserRouter as Router, Route } from "react-router-dom"
+import styled from "styled-components"
+import { productInitialization } from "./reducers/productReducer"
+import { usersInitialization } from "./reducers/usersReducer"
+import { ordersInitialization } from "./reducers/ordersReducer"
+import { userLoggingIn } from "./reducers/loginReducer"
+import userService from "./services/users"
+import orderService from "./services/orders"
+import NavBar from "./components/NavBar"
+import Products from "./components/Products"
+import Product from "./components/Product"
+import CheckOutPage from "./components/CheckOutPage"
+import LandingPage from "./components/LandingPage"
+import LoginPage from "./components/LoginPage"
+import OrderDetails from "./components/OrderDetails"
+import UserInfo from "./components/UserInfo"
+import AdminPage from "./components/AdminPage"
+import TopBar from "./components/TopBar"
 
 const StyledContainer = styled.div`
   max-width: 1200px;
   margin: 75px auto;
   background-color: rgba(240, 240, 240, 0.5);
-  padding: 20px 50px 50px;
+  padding: 50px;
   border-radius: 5px;
 `
 
-const App = (props) => {
+const App = props => {
   useEffect(() => {
     props.productInitialization()
     if (props.user && props.user.admin) {
@@ -37,17 +38,16 @@ const App = (props) => {
     }
   }, [])
 
-  const productById = (id) =>
-    props.products.find((product) => product._id === id)
+  const productById = id => props.products.find(product => product._id === id)
 
-  const orderById = (id) => {
+  const orderById = id => {
     if (props.user.admin) {
-      return props.allOrders.find((order) => order._id === id)
+      return props.allOrders.find(order => order._id === id)
     }
-    return props.user.orders.find((order) => order._id === id)
+    return props.user.orders.find(order => order._id === id)
   }
 
-  const userById = (id) => props.registeredUsers.find((user) => user._id === id)
+  const userById = id => props.registeredUsers.find(user => user._id === id)
 
   return (
     <Router>
@@ -90,14 +90,19 @@ const App = (props) => {
   )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   products: state.products,
   user: state.user,
   registeredUsers: state.registeredUsers,
-  allOrders: state.allOrders,
+  allOrders: state.allOrders
 })
 
 export default connect(
   mapStateToProps,
-  { productInitialization, usersInitialization, ordersInitialization }
+  {
+    productInitialization,
+    usersInitialization,
+    ordersInitialization,
+    userLoggingIn
+  }
 )(App)

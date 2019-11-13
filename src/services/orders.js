@@ -1,25 +1,25 @@
-import axios from 'axios'
+import axios from "axios"
 
-const baseUrl = '/api/orders'
+const baseUrl = "/api/orders"
 
 let token = null
 
-const setToken = (newToken) => {
+const setToken = newToken => {
   token = `bearer ${newToken}`
 }
 
 const getAll = async () => {
   const config = {
-    headers: { Authorization: token },
+    headers: { Authorization: token }
   }
 
   const response = await axios.get(baseUrl, config)
   return response.data
 }
 
-const createOrder = async (orderDetails) => {
+const createOrder = async orderDetails => {
   const config = {
-    headers: { Authorization: token },
+    headers: { Authorization: token }
   }
 
   const response = await axios.post(baseUrl, orderDetails, config)
@@ -29,5 +29,5 @@ const createOrder = async (orderDetails) => {
 export default {
   getAll,
   createOrder,
-  setToken,
+  setToken
 }
