@@ -5,7 +5,6 @@
   "dependencies": {
     "axios": "^0.18.1",
     "formik": "^1.5.8",
-    "http-proxy-middleware": "^0.20.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-icons": "^3.8.0",
@@ -24,6 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "https://shielded-spire-60169.herokuapp.com",
   "eslintConfig": {
     "extends": "react-app"
   },
