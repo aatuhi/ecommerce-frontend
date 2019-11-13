@@ -4,7 +4,7 @@ module.exports = function(app) {
   app.use(
     '/api',
     proxy({
-      target: 'http://localhost:9999',
+      target: 'https://shielded-spire-60169.herokuapp.com',
       changeOrigin: true,
       secure: false,
       headers: {

@@ -53,7 +53,7 @@ const LoginForm = props => (
           })
         } catch (error) {
           console.log(error)
-        }
+        } 
         setSubmitting(false)
       }, 3000)
     }}
