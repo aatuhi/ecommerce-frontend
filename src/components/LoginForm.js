@@ -8,10 +8,10 @@ import { userLoggingIn } from "../reducers/loginReducer"
 const StyledContainer = styled.div`
   margin: auto;
   padding: 30px;
-  background: rgba(75, 75, 75, 0.15);
+  background: rgba(220, 220, 220, 0.5);
   border-style: solid;
-  border-color: rgba(75, 75, 75, 0.15);
-  background-clip: padding-box;
+  border-color: rgba(220, 220, 220, 0.5);
+  /* background-clip: padding-box; */
   border-radius: 4px;
 `
 
@@ -53,9 +53,9 @@ const LoginForm = props => (
           })
         } catch (error) {
           console.log(error)
-        } 
+        }
         setSubmitting(false)
-      }, 3000)
+      }, 1000)
     }}
     validationSchema={Yup.object().shape({
       username: Yup.string().required("Required field"),
@@ -77,8 +77,8 @@ const LoginForm = props => (
 
       return (
         <div style={{ margin: "auto" }}>
-          <h2 style={{ textAlign: "center " }}>Log in</h2>
           <StyledContainer>
+            <h2 style={{ textAlign: "center " }}>Log in</h2>
             <form onSubmit={handleSubmit}>
               <div>
                 <StyledInput

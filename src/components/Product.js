@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 import styled from "styled-components"
 import { useSpring, animated } from "react-spring"
+import { FaCartPlus } from "react-icons/fa"
 import ProductEditForm from "./ProductEditForm"
 import { addProductToCart } from "../reducers/shoppingCartReducer"
 
@@ -17,7 +18,7 @@ const StyledDetails = styled.div`
 
 const StyledButton = styled(animated.button)`
   margin: 25px 0;
-  padding: 5px 15px;
+  padding: 5px 10px;
   max-height: 40px;
   background-color: rgba(210, 115, 150, 0.8);
   border-radius: 4px;
@@ -68,6 +69,14 @@ const Product = props => {
               onMouseOver={() => setButtonHovered(true)}
               onMouseOut={() => setButtonHovered(false)}
             >
+              <FaCartPlus
+                style={{
+                  verticalAlign: "middle",
+                  margin: "0 3px 3px 0",
+                  fontSize: "0.9em"
+                }}
+              />
+              {" "}
               Add to cart
             </StyledButton>
           </div>

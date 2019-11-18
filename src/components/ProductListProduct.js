@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import styled from 'styled-components'
-import { useSpring, animated } from 'react-spring'
-import { Link } from 'react-router-dom'
-import { addProductToCart } from '../reducers/shoppingCartReducer'
+import React, { useState } from "react"
+import { connect } from "react-redux"
+import styled from "styled-components"
+import { useSpring, animated } from "react-spring"
+import { Link } from "react-router-dom"
+import { FaCartPlus } from "react-icons/fa"
+import { addProductToCart } from "../reducers/shoppingCartReducer"
 
 const StyledImage = styled.img`
   width: 100px;
@@ -23,9 +24,8 @@ const StyledItem = styled(animated.div)`
   box-shadow: 2px 2px 3px lightslategray;
 `
 const StyledButton = styled(animated.button)`
-  margin: 0 0 0 50px;
-  padding: 5px 15px;
-  max-height: 40px;
+  margin-left: 50px;
+  padding: 5px 10px;
   background-color: rgba(210, 115, 150, 0.8);
   border-radius: 4px;
   border-color: rgba(210, 115, 150, 0.4);
@@ -39,14 +39,14 @@ const StyledTextDiv = styled.div`
   margin: 10px 20px;
 `
 
-const ProductListProduct = (props) => {
+const ProductListProduct = props => {
   const [buttonHovered, setButtonHovered] = useState(false)
 
   const buttonSpring = useSpring({
     // transform: `scale(${buttonHovered ? 1.05 : 1})`,
     background: `${
-      buttonHovered ? 'rgba(220,170,200,0.8)' : 'rgba(210,115,150,0.8)'
-    }`,
+      buttonHovered ? "rgba(220,170,200,0.8)" : "rgba(210,115,150,0.8)"
+    }`
   })
 
   const spring = useSpring({ opacity: 1, from: { opacity: 0 } })
@@ -63,12 +63,14 @@ const ProductListProduct = (props) => {
         <Link to={`/products/${product._id}`}>
           <h3>{product.title}</h3>
         </Link>
-        <p style={{ marginTop: '5px', maxWidth: '250px' }}>
+        <p style={{ marginTop: "5px", maxWidth: "250px" }}>
           {product.description}
         </p>
-        <div style={{ marginTop: '15px' }}>
-          <h3 style={{ margin: '0', display: 'inline-block' }}>
-            {product.price} €
+        <div style={{ marginTop: "15px" }}>
+          <h3 style={{ margin: "0", display: "inline-block", width: "60px" }}>
+            {product.price}
+            {' '}
+€
           </h3>
           <StyledButton
             style={buttonSpring}
@@ -77,7 +79,15 @@ const ProductListProduct = (props) => {
             onMouseOver={() => setButtonHovered(true)}
             onMouseOut={() => setButtonHovered(false)}
           >
-            add to cart
+            <FaCartPlus
+              style={{
+                verticalAlign: "middle",
+                margin: "0 3px 3px 0",
+                fontSize: "0.9em"
+              }}
+            />
+            {" "}
+            Add to cart
           </StyledButton>
         </div>
       </StyledTextDiv>

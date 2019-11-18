@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { connect } from "react-redux"
 import styled, { css } from "styled-components"
+import { FaSyncAlt, FaTrashAlt } from "react-icons/fa"
 import {
   removeProductFromCart,
   updateProductQuantity
@@ -9,14 +10,14 @@ import {
 const StyledImage = styled.img`
   width: 75px;
   height: 75px;
-  margin: 0 20px;
+  /* margin: 0 5px; */
   border-radius: 3px;
 `
 
 const StyledRow = styled.div`
   display: flex;
   margin: 20px 5px;
-  padding: 10px 5px;
+  padding: 10px 20px;
   border: solid;
   border-radius: 6px;
   background-color: rgba(240, 240, 240, 0.7);
@@ -26,15 +27,15 @@ const StyledRow = styled.div`
   box-shadow: 2px 2px 3px lightslategray;
 `
 const StyledButton = styled.button`
-  padding: 5px;
+  padding: 8px 10px;
   margin: 5px
-  max-height: 40px;
+  /* max-height: 40px; */
   background-color: rgba(210, 115, 150, 0.8);
   border-radius: 4px;
   border-color: rgba(210, 115, 150, 0.4);
   color: #f0f0f0;
   box-shadow: 1px 1px 2px slategray;
-  font-size: 1.2em;
+  font-size: 1em;
   text-shadow: 0px 1px 2px slategray;
 
   ${props =>
@@ -52,13 +53,17 @@ const StyledButton = styled.button`
     `}
 `
 const StyledTextDiv = styled.div`
-  min-width: 100px;
+  width: 125px;
   margin: 10px 25px;
 `
 const StyledInput = styled.input`
   max-width: 50px;
-  font-size: 1.2em;
+  font-size: 1.1em;
   margin-right: 10px;
+  padding: 5px;
+  border-color: rgba(240, 240, 240, 0.5);
+  border-radius: 3px;
+  box-shadow: 2px 2px 3px lightslategray;
 `
 
 const ShoppingCartProduct = props => {
@@ -89,27 +94,30 @@ const ShoppingCartProduct = props => {
         </div>
       </StyledTextDiv>
 
-      <div style={{ margin: "10px" }}>
-        <form style={{ marginRight: "15px" }} onSubmit={updateQuantity}>
-          <StyledInput
-            type="number"
-            step="1"
-            defaultValue={quantity}
-            b
-            id="updatedValue"
-          />
-          <StyledButton blue type="submit">
-            update
-          </StyledButton>
-          <StyledButton
-            red
-            type="StyledButton"
-            onClick={() => props.removeProductFromCart(props.product._id)}
-          >
-            remove
-          </StyledButton>
-        </form>
-      </div>
+      {/* <div style={{}}> */}
+      <form
+        style={{ margin: "10px 0 10px 10px", alignItems: "center" }}
+        onSubmit={updateQuantity}
+      >
+        <StyledInput
+          type="number"
+          step="1"
+          defaultValue={quantity}
+          b
+          id="updatedValue"
+        />
+        <StyledButton blue type="submit">
+          <FaSyncAlt />
+        </StyledButton>
+        <StyledButton
+          red
+          type="button"
+          onClick={() => props.removeProductFromCart(props.product._id)}
+        >
+          <FaTrashAlt />
+        </StyledButton>
+      </form>
+      {/* </div> */}
     </StyledRow>
   )
 }

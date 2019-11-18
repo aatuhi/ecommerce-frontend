@@ -7,12 +7,11 @@ const StyledContainer = styled.div`
 `
 
 const StyledAddressContainer = styled.div`
-  /* margin: 20px; */
+  margin: auto;
   padding: 30px;
-  background: rgba(75, 75, 75, 0.15);
+  background: rgba(220, 220, 220, 0.5);
   border-style: solid;
-  border-color: rgba(75, 75, 75, 0.15);
-  background-clip: padding-box;
+  border-color: rgba(220, 220, 220, 0.5);
   border-radius: 4px;
   display: inline-block;
   font-size: 1.4em;

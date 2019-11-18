@@ -14,7 +14,7 @@ const StyledList = styled(animated.div)`
 `
 
 const StyledButton = styled.button`
-  padding: 5px;
+  padding: 5px 15px;
   margin: 5px
   max-height: 40px;
   background-color: rgba(210, 115, 150, 0.8);
@@ -78,7 +78,7 @@ const ShoppingCart = props => {
             type="button"
             onClick={() => props.emptyShoppingCart()}
           >
-            clear cart
+            Clear cart
           </StyledButton>
         </div>
       )}
