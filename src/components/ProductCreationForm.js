@@ -1,10 +1,10 @@
-import React from "react"
-import { connect } from "react-redux"
-import { Formik } from "formik"
-import * as Yup from "yup"
-import styled from "styled-components"
-import { productCreation } from "../reducers/productReducer"
-import productService from "../services/products"
+import React from 'react'
+import { connect } from 'react-redux'
+import { Formik } from 'formik'
+import * as Yup from 'yup'
+import styled from 'styled-components'
+import { productCreation } from '../reducers/productReducer'
+import productService from '../services/products'
 
 const StyledContainer = styled.div`
   margin: 50px;
@@ -45,9 +45,9 @@ const ProductCreationForm = props => {
       <h2>Add a product</h2>
       <Formik
         initialValues={{
-          title: "",
-          description: "",
-          type: "",
+          title: '',
+          description: '',
+          type: '',
           price: 0
         }}
         onSubmit={async (values, { setSubmitting }) => {
@@ -61,21 +61,21 @@ const ProductCreationForm = props => {
                 window.alert(error)
               }
             }
-            window.alert("Product added")
+            window.alert('Product added')
             setSubmitting(false)
           }, 500)
         }}
         validationSchema={Yup.object().shape({
           title: Yup.string()
-            .required("Required field")
-            .min(2, "Title must be at least 2 characters"),
+            .required('Required field')
+            .min(2, 'Title must be at least 2 characters'),
           description: Yup.string()
-            .required("Required field")
-            .min(2, "Description required"),
-          price: Yup.number().required("Price is required"),
+            .required('Required field')
+            .min(2, 'Description required'),
+          price: Yup.number().required('Price is required'),
           type: Yup.string()
-            .required("Required field")
-            .min(2, "Description required")
+            .required('Required field')
+            .min(2, 'Description required')
         })}
       >
         {props => {

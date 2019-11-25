@@ -19,7 +19,6 @@ Yksinkertainen verkkokauppa mock-up omaksi ilokseni.
 
 - Notifikaatiot operaatiosta (sisäänkirjautuminen, tilauksen tekeminen, tuotteen lisäys/poisto/muokkaus...)
 - Tallentetut osoitetiedot
-- Redesign käyttäen omatekoista CSS:sää Semantic UI:n sijasta
 
 ## Bugeja
 

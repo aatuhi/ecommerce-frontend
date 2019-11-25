@@ -1,36 +1,38 @@
-import React, { useEffect } from "react"
-import { connect } from "react-redux"
-import { BrowserRouter as Router, Route } from "react-router-dom"
-import styled from "styled-components"
-import { productInitialization } from "./reducers/productReducer"
-import { usersInitialization } from "./reducers/usersReducer"
-import { ordersInitialization } from "./reducers/ordersReducer"
-import { userLoggingIn } from "./reducers/loginReducer"
-import userService from "./services/users"
-import orderService from "./services/orders"
-import NavBar from "./components/NavBar"
-import Products from "./components/Products"
-import Product from "./components/Product"
-import CheckOutPage from "./components/CheckOutPage"
-import LandingPage from "./components/LandingPage"
-import LoginPage from "./components/LoginPage"
-import OrderDetails from "./components/OrderDetails"
-import UserInfo from "./components/UserInfo"
-import AdminPage from "./components/AdminPage"
-import TopBar from "./components/TopBar"
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import styled from 'styled-components'
+import { productInitialization } from './reducers/productReducer'
+import { usersInitialization } from './reducers/usersReducer'
+import { ordersInitialization } from './reducers/ordersReducer'
+import { userLoggingIn } from './reducers/loginReducer'
+import userService from './services/users'
+import orderService from './services/orders'
+import NavBar from './components/NavBar'
+import Products from './components/Products'
+import Product from './components/Product'
+import CheckOutPage from './components/CheckOutPage'
+import LandingPage from './components/LandingPage'
+import LoginPage from './components/LoginPage'
+import OrderDetails from './components/OrderDetails'
+import UserInfo from './components/UserInfo'
+import AdminPage from './components/AdminPage'
+import TopBar from './components/TopBar'
 
 const StyledContainer = styled.div`
   max-width: 1200px;
   margin: 75px auto;
-  background-color: rgba(240, 240, 240, 0.5);
+  background-color: rgba(240, 240, 240, 0.6);
   padding: 50px;
   border-radius: 5px;
+  box-shadow: 1px 1px 3px rgba(75, 75, 75, 0.2);
 `
 
 const App = props => {
   useEffect(() => {
     props.productInitialization()
     if (props.user && props.user.admin) {
+      // refactor these to login reducer
       userService.setToken(props.user.token)
       orderService.setToken(props.user.token)
       props.usersInitialization()
@@ -55,7 +57,11 @@ const App = props => {
       <NavBar />
       <StyledContainer>
         <Route path="/" exact component={LandingPage} />
-        <Route path="/admin/" exact component={AdminPage} />
+        <Route
+          exact
+          path="/admin/"
+          render={() => <AdminPage products={props.products} />}
+        />
         <Route path="/products/" exact component={Products} />
         <Route
           exact

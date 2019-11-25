@@ -22,24 +22,22 @@ const Products = ({ products }) => {
   const [visible, setVisibility] = useState(false)
   const [productsToShow, setProductsToShow] = useState([products])
 
-  useEffect(() => {
-    setProductsToShow(products)
-  }, [products])
+  useEffect(
+    () => {
+      setProductsToShow(products)
+    },
+    [products]
+  )
 
-  const handleFilterClick = (category) => {
+  const handleFilterClick = category => {
     if (category === 'all') {
       return setProductsToShow(products)
     }
-    const prods = products.filter((p) => p.type === category)
+    const prods = products.filter(p => p.type === category)
     return setProductsToShow(prods)
   }
 
-  const disctinctCategories = ['all', ...new Set(products.map((p) => p.type))]
-
-  // const buttonSpring = useSpring({
-  //   opacity: 1,
-  //   from: { opacity: 0 },
-  // })
+  const disctinctCategories = ['all', ...new Set(products.map(p => p.type))]
 
   return (
     <div>
@@ -71,7 +69,7 @@ const Products = ({ products }) => {
             )}
           </div>
           {disctinctCategories.map(
-            (category) =>
+            category =>
               visible && (
                 <StyledButton
                   key={category}
@@ -88,8 +86,8 @@ const Products = ({ products }) => {
   )
 }
 
-const mapStateToProps = (state) => ({
-  products: state.products,
+const mapStateToProps = state => ({
+  products: state.products
 })
 
 export default withRouter(connect(mapStateToProps)(Products))

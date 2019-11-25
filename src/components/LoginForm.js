@@ -1,9 +1,9 @@
-import React from "react"
-import { connect } from "react-redux"
-import styled from "styled-components"
-import { Formik } from "formik"
-import * as Yup from "yup"
-import { userLoggingIn } from "../reducers/loginReducer"
+import React from 'react'
+import { connect } from 'react-redux'
+import styled from 'styled-components'
+import { Formik } from 'formik'
+import * as Yup from 'yup'
+import { userLoggingIn } from '../reducers/loginReducer'
 
 const StyledContainer = styled.div`
   margin: auto;
@@ -40,8 +40,8 @@ const StyledButton = styled.button`
 const LoginForm = props => (
   <Formik
     initialValues={{
-      username: "",
-      password: ""
+      username: '',
+      password: ''
     }}
     onSubmit={async (values, { setSubmitting }) => {
       setTimeout(() => {
@@ -58,8 +58,8 @@ const LoginForm = props => (
       }, 1000)
     }}
     validationSchema={Yup.object().shape({
-      username: Yup.string().required("Required field"),
-      password: Yup.string().required("Required field")
+      username: Yup.string().required('Username missing'),
+      password: Yup.string().required('Password missing')
     })}
   >
     {props => {
@@ -67,18 +67,16 @@ const LoginForm = props => (
         values,
         touched,
         errors,
-        // dirty,
         isSubmitting,
         handleChange,
         handleBlur,
         handleSubmit
-        // handleReset,
       } = props
 
       return (
-        <div style={{ margin: "auto" }}>
+        <div style={{ margin: 'auto' }}>
           <StyledContainer>
-            <h2 style={{ textAlign: "center " }}>Log in</h2>
+            <h2 style={{ textAlign: 'center ' }}>Log in</h2>
             <form onSubmit={handleSubmit}>
               <div>
                 <StyledInput
