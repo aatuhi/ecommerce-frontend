@@ -1,12 +1,12 @@
-import axios from "axios"
+import axios from 'axios'
 
-const baseUrl = "/api/users"
+const baseUrl = 'https://shielded-spire-60169.herokuapp.com/api/users'
 
 let token = null
 
 const setToken = newToken => {
   token = `bearer ${newToken}`
-  console.log("token set to ", token)
+  console.log('token set to ', token)
 }
 
 const getAll = async () => {

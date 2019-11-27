@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = '/api/products'
+const baseUrl = 'https://shielded-spire-60169.herokuapp.com/api/products'
 
 let token = null
 
@@ -43,10 +43,26 @@ const removeProduct = async id => {
   return response.status
 }
 
+const getFeaturedProducts = async () => {
+  const response = await axios.get(`${baseUrl}/featured`)
+  return response.data
+}
+
+const createFeaturedProducts = async products => {
+  const config = {
+    headers: { Authorization: token }
+  }
+
+  const response = await axios.post(`${baseUrl}/featured`, products, config)
+  return response.data
+}
+
 export default {
   setToken,
   getAll,
   createProduct,
   removeProduct,
-  editProduct
+  editProduct,
+  getFeaturedProducts,
+  createFeaturedProducts
 }

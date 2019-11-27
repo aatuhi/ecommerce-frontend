@@ -1,7 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Formik } from 'formik'
 import styled from 'styled-components'
 import * as Yup from 'yup'
+import { featuredProductsCreation } from '../reducers/featuredProductReducer'
 
 const StyledContainer = styled.div`
   margin: 50px;
@@ -38,96 +40,103 @@ const StyledButton = styled.button`
   text-shadow: 0px 1px 2px slategray;
 `
 
-export const FeaturedProductSelection = ({ products }) => (
-  <Formik
-    initialValues={{
-      productOne: '',
-      productTwo: '',
-      productThree: ''
-    }}
-    onSubmit={async (values, { setSubmitting }) => {
-      console.log('clicked')
-      setTimeout(() => {
-        const { productOne, productTwo, productThree } = values
-        try {
-          console.log(productOne, productTwo, productThree)
-        } catch (error) {
-          console.log(error)
-        }
-        setSubmitting(false)
-      }, 1000)
-    }}
-    validationSchema={Yup.object().shape({
-      productOne: Yup.string().required('missing'),
-      productTwo: Yup.string().required('missing'),
-      productThree: Yup.string().required('missing')
-    })}
-  >
-    {props => {
-      const {
-        values,
-        touched,
-        errors,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        isSubmitting
-      } = props
+export const FeaturedProductSelection = props => {
+  const { products } = props
+  console.log('products', props)
+  return (
+    <Formik
+      initialValues={{
+        productOne: '',
+        productTwo: '',
+        productThree: ''
+      }}
+      onSubmit={async (values, { setSubmitting }) => {
+        setTimeout(() => {
+          const { productOne, productTwo, productThree } = values
+          const featuredProducts = [productOne, productTwo, productThree]
+          try {
+            props.featuredProductsCreation(featuredProducts)
+            console.log(featuredProducts)
+          } catch (error) {
+            console.log(error)
+          }
+          setSubmitting(false)
+        }, 1000)
+      }}
+      validationSchema={Yup.object().shape({
+        productOne: Yup.string().required('missing'),
+        productTwo: Yup.string().required('missing'),
+        productThree: Yup.string().required('missing')
+      })}
+    >
+      {props => {
+        const {
+          values,
+          touched,
+          errors,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting
+        } = props
 
-      return (
-        <StyledContainer>
-          <h2>Select featured products</h2>
-          <form onSubmit={handleSubmit}>
-            <h4>Product one</h4>
-            <StyledSelect
-              name="productOne"
-              value={values.productOne}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={errors.productOne && touched.productOne}
-            >
-              {products.map(p => {
-                return <option value={p._id}>{p.title}</option>
-              })}
-            </StyledSelect>
-            <h4>Product two</h4>
-            <StyledSelect
-              name="productTwo"
-              value={values.productTwo}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={errors.productTwo && touched.productTwo}
-            >
-              {products.map(p => {
-                return <option value={p._id}>{p.title}</option>
-              })}
-            </StyledSelect>
-            <h4>Product three</h4>
-            <StyledSelect
-              name="productThree"
-              value={values.productThree}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={errors.productThree && touched.productThree}
-            >
-              {products.map(p => {
-                return <option value={p._id}>{p.title}</option>
-              })}
-            </StyledSelect>
-            <StyledButton type="submit" disabled={isSubmitting}>
-              Submit
-            </StyledButton>
-          </form>
-        </StyledContainer>
-      )
-    }}
-  </Formik>
-)
+        return (
+          <StyledContainer>
+            <h2>Select featured products</h2>
+            <form onSubmit={handleSubmit}>
+              <h4>Product one</h4>
+              <StyledSelect
+                name="productOne"
+                value={values.productOne}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={errors.productOne && touched.productOne}
+              >
+                {products.map(p => {
+                  return <option value={JSON.stringify(p)}>{p.title}</option>
+                })}
+              </StyledSelect>
+              <h4>Product two</h4>
+              <StyledSelect
+                name="productTwo"
+                value={values.productTwo}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={errors.productTwo && touched.productTwo}
+              >
+                {products.map(p => {
+                  return <option value={JSON.stringify(p)}>{p.title}</option>
+                })}
+              </StyledSelect>
+              <h4>Product three</h4>
+              <StyledSelect
+                name="productThree"
+                value={values.productThree}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={errors.productThree && touched.productThree}
+              >
+                {products.map(p => {
+                  return <option value={JSON.stringify(p)}>{p.title}</option>
+                })}
+              </StyledSelect>
+              <StyledButton type="submit" disabled={isSubmitting}>
+                Submit
+              </StyledButton>
+            </form>
+          </StyledContainer>
+        )
+      }}
+    </Formik>
+  )
+}
+const mapStateToProps = (state, ownProps) => ({
+  products: state.products
+})
 
-export default FeaturedProductSelection
+export default connect(
+  mapStateToProps,
+  { featuredProductsCreation }
+)(FeaturedProductSelection)
 
-// const mapStateToProps = state => ({
-//   products: state.products
-// })
-
-// export default connect(mapStateToProps)(FeaturedProductSelection)
+// export default FeaturedProductSelection

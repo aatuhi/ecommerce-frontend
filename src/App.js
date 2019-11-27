@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import styled from 'styled-components'
 import { productInitialization } from './reducers/productReducer'
+import { featuredProductInitialization } from './reducers/featuredProductReducer'
 import { usersInitialization } from './reducers/usersReducer'
 import { ordersInitialization } from './reducers/ordersReducer'
 import { userLoggingIn } from './reducers/loginReducer'
@@ -37,6 +38,7 @@ const App = props => {
       orderService.setToken(props.user.token)
       props.usersInitialization()
       props.ordersInitialization()
+      props.featuredProductInitialization()
     }
   }, [])
 
@@ -107,6 +109,7 @@ export default connect(
   mapStateToProps,
   {
     productInitialization,
+    featuredProductInitialization,
     usersInitialization,
     ordersInitialization,
     userLoggingIn
