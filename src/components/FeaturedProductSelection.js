@@ -4,6 +4,7 @@ import { Formik } from 'formik'
 import styled from 'styled-components'
 import * as Yup from 'yup'
 import { featuredProductsCreation } from '../reducers/featuredProductReducer'
+import productService from '../services/products'
 
 const StyledContainer = styled.div`
   margin: 50px;
@@ -40,9 +41,8 @@ const StyledButton = styled.button`
   text-shadow: 0px 1px 2px slategray;
 `
 
-export const FeaturedProductSelection = props => {
+const FeaturedProductSelection = props => {
   const { products } = props
-  console.log('products', props)
   return (
     <Formik
       initialValues={{
@@ -55,8 +55,8 @@ export const FeaturedProductSelection = props => {
           const { productOne, productTwo, productThree } = values
           const featuredProducts = [productOne, productTwo, productThree]
           try {
+            productService.setToken(props.user.token)
             props.featuredProductsCreation(featuredProducts)
-            console.log(featuredProducts)
           } catch (error) {
             console.log(error)
           }
@@ -93,7 +93,7 @@ export const FeaturedProductSelection = props => {
                 error={errors.productOne && touched.productOne}
               >
                 {products.map(p => {
-                  return <option value={JSON.stringify(p)}>{p.title}</option>
+                  return <option value={p._id}>{p.title}</option>
                 })}
               </StyledSelect>
               <h4>Product two</h4>
@@ -105,7 +105,7 @@ export const FeaturedProductSelection = props => {
                 error={errors.productTwo && touched.productTwo}
               >
                 {products.map(p => {
-                  return <option value={JSON.stringify(p)}>{p.title}</option>
+                  return <option value={p._id}>{p.title}</option>
                 })}
               </StyledSelect>
               <h4>Product three</h4>
@@ -117,7 +117,7 @@ export const FeaturedProductSelection = props => {
                 error={errors.productThree && touched.productThree}
               >
                 {products.map(p => {
-                  return <option value={JSON.stringify(p)}>{p.title}</option>
+                  return <option value={p._id}>{p.title}</option>
                 })}
               </StyledSelect>
               <StyledButton type="submit" disabled={isSubmitting}>
@@ -130,13 +130,12 @@ export const FeaturedProductSelection = props => {
     </Formik>
   )
 }
-const mapStateToProps = (state, ownProps) => ({
-  products: state.products
+
+const mapStateToProps = state => ({
+  user: state.user
 })
 
 export default connect(
   mapStateToProps,
   { featuredProductsCreation }
 )(FeaturedProductSelection)
-
-// export default FeaturedProductSelection

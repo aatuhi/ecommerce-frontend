@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
-import { useSpring, animated } from 'react-spring'
+import { animated } from 'react-spring'
 import ProductList from './ProductList'
 
 const StyledButton = styled(animated.button)`
@@ -18,7 +18,7 @@ const StyledButton = styled(animated.button)`
   text-shadow: 0px 1px 2px slategray;
 `
 
-const Products = ({ products }) => {
+const ProductsPage = ({ products }) => {
   const [visible, setVisibility] = useState(false)
   const [productsToShow, setProductsToShow] = useState([products])
 
@@ -90,4 +90,4 @@ const mapStateToProps = state => ({
   products: state.products
 })
 
-export default withRouter(connect(mapStateToProps)(Products))
+export default withRouter(connect(mapStateToProps)(ProductsPage))

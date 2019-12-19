@@ -30,7 +30,6 @@ const StyledCell = styled.div`
 `
 
 const OrderHistory = props => {
-  console.log(props.orders)
 
   if (!props.orders || props.orders.length < 1) {
     return (

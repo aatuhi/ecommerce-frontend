@@ -12,7 +12,6 @@ const StyledContainer = styled.div`
   background: rgba(220, 220, 220, 0.5);
   border-style: solid;
   border-color: rgba(220, 220, 220, 0.5);
-  /* background-clip: padding-box; */
   border-radius: 4px;
   display: inline-block;
 `

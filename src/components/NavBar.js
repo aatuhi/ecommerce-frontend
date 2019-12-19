@@ -1,7 +1,7 @@
-import React from "react"
-import { connect } from "react-redux"
-import { Link, withRouter } from "react-router-dom"
-import styled from "styled-components"
+import React from 'react'
+import { connect } from 'react-redux'
+import { Link, withRouter } from 'react-router-dom'
+import styled from 'styled-components'
 import {
   FaShoppingCart,
   FaBoxes,
@@ -9,13 +9,13 @@ import {
   FaUnlock,
   FaUser,
   FaTools
-} from "react-icons/fa"
+} from 'react-icons/fa'
 
 const StyledNavBar = styled.ul`
   display: flex;
   margin: 0px;
   background: rgba(210, 115, 150, 0.8);
-  box-shadow: 0px 1px 2px slategray;
+  box-shadow: 0px 1px 2px rgba(75, 75, 75, 0.5);
 `
 
 const StyledNavBarItem = styled.li`
@@ -33,24 +33,24 @@ const NavBar = props => {
 
   return (
     <StyledNavBar>
-      <Link to="/" style={{ marginLeft: "10vw" }}>
+      <Link to="/" style={{ marginLeft: '10vw' }}>
         <StyledNavBarItem>
           <FaStoreAlt
-            style={{ verticalAlign: "bottom", marginRight: "15px" }}
+            style={{ verticalAlign: 'bottom', marginRight: '15px' }}
           />
           Home
         </StyledNavBarItem>
       </Link>
       <Link to="/products">
         <StyledNavBarItem>
-          <FaBoxes style={{ verticalAlign: "bottom", marginRight: "15px" }} />
+          <FaBoxes style={{ verticalAlign: 'bottom', marginRight: '15px' }} />
           Products
         </StyledNavBarItem>
       </Link>
       <Link to="/cart">
         <StyledNavBarItem>
           <FaShoppingCart
-            style={{ verticalAlign: "bottom", marginRight: "15px" }}
+            style={{ verticalAlign: 'bottom', marginRight: '15px' }}
           />
           Cart
           {props.shoppingCart.length > 0 &&
@@ -61,22 +61,22 @@ const NavBar = props => {
       {props.user && props.user.admin && (
         <Link to="/admin">
           <StyledNavBarItem>
-            <FaTools style={{ verticalAlign: "bottom", marginRight: "10px" }} />
+            <FaTools style={{ verticalAlign: 'bottom', marginRight: '10px' }} />
             Admin panel
           </StyledNavBarItem>
         </Link>
       )}
 
-      <Link to="/account" style={{ marginLeft: "auto", marginRight: "10vw" }}>
+      <Link to="/account" style={{ marginLeft: 'auto', marginRight: '10vw' }}>
         {props.user ? (
           <StyledNavBarItem>
-            <FaUser style={{ verticalAlign: "bottom", marginRight: "10px" }} />
+            <FaUser style={{ verticalAlign: 'bottom', marginRight: '10px' }} />
             My account
           </StyledNavBarItem>
         ) : (
           <StyledNavBarItem>
             <FaUnlock
-              style={{ verticalAlign: "bottom", marginRight: "10px" }}
+              style={{ verticalAlign: 'bottom', marginRight: '10px' }}
             />
             Log in
           </StyledNavBarItem>

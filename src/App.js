@@ -10,7 +10,7 @@ import { userLoggingIn } from './reducers/loginReducer'
 import userService from './services/users'
 import orderService from './services/orders'
 import NavBar from './components/NavBar'
-import Products from './components/Products'
+import ProductsPage from './components/ProductsPage'
 import Product from './components/Product'
 import CheckOutPage from './components/CheckOutPage'
 import LandingPage from './components/LandingPage'
@@ -64,7 +64,7 @@ const App = props => {
           path="/admin/"
           render={() => <AdminPage products={props.products} />}
         />
-        <Route path="/products/" exact component={Products} />
+        <Route path="/products/" exact component={ProductsPage} />
         <Route
           exact
           path="/products/:id"

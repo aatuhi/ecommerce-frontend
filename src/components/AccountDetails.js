@@ -1,12 +1,10 @@
-import React, { useState } from "react"
-import { connect } from "react-redux"
-import styled from "styled-components"
-import { useSpring, animated } from "react-spring"
-import { FaUser, FaEnvelope } from "react-icons/fa"
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import styled from 'styled-components'
+import { useSpring, animated } from 'react-spring'
+import { FaUser, FaEnvelope } from 'react-icons/fa'
 
-import { userLoggingOut } from "../reducers/loginReducer"
-
-const StyledContainer = styled.div``
+import { userLoggingOut } from '../reducers/loginReducer'
 
 const StyledButton = styled(animated.button)`
   margin: 20px 0 0 50px;
@@ -26,7 +24,7 @@ const AccountDetails = props => {
 
   const buttonSpring = useSpring({
     background: `${
-      buttonHovered ? "rgba(220,170,200,0.8)" : "rgba(210,115,150,0.8)"
+      buttonHovered ? 'rgba(220,170,200,0.8)' : 'rgba(210,115,150,0.8)'
     }`
   })
   return (
@@ -34,27 +32,27 @@ const AccountDetails = props => {
       <h2>{props.user.name}</h2>
       <div
         style={{
-          display: "flex",
-          marginBottom: "10px",
-          alignItems: "center"
+          display: 'flex',
+          marginBottom: '10px',
+          alignItems: 'center'
         }}
       >
         <FaUser
           style={{
-            marginRight: "10px"
+            marginRight: '10px'
           }}
         />
-        <p style={{ fontSize: "1.2em" }}>{props.user.username}</p>
+        <p style={{ fontSize: '1.2em' }}>{props.user.username}</p>
       </div>
       <div
         style={{
-          display: "flex",
-          marginBottom: "10px",
-          alignItems: "center"
+          display: 'flex',
+          marginBottom: '10px',
+          alignItems: 'center'
         }}
       >
-        <FaEnvelope style={{ marginRight: "10px" }} />
-        <p style={{ fontSize: "1.2em" }}>{props.user.email}</p>
+        <FaEnvelope style={{ marginRight: '10px' }} />
+        <p style={{ fontSize: '1.2em' }}>{props.user.email}</p>
       </div>
       {props.loggedUser._id === props.user._id && (
         <StyledButton
