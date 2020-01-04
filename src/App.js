@@ -32,13 +32,13 @@ const StyledContainer = styled.div`
 const App = props => {
   useEffect(() => {
     props.productInitialization()
+    props.featuredProductInitialization()
     if (props.user && props.user.admin) {
       // refactor these to login reducer
       userService.setToken(props.user.token)
       orderService.setToken(props.user.token)
       props.usersInitialization()
       props.ordersInitialization()
-      props.featuredProductInitialization()
     }
   }, [])
 
