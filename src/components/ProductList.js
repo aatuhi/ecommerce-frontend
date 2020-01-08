@@ -1,10 +1,12 @@
-import React from "react"
-import styled from "styled-components"
-import ProductListProduct from "./ProductListProduct"
+import React from 'react'
+import styled from 'styled-components'
+import ProductListProduct from './ProductListProduct'
 
 const StyledList = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  @media screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 `
 
 const ProductList = props => {

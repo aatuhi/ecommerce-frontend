@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { useSpring, animated } from 'react-spring'
 import { FaUser, FaEnvelope } from 'react-icons/fa'
-
 import { userLoggingOut } from '../reducers/loginReducer'
 
 const StyledButton = styled(animated.button)`
@@ -27,6 +26,7 @@ const AccountDetails = props => {
       buttonHovered ? 'rgba(220,170,200,0.8)' : 'rgba(210,115,150,0.8)'
     }`
   })
+
   return (
     <div>
       <h2>{props.user.name}</h2>

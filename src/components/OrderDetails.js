@@ -24,6 +24,7 @@ const StyledRow = styled.li`
   padding: 0;
   background-color: rgba(210, 115, 150, 0.2);
   border-top: solid #f0f0f0 2px;
+  width: 600px;
 
   ${props =>
     props.header &&
@@ -39,7 +40,7 @@ const StyledRow = styled.li`
     `}
 `
 const StyledCell = styled.div`
-  min-width: 150px;
+  width: 200px;
   padding: 10px 10px;
   margin: 0;
 `

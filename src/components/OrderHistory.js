@@ -65,7 +65,7 @@ const OrderHistory = props => {
               )}
             </StyledCell>
             <StyledCell>{order.date}</StyledCell>
-            <StyledCell>{order.totalPrice}</StyledCell>
+            <StyledCell>{order.totalPrice} €</StyledCell>
           </StyledRow>
         ))}
       </ul>

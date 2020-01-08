@@ -24,9 +24,13 @@ const StyledContainer = styled.div`
   max-width: 1200px;
   margin: 75px auto;
   background-color: rgba(240, 240, 240, 0.6);
-  padding: 50px;
   border-radius: 5px;
   box-shadow: 1px 1px 3px rgba(75, 75, 75, 0.2);
+  padding: 25px 0;
+
+  @media screen and (min-width: 768px) {
+    padding: 50px;
+  }
 `
 
 const App = props => {

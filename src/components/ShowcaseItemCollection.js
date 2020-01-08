@@ -8,12 +8,21 @@ const StyledSubHeader = styled.h2`
   margin: 50px;
 `
 
+const StyledWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
+`
+
 const ShowcaseItemCollecation = props => {
   const [showcaseProducts, setShowcaseProducts] = useState(
     props.featuredProducts
   )
 
-  // artificial intelligence as it's best
   useEffect(
     () => {
       setShowcaseProducts(props.featuredProducts)
@@ -26,13 +35,13 @@ const ShowcaseItemCollecation = props => {
   return (
     <div>
       <StyledSubHeader>Featured products:</StyledSubHeader>
-      <div style={{ display: 'flex' }}>
+      <StyledWrapper>
         {showcaseProducts.map(product => (
-          <div style={{ margin: 'auto' }} key={Math.random()}>
+          <div style={{ margin: '10px auto' }} key={product._id}>
             <ShowcaseItem product={product} />
           </div>
         ))}
-      </div>
+      </StyledWrapper>
     </div>
   )
 }
