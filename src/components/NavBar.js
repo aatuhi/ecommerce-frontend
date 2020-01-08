@@ -16,18 +16,11 @@ const StyledNavBar = styled.ul`
   margin: 0px;
   background: rgba(210, 115, 150, 0.8);
   box-shadow: 0px 1px 2px rgba(75, 75, 75, 0.5);
-
-  @media screen and (min-width: 768px) {
-    flex-direction: row;
-    margin: 0px;
-    background: rgba(210, 115, 150, 0.8);
-    box-shadow: 0px 1px 2px rgba(75, 75, 75, 0.5);
-  }
 `
 
 const StyledWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   @media screen and (min-width: 768px) {
     flex-direction: row;
     margin: auto;
@@ -37,31 +30,17 @@ const StyledWrapper = styled.div`
 const StyledNavBarItem = styled.li`
   display: block;
   margin: 10px 1vw;
-  font-size: 1.2em;
+  font-size: 1em;
   color: #f0f0f0;
   text-shadow: 0px 1px 2px slategray;
 
   @media screen and (min-width: 768px) {
-  min-width: 120px
-  display: block;
-  margin: 30px 2.5vw;
-  font-size: 1.7em;
-  color: #f0f0f0;
-  text-shadow: 0px 1px 2px slategray;
-  ${props =>
-    props.first &&
-    css`
-      color: red;
-      margin-left: 10vw;
-    `}
-    ${props =>
-      props.last &&
-      css`
-        color: red;
-        margin-left: auto;
-      `}
+    min-width: 120px;
+    margin: 30px 2.5vw;
+    font-size: 1.7em;
   }
 `
+const StyledNavBarItemTitle = styled.h4``
 
 const NavBar = props => {
   const cartTotalQuantity = shoppingCart =>

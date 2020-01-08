@@ -1,7 +1,7 @@
-import React from "react"
-import { connect } from "react-redux"
-import { Link, withRouter } from "react-router-dom"
-import styled, { css } from "styled-components"
+import React from 'react'
+import { connect } from 'react-redux'
+import { Link, withRouter } from 'react-router-dom'
+import styled, { css } from 'styled-components'
 
 const StyledContainer = styled.div`
   margin: 50px 20px;
@@ -30,7 +30,6 @@ const StyledCell = styled.div`
 `
 
 const OrderHistory = props => {
-
   if (!props.orders || props.orders.length < 1) {
     return (
       <StyledContainer>
@@ -65,7 +64,11 @@ const OrderHistory = props => {
               )}
             </StyledCell>
             <StyledCell>{order.date}</StyledCell>
-            <StyledCell>{order.totalPrice} €</StyledCell>
+            <StyledCell>
+              {order.totalPrice}
+              {' '}
+€
+            </StyledCell>
           </StyledRow>
         ))}
       </ul>

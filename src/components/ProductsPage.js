@@ -42,9 +42,7 @@ const ProductsPage = ({ products }) => {
   return (
     <div>
       <div style={{ display: 'flex' }}>
-        <h2 style={{ margin: 'auto' }}>
-          Enjoy our selection of quality goods!
-        </h2>
+        <h2 style={{ margin: 'auto' }}>Products</h2>
       </div>
       {/* filter visibility */}
       <div style={{ display: 'flex', margin: '20px' }}>

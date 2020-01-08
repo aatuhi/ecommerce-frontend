@@ -1,10 +1,21 @@
-import React from "react"
-import { connect } from "react-redux"
-import { withRouter } from "react-router-dom"
-import { userLoggingIn } from "../reducers/loginReducer"
-import UserCreationForm from "./UserCreationForm"
-import LoginForm from "./LoginForm"
-import UserInfo from "./UserInfo"
+import React from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import styled from 'styled-components'
+import { userLoggingIn } from '../reducers/loginReducer'
+import UserCreationForm from './UserCreationForm'
+import LoginForm from './LoginForm'
+import UserInfo from './UserInfo'
+
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    padding: 50px;
+  }
+`
 
 const LoginPage = props => {
   if (props.user) {
@@ -12,10 +23,10 @@ const LoginPage = props => {
   }
 
   return (
-    <div style={{ display: "flex", padding: "50px" }}>
+    <StyledContainer>
       <LoginForm />
       <UserCreationForm />
-    </div>
+    </StyledContainer>
   )
 }
 

@@ -1,39 +1,46 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
+import styled from 'styled-components'
 import ShoppingCart from './ShoppingCart'
 import OrderForm from './OrderForm'
 
-const CheckOutPage = props => (
-  <div>
-    {props.cart.length < 1 ? (
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
+`
+
+const CheckOutPage = props => {
+  if (props.cart.length < 1) {
+    return (
       <h2 style={{ textAlign: 'center' }}>
         Please add some products to shopping cart first
       </h2>
-    ) : (
-      <div style={{ display: 'flex' }}>
-        <div>
-          <ShoppingCart />
-        </div>
-        <div style={{ margin: '50px auto' }}>
-          {props.user ? (
-            <OrderForm />
-          ) : (
-            <div>
-              <h2>
-                Please 
-                {' '}
-                <Link to="/account">log in</Link>
-                {' '}
+    )
+  }
+
+  return (
+    <StyledContainer>
+      <ShoppingCart />
+      <div style={{ margin: '50px auto' }}>
+        {props.user ? (
+          <OrderForm />
+        ) : (
+          <h2>
+            Please 
+            {' '}
+            <Link to="/account">log in</Link>
+            {' '}
 first to make an order
-              </h2>
-            </div>
-          )}
-        </div>
+          </h2>
+        )}
       </div>
-    )}
-  </div>
-)
+    </StyledContainer>
+  )
+}
 
 const mapStateToProps = state => ({
   user: state.user,

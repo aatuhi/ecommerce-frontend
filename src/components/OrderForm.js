@@ -1,18 +1,21 @@
-import React from "react"
-import { connect } from "react-redux"
-import { Formik } from "formik"
-import * as Yup from "yup"
-import styled from "styled-components"
-import orderService from "../services/orders"
+import React from 'react'
+import { connect } from 'react-redux'
+import { Formik } from 'formik'
+import * as Yup from 'yup'
+import styled from 'styled-components'
+import orderService from '../services/orders'
 
 const StyledContainer = styled.div`
-  margin: 20px;
   padding: 30px;
   background: rgba(220, 220, 220, 0.5);
   border-style: solid;
   border-color: rgba(220, 220, 220, 0.5);
   /* background-clip: padding-box; */
   border-radius: 4px;
+
+  @media screen and (min-width: 768px) {
+    margin: 20px;
+  }
 `
 
 const StyledInput = styled.input`
@@ -49,11 +52,11 @@ const OrderForm = props => {
       <h2>Place an order</h2>
       <Formik
         initialValues={{
-          name: "",
-          street: "",
-          zipCode: "",
-          city: "",
-          country: ""
+          name: '',
+          street: '',
+          zipCode: '',
+          city: '',
+          country: ''
         }}
         onSubmit={async (values, { setSubmitting }) => {
           setTimeout(() => {
@@ -69,17 +72,17 @@ const OrderForm = props => {
               } catch (error) {
                 window.alert(error)
               }
-              window.alert("Order placed")
+              window.alert('Order placed')
             }
             setSubmitting(false)
           }, 500)
         }}
         validationSchema={Yup.object().shape({
-          name: Yup.string().required("Required field"),
-          street: Yup.string().required("Required field"),
-          zipCode: Yup.string().required("Required field"),
-          city: Yup.string().required("Required field"),
-          country: Yup.string().required("Required field")
+          name: Yup.string().required('Required field'),
+          street: Yup.string().required('Required field'),
+          zipCode: Yup.string().required('Required field'),
+          city: Yup.string().required('Required field'),
+          country: Yup.string().required('Required field')
         })}
       >
         {props => {

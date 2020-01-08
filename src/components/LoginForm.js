@@ -6,12 +6,11 @@ import * as Yup from 'yup'
 import { userLoggingIn } from '../reducers/loginReducer'
 
 const StyledContainer = styled.div`
-  margin: auto;
+  margin: 25px auto;
   padding: 30px;
   background: rgba(220, 220, 220, 0.5);
   border-style: solid;
   border-color: rgba(220, 220, 220, 0.5);
-  /* background-clip: padding-box; */
   border-radius: 4px;
 `
 

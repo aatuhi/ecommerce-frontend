@@ -5,7 +5,10 @@ import ShowcaseItem from './ShowcaseItem'
 
 const StyledSubHeader = styled.h2`
   text-align: center;
-  margin: 50px;
+  margin: 25px;
+  @media screen and (min-width: 768px) {
+    margin: 50px;
+  }
 `
 
 const StyledWrapper = styled.div`
@@ -34,7 +37,7 @@ const ShowcaseItemCollecation = props => {
 
   return (
     <div>
-      <StyledSubHeader>Featured products:</StyledSubHeader>
+      <StyledSubHeader>Featured products</StyledSubHeader>
       <StyledWrapper>
         {showcaseProducts.map(product => (
           <div style={{ margin: '10px auto' }} key={product._id}>

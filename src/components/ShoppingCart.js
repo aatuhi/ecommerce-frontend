@@ -1,16 +1,20 @@
-import React from "react"
-import { connect } from "react-redux"
-import styled, { css } from "styled-components"
-import { useSpring, animated } from "react-spring"
-import { emptyShoppingCart } from "../reducers/shoppingCartReducer"
-import ShoppingCartProduct from "./ShoppingCartProduct"
+import React from 'react'
+import { connect } from 'react-redux'
+import styled, { css } from 'styled-components'
+import { useSpring, animated } from 'react-spring'
+import { emptyShoppingCart } from '../reducers/shoppingCartReducer'
+import ShoppingCartProduct from './ShoppingCartProduct'
 
 const StyledContainer = styled.div`
   max-width: 600px;
-  padding: 50px 10px;
+  /* padding: 25px 5px; */
+
+  @media screen and (min-width: 768px) {
+    
+  }
 `
 const StyledList = styled(animated.div)`
-  margin: 50px 0;
+  margin-bottom: 25px;
 `
 
 const StyledButton = styled.button`
@@ -59,27 +63,32 @@ const ShoppingCart = props => {
 
   return (
     <StyledContainer>
-      <h2>Shopping cart</h2>
+      <h2 style={{ textAlign: 'center', marginBottom: '25px' }}>Shopping cart</h2>
       <StyledList style={spring}>
         {props.shoppingCart.map(product => (
           <ShoppingCartProduct key={product._id} product={product} />
         ))}
       </StyledList>
       {props.shoppingCart.length > 0 && (
-        <div>
-          Total price:
-          <h3>
-            {totalPrice(props.shoppingCart)}
-            {' '}
+        <div style={{ display: 'flex'}}>
+          <div style={{ display:'flex', margin: 'auto'}}>
+
+          <div style={{ marginRight: '25px' }}>
+            Total price:
+            <h3>
+              {totalPrice(props.shoppingCart)}
+              {' '}
 €
-          </h3>
+            </h3>
+          </div>
           <StyledButton
             red
             type="button"
             onClick={() => props.emptyShoppingCart()}
-          >
+            >
             Clear cart
           </StyledButton>
+            </div>
         </div>
       )}
     </StyledContainer>
