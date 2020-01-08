@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'api/products'
+const baseUrl = 'https://shielded-spire-60169.herokuapp.com/api/products'
 
 let token = null
 
