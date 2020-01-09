@@ -1,19 +1,38 @@
-import React, { useState } from "react"
-import { connect } from "react-redux"
-import { withRouter } from "react-router-dom"
-import styled from "styled-components"
-import { useSpring, animated } from "react-spring"
-import { FaCartPlus } from "react-icons/fa"
-import ProductEditForm from "./ProductEditForm"
-import { addProductToCart } from "../reducers/shoppingCartReducer"
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import styled from 'styled-components'
+import { useSpring, animated } from 'react-spring'
+import { FaCartPlus } from 'react-icons/fa'
+import ProductEditForm from './ProductEditForm'
+import { addProductToCart } from '../reducers/shoppingCartReducer'
+
+const StyledContainer = styled(animated.div)`
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
+`
 
 const StyledImage = styled.img`
-  width: 250px;
-  height: 250px;
-  margin: 50px;
+  width: 125px;
+  height: 125px;
+  margin: 10px 25px;
+
+  @media screen and (min-width: 768px) {
+    width: 250px;
+    height: 250px;
+    margin: 50px;
+  }
 `
 const StyledDetails = styled.div`
-  margin: 50px;
+  margin: 25px;
+
+  @media screen and (min-width: 768px) {
+    margin: 50px;
+  }
 `
 
 const StyledButton = styled(animated.button)`
@@ -33,7 +52,7 @@ const Product = props => {
 
   const buttonSpring = useSpring({
     background: `${
-      buttonHovered ? "rgba(220,170,200,0.8)" : "rgba(210,115,150,0.8)"
+      buttonHovered ? 'rgba(220,170,200,0.8)' : 'rgba(210,115,150,0.8)'
     }`
   })
 
@@ -47,45 +66,43 @@ const Product = props => {
   }
 
   return (
-    <animated.div style={pageSpring}>
-      <div style={{ display: "flex" }}>
-        <StyledImage
-          alt="product_image"
-          src="https://react.semantic-ui.com/images/wireframe/image.png"
-        />
-        <StyledDetails>
-          <h2>{props.product.title}</h2>
-          <p>{props.product.description}</p>
-          <h3>
-            {props.product.price}
-            {' '}
+    <StyledContainer style={pageSpring}>
+      <StyledImage
+        alt="product_image"
+        src="https://react.semantic-ui.com/images/wireframe/image.png"
+      />
+      <StyledDetails>
+        <h2>{props.product.title}</h2>
+        <p>{props.product.description}</p>
+        <h3>
+          {props.product.price}
+          {' '}
 €
-          </h3>
-          <div>
-            <StyledButton
-              style={buttonSpring}
-              type="button"
-              onClick={() => props.addProductToCart(props.product)}
-              onMouseOver={() => setButtonHovered(true)}
-              onMouseOut={() => setButtonHovered(false)}
-            >
-              <FaCartPlus
-                style={{
-                  verticalAlign: "middle",
-                  margin: "0 3px 3px 0",
-                  fontSize: "0.9em"
-                }}
-              />
-              {" "}
-              Add to cart
-            </StyledButton>
-          </div>
-        </StyledDetails>
-        {props.user && props.user.admin && (
-          <ProductEditForm product={props.product} />
-        )}
-      </div>
-    </animated.div>
+        </h3>
+        <div>
+          <StyledButton
+            style={buttonSpring}
+            type="button"
+            onClick={() => props.addProductToCart(props.product)}
+            onMouseOver={() => setButtonHovered(true)}
+            onMouseOut={() => setButtonHovered(false)}
+          >
+            <FaCartPlus
+              style={{
+                verticalAlign: 'middle',
+                margin: '0 3px 3px 0',
+                fontSize: '0.9em'
+              }}
+            />
+            {' '}
+            Add to cart
+          </StyledButton>
+        </div>
+      </StyledDetails>
+      {props.user && props.user.admin && (
+        <ProductEditForm product={props.product} />
+      )}
+    </StyledContainer>
   )
 }
 
