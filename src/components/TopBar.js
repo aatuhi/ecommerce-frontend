@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const StyledNavBar = styled.div`
   display: flex;
   margin: 0px;
-  background: rgba(240, 240, 240, 0.8);
+  background: #eceff4cc;
 `
 const StyledHeader = styled.h2`
   margin: auto;

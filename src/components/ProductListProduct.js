@@ -24,8 +24,8 @@ const StyledItem = styled(animated.div)`
   margin: 5px;
   border: solid;
   border-radius: 6px;
-  background-color: rgba(240, 240, 240, 0.7);
-  border-color: rgba(240, 240, 240, 0.1);
+  background-color: #e5e9f0b3;
+  border-color: #e5e9f01a;
   box-shadow: 0px 1px 3px lightslategray;
 
   @media screen and (min-width: 768px) {
@@ -34,20 +34,19 @@ const StyledItem = styled(animated.div)`
   }
 `
 const StyledButton = styled(animated.button)`
-margin-top: 5px;
-padding:  0 5px
-  background-color: rgba(210, 115, 150, 0.8);
+  margin-top: 5px;
+  padding: 1px 5px;
   border-radius: 4px;
-  border-color: rgba(210, 115, 150, 0.4);
+  background-color: #88c0d0;
+  border-color: #88c0d066;
   color: #f0f0f0;
   box-shadow: 1px 1px 2px slategray;
   font-size: 1.2em;
   text-shadow: 0px 1px 2px slategray;
 
   @media screen and (min-width: 768px) {
-  padding: 5px 10px;
-  margin-left: 50px;
-    
+    padding: 5px 10px;
+    margin-left: 50px;
   }
 `
 const StyledTextDiv = styled.div`
@@ -69,15 +68,14 @@ const StyledProductDescription = styled.p`
 
 const ProductListProduct = props => {
   const [buttonHovered, setButtonHovered] = useState(false)
-
-  const buttonSpring = useSpring({
-    // transform: `scale(${buttonHovered ? 1.05 : 1})`,
-    background: `${
-      buttonHovered ? 'rgba(220,170,200,0.8)' : 'rgba(210,115,150,0.8)'
-    }`
-  })
+  const [buttonClicked, setButtonClicked] = useState(false)
 
   const spring = useSpring({ opacity: 1, from: { opacity: 0 } })
+
+  const buttonSpring = useSpring({
+    background: `${buttonHovered ? '#81A1C1' : '#88C0D0'}`,
+    transform: `scale(${buttonClicked ? 1.1 : 1})`
+  })
 
   const { product } = props
 
@@ -106,6 +104,8 @@ const ProductListProduct = props => {
             onClick={() => props.addProductToCart(product)}
             onMouseOver={() => setButtonHovered(true)}
             onMouseOut={() => setButtonHovered(false)}
+            onMouseDown={() => setButtonClicked(true)}
+            onMouseUp={() => setButtonClicked(false)}
           >
             <FaCartPlus
               style={{

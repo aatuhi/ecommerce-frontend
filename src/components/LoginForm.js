@@ -8,9 +8,9 @@ import { userLoggingIn } from '../reducers/loginReducer'
 const StyledContainer = styled.div`
   margin: 25px auto;
   padding: 30px;
-  background: rgba(220, 220, 220, 0.5);
+  background: #e5e9f080;
+  border-color: #e5e9f080;
   border-style: solid;
-  border-color: rgba(220, 220, 220, 0.5);
   border-radius: 4px;
 `
 
@@ -26,10 +26,10 @@ const StyledInput = styled.input`
 const StyledButton = styled.button`
   margin: 20px 0 0 130px;
   padding: 5px 15px;
-  max-height: 40px;
-  background-color: rgba(210, 115, 150, 0.8);
   border-radius: 4px;
-  border-color: rgba(210, 115, 150, 0.4);
+  max-height: 40px;
+  background-color: #88c0d0;
+  border-color: #81a1c166;
   color: #f0f0f0;
   text-shadow: 0px 1px 2px slategray;
   box-shadow: 1px 1px 2px slategray;

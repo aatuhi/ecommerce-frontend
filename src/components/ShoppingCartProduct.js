@@ -19,8 +19,8 @@ const StyledRow = styled.div`
   padding: 10px 20px;
   border: solid;
   border-radius: 6px;
-  background-color: rgba(240, 240, 240, 0.7);
-  border-color: rgba(240, 240, 240, 0.1);
+  background-color: #e5e9f0b3;
+  border-color: #e5e9f01a;
   box-shadow: 0px 1px 3px lightslategray;
 
   @media screen and (min-width: 768px) {
@@ -47,15 +47,15 @@ const StyledButton = styled.button`
   ${props =>
     props.red &&
     css`
-      background: rgba(190, 66, 81, 0.8);
-      border-color: rgba(190, 66, 81, 0.4);
+      background: #bf616a;
+      border-color: #bf616a66;
     `}
 
   ${props =>
     props.blue &&
     css`
-      background-color: rgba(66, 136, 168, 0.8);
-      border-color: rgba(66, 136, 168, 0.4);
+      background-color: #81a1c1;
+      border-color: #81a1c166;
     `}
 `
 const StyledTextDiv = styled.div`

@@ -70,10 +70,8 @@ const ShowcaseItem = ({ product }) => {
     opacity: 1,
     from: { opacity: 0 },
     transform: `scale(${hovered ? 1.05 : 1})`,
-    background: `${
-      hovered ? 'rgba(220,170,200,0.5)' : 'rgba(210,115,150,0.5)'
-    }`,
-    boxShadow: `${hovered ? '6px 6px 8px slategray' : '3px 3px 4px slategray'}`
+    background: `${hovered ? '#81A1C1cc' : '#88C0D0cc'}`,
+    boxShadow: `${hovered ? '6px 6px 8px #3B4252cc' : '3px 3px 4px #3B4252cc'}`
   })
 
   if (!product) {

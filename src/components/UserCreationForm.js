@@ -1,15 +1,15 @@
-import React from "react"
-import { Formik } from "formik"
-import * as Yup from "yup"
-import styled from "styled-components"
-import userService from "../services/users"
+import React from 'react'
+import { Formik } from 'formik'
+import * as Yup from 'yup'
+import styled from 'styled-components'
+import userService from '../services/users'
 
 const StyledContainer = styled.div`
   margin: auto;
   padding: 30px;
-  background: rgba(220, 220, 220, 0.5);
+  background: #e5e9f080;
+  border-color: #e5e9f080;
   border-style: solid;
-  border-color: rgba(220, 220, 220, 0.5);
   /* background-clip: padding-box; */
   border-radius: 4px;
 `
@@ -27,9 +27,9 @@ const StyledButton = styled.button`
   margin: 20px 0 0 130px;
   padding: 5px 15px;
   max-height: 40px;
-  background-color: rgba(210, 115, 150, 0.8);
   border-radius: 4px;
-  border-color: rgba(210, 115, 150, 0.4);
+  background-color: #88c0d0;
+  border-color: #81a1c166;
   color: #f0f0f0;
   box-shadow: 1px 1px 2px slategray;
   font-size: 1.2em;
@@ -39,11 +39,11 @@ const StyledButton = styled.button`
 const UserCreationForm = props => (
   <Formik
     initialValues={{
-      username: "",
-      name: "",
-      email: "",
-      password: "",
-      passwordVerification: ""
+      username: '',
+      name: '',
+      email: '',
+      password: '',
+      passwordVerification: ''
     }}
     onSubmit={async (values, { setSubmitting }) => {
       setTimeout(() => {
@@ -63,18 +63,18 @@ const UserCreationForm = props => (
     }}
     validationSchema={Yup.object().shape({
       username: Yup.string()
-        .required("Required field")
-        .min(3, "Title must be at least 3 characters"),
+        .required('Required field')
+        .min(3, 'Title must be at least 3 characters'),
       password: Yup.string()
-        .required("Required field")
-        .min(6, "Password must be at least 6 characters"),
+        .required('Required field')
+        .min(6, 'Password must be at least 6 characters'),
       passwordVerification: Yup.string()
-        .oneOf([Yup.ref("password"), "Must equal to password field"])
-        .required("Password confirm is required"),
+        .oneOf([Yup.ref('password'), 'Must equal to password field'])
+        .required('Password confirm is required'),
       email: Yup.string()
-        .email("Invalid email")
-        .required("Required field"),
-      name: Yup.string().required("Required field")
+        .email('Invalid email')
+        .required('Required field'),
+      name: Yup.string().required('Required field')
     })}
   >
     {props => {
@@ -91,9 +91,9 @@ const UserCreationForm = props => (
       } = props
 
       return (
-        <div style={{ margin: "auto" }}>
+        <div style={{ margin: 'auto' }}>
           <StyledContainer>
-            <h2 style={{ textAlign: "center " }}>Create user</h2>
+            <h2 style={{ textAlign: 'center ' }}>Create user</h2>
             <form onSubmit={handleSubmit}>
               <div>
                 <StyledInput

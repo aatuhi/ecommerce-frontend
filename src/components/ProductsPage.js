@@ -6,16 +6,22 @@ import { animated } from 'react-spring'
 import ProductList from './ProductList'
 
 const StyledButton = styled(animated.button)`
-  margin: 10px;
-  padding: 5px 15px;
+  margin: 2px;
+  padding: 1px 5px;
   max-height: 40px;
-  background-color: rgba(180, 90, 140, 0.8);
   border-radius: 4px;
-  border-color: rgba(210, 115, 150, 0.3);
+  background-color: #d08770;
+  border-color: #d0877066;
   color: #f0f0f0;
   box-shadow: 1px 1px 2px slategray;
   font-size: 1.1em;
   text-shadow: 0px 1px 2px slategray;
+
+  @media screen and (min-width: 768px) {
+    margin: 10px;
+    padding: 5px 15px;
+    font-size: 1em;
+  }
 `
 
 const ProductsPage = ({ products }) => {
@@ -41,11 +47,9 @@ const ProductsPage = ({ products }) => {
 
   return (
     <div>
-      <div style={{ display: 'flex' }}>
-        <h2 style={{ margin: 'auto' }}>Products</h2>
-      </div>
+      <h2 style={{ textAlign: 'center' }}>Products</h2>
       {/* filter visibility */}
-      <div style={{ display: 'flex', margin: '20px' }}>
+      <div style={{ display: 'flex', margin: '25px 0' }}>
         <div style={{ display: 'flex', margin: 'auto' }}>
           <div>
             {visible ? (

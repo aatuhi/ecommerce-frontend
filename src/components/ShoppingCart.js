@@ -32,8 +32,8 @@ const StyledButton = styled.button`
   ${props =>
     props.red &&
     css`
-      background: rgba(190, 66, 81, 0.8);
-      border-color: rgba(190, 66, 81, 0.4);
+      background: #bf616a;
+      border-color: #bf616a66;
     `}
 
   ${props =>

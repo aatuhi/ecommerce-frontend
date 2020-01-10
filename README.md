@@ -8,11 +8,9 @@ Yksinkertainen verkkokauppaprojekti omaksi ilokseni. Päällimmäistarkoituksena
 
 Projektissa on käytetty esimerkiksi seuraavia teknologioita:
 
-- React.js
-- Tyylittelyyn käytetty styled-components- + react-icons kirjastoja
+- React.js + styled-components
 - Lomakkeet luotu Formik + Yup yhdistelmällä
 - node.js + MongoDB backend
-
 
 ## Verkkokauppa sisältää seuraavat toiminnallisuudet
 
@@ -22,29 +20,38 @@ Projektissa on käytetty esimerkiksi seuraavia teknologioita:
 - Tilauksen tekeminen (Stripe-integraatio tulossa lähitulevaisuudessa)
 - Käyttäjän luominen
 - Kolmen tuotteen näyteikkuna etusivulla (implementaatio työn alla)
+- Tuen mobiililaitteille
 
 ## Kuvia
 
 ### Kustomoitava kolmen tuotteen näyteikkuna
+
 ![Featured products](screenshots/featuredproducts.png)
 
 ### Tuotelistaus
+
 ![Productlist](screenshots/productlist.png)
 
 ### Ostoskori
+
 ![Shoppingcart](screenshots/shoppingcart.png)
 
 ### Yksittäisen tilauksen tiedot
+
 ![Orderdetails](screenshots/orderdetails.png)
 
 ### Käyttäjätiedot
+
 ![Accountdetails](screenshots/accountdetails.png)
 
 ### Tuotteen lisäyslomake ja näyteikkunan tuotteiden valinta ylläpitäjille
+
 ![Adminpanel1](screenshots/adminpanel1.png)
 
 ### Lista rekisteröityneistä käyttäjistä ylläpitäjille
+
 ![Adminpanel2](screenshots/adminpanel2.png)
 
 ### Lista tehdyistä tilauksista ylläpitäjille
+
 ![Adminpanel3](screenshots/adminpanel3.png)

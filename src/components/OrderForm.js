@@ -2,15 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import orderService from '../services/orders'
 
 const StyledContainer = styled.div`
   padding: 30px;
-  background: rgba(220, 220, 220, 0.5);
+  background: #e5e9f080;
+  border-color: #e5e9f080;
   border-style: solid;
-  border-color: rgba(220, 220, 220, 0.5);
-  /* background-clip: padding-box; */
   border-radius: 4px;
 
   @media screen and (min-width: 768px) {
@@ -31,13 +30,20 @@ const StyledButton = styled.button`
   margin: 20px 10px;
   padding: 5px 15px;
   max-height: 40px;
-  background-color: rgba(210, 115, 150, 0.8);
   border-radius: 4px;
-  border-color: rgba(210, 115, 150, 0.4);
+  background-color: #81a1c1;
+  border-color: #81a1c166;
   color: #f0f0f0;
   box-shadow: 1px 1px 2px slategray;
   font-size: 1.2em;
   text-shadow: 0px 1px 2px slategray;
+
+  ${props =>
+    props.orange &&
+    css`
+      background-color: #d08770;
+      border-color: #d0877066;
+    `}
 `
 
 const OrderForm = props => {
@@ -164,6 +170,7 @@ const OrderForm = props => {
                 </div>
 
                 <StyledButton
+                  orange
                   type="button"
                   onClick={handleReset}
                   disabled={!dirty || isSubmitting}
