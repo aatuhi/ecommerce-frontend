@@ -48,6 +48,11 @@ const shoppingCartReducer = (state = cart || [], action) => {
       const stateWithoutProduct = state.filter(
         product => product._id !== action.data._id
       )
+      if (action.data.quantity < 1) {
+        return [...stateWithoutProduct].sort(
+          (a, b) => a.price - b.price
+        )
+      }
       const newState = [...stateWithoutProduct, action.data].sort(
         (a, b) => a.price - b.price
       )
